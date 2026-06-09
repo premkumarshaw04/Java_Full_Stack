@@ -370,3 +370,370 @@ Object obj3 = "Hello";               // valid — String is also an Object
 ---
 
 *End of Notes — Common Confusions Cleared*
+
+---
+
+## 5. Abstraction vs Encapsulation — How Are They Different?
+
+These two are the most commonly confused OOPs concepts because both involve "hiding" something. But what they hide and **why** they hide it is completely different.
+
+---
+
+### The Core Difference in One Line:
+- **Encapsulation** → Hides **data** (variables) — protects it from being misused
+- **Abstraction** → Hides **complexity/implementation** — simplifies what the user sees
+
+---
+
+### Simple Analogy:
+
+Think of a **TV remote**:
+- **Abstraction** → You see buttons like "Volume Up", "Channel Change". You don't see the circuit board, infrared signals, or programming inside. The complexity is hidden — you only see what you need. That is abstraction.
+- **Encapsulation** → The circuit board and internal wiring are **locked inside the plastic casing**. You can't directly touch or modify them. Access is only through the buttons. That is encapsulation.
+
+> Same remote — two different concepts working together.
+
+---
+
+### Difference Table:
+
+| | Abstraction | Encapsulation |
+|--|-------------|--------------|
+| **What it hides** | Internal **implementation/complexity** | Internal **data (variables)** |
+| **Why it hides** | To simplify the interface for the user | To protect data from being accidentally or wrongly modified |
+| **Focus** | **Design level** — what does this class expose? | **Data level** — how is data protected? |
+| **How achieved** | `abstract` classes, interfaces | `private` variables + getters/setters |
+| **Goal** | Reduce complexity, enforce structure | Protect and control data access |
+| **Who benefits** | The person **using** the class | The **data inside** the class |
+| **Example** | `abstract void start()` — you know a car starts, not how | `private double balance` — balance can't be touched directly |
+
+---
+
+### Code Example — Both in One Place:
+
+```java
+// ABSTRACTION — hiding HOW the car starts
+abstract class Car {
+    abstract void start();   // user knows car can start — not how it starts internally
+}
+
+// ENCAPSULATION — hiding the DATA inside the car
+class Audi extends Car {
+    private int speed;       // speed is hidden — can't be set directly from outside
+
+    @Override
+    void start() {
+        System.out.println("Audi is starting.");
+        speed = 0;   // internally sets speed — outsider has no idea
+    }
+
+    public void accelerate(int amount) {
+        if (amount > 0 && amount <= 200) {
+            speed += amount;   // controlled access with validation
+        }
+    }
+
+    public int getSpeed() {
+        return speed;          // read-only access to speed
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Audi a = new Audi();
+        a.start();               // abstraction — you call start(), don't know internals
+        a.accelerate(60);
+        System.out.println(a.getSpeed());   // encapsulation — can't do a.speed directly
+
+        // a.speed = 9999;       ❌ blocked by encapsulation
+        // new Car();            ❌ blocked by abstraction
+    }
+}
+```
+
+---
+
+### Summary — One Sentence Each:
+- **Abstraction** → *"You don't need to know how it works — just that it works."*
+- **Encapsulation** → *"You can't directly touch my data — go through my methods."*
+
+---
+
+## 6. Abstract Class vs Interface — Full Difference
+
+Both exist to achieve abstraction but they serve **different purposes** and have **different rules**.
+
+---
+
+### The Core Difference in One Line:
+- **Abstract class** → Partial abstraction — can have both complete and incomplete methods
+- **Interface** → Full abstraction — only method declarations, no implementation (traditionally)
+
+---
+
+### Difference Table:
+
+| | Abstract Class | Interface |
+|--|---------------|-----------|
+| **Keyword** | `abstract class` | `interface` |
+| **Used with** | `extends` | `implements` |
+| **Abstraction level** | Partial | Full (100%) |
+| **Concrete methods** | ✅ Allowed | ❌ Not allowed |
+| **Abstract methods** | ✅ Allowed | ✅ All methods are abstract by default |
+| **Constructor** | ✅ Can have | ❌ Cannot have |
+| **Instance variables** | ✅ Can have regular variables | ❌ Only `public static final` constants |
+| **Multiple** | ❌ A class can extend only ONE | ✅ A class can implement MULTIPLE |
+| **Access modifiers** | Methods can have any modifier | Methods are `public` by default |
+| **When to use** | When classes share some common code + some methods vary | When you just want to define a pure contract — no shared code |
+
+---
+
+### Example — Abstract Class (Partial Abstraction):
+
+```java
+abstract class Animal {
+    String name;
+
+    // Concrete method — shared by ALL animals, same behaviour
+    void breathe() {
+        System.out.println(name + " is breathing.");
+    }
+
+    // Abstract method — every animal makes a different sound
+    abstract void makeSound();
+}
+
+class Dog extends Animal {
+    Dog(String name) { this.name = name; }
+
+    @Override
+    void makeSound() {
+        System.out.println(name + " says: Woof!");
+    }
+}
+
+class Cat extends Animal {
+    Cat(String name) { this.name = name; }
+
+    @Override
+    void makeSound() {
+        System.out.println(name + " says: Meow!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog d = new Dog("Bruno");
+        d.breathe();      // shared method from abstract class → Bruno is breathing.
+        d.makeSound();    // own implementation               → Bruno says: Woof!
+
+        Cat c = new Cat("Kitty");
+        c.breathe();      // shared method from abstract class → Kitty is breathing.
+        c.makeSound();    // own implementation               → Kitty says: Meow!
+    }
+}
+```
+
+> Use abstract class here because `breathe()` is **same for all animals** — no need to rewrite it. But `makeSound()` differs per animal.
+
+---
+
+### Example — Interface (Full Abstraction):
+
+```java
+interface Printable {
+    void print();     // no body — pure contract
+}
+
+interface Scannable {
+    void scan();      // no body — pure contract
+}
+
+// A class can implement MULTIPLE interfaces — solving multiple inheritance
+class Printer implements Printable, Scannable {
+
+    @Override
+    public void print() {
+        System.out.println("Printing document...");
+    }
+
+    @Override
+    public void scan() {
+        System.out.println("Scanning document...");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Printer p = new Printer();
+        p.print();   // Printing document...
+        p.scan();    // Scanning document...
+    }
+}
+```
+
+> Use interface here because `Printable` and `Scannable` have **no shared code** — just contracts. And a `Printer` needs to fulfil both.
+
+---
+
+### When to Use Which — Decision Rule:
+
+```
+Is there shared code that all child classes will use the same way?
+   ├── YES → Use Abstract Class
+   └── NO  → Use Interface
+
+Does the class need to inherit from multiple sources?
+   ├── YES → Use Interface (can implement multiple)
+   └── NO  → Either works
+```
+
+---
+
+## 7. Naming Rules in Java
+
+Java has both **rules** (must follow — compile error if violated) and **conventions** (should follow — best practices that the Java community agreed on).
+
+---
+
+### File Naming Rules:
+
+#### Rules (Mandatory):
+- The file name **must match the `public` class name** exactly — including capitalization
+- File extension must be **`.java`**
+
+```
+public class StudentManager { }  →  file must be: StudentManager.java  ✅
+public class studentManager { }  →  file must be: studentManager.java  ✅ (but bad practice)
+public class StudentManager { }  →  file named: student.java           ❌ COMPILE ERROR
+```
+
+#### Convention (Recommended):
+- File names follow the **class name** — and class names start with a **Capital letter**
+- So in practice, file names always start with a capital letter
+
+```
+StudentManager.java   ✅ (follows convention)
+student_manager.java  ❌ (not wrong if class matches, but bad practice)
+```
+
+---
+
+### Class Naming Rules:
+
+#### Rules (Mandatory):
+- Class name must be a valid Java identifier — letters, digits, `_`, `$`, no spaces
+- Cannot be a Java keyword (`class`, `int`, `static`, etc.)
+- Cannot start with a digit
+
+#### Convention (Recommended):
+- Use **PascalCase** (UpperCamelCase) — every word starts with a capital letter
+- Should be a **noun** — it represents a thing/entity
+- Should be **meaningful**
+
+```java
+// ✅ Good class names
+class Student { }
+class BankAccount { }
+class StudentManager { }
+class HttpRequest { }
+
+// ❌ Bad class names (but technically valid)
+class student { }         // lowercase start — bad convention
+class bankaccount { }     // no camelCase — hard to read
+class S { }               // not meaningful
+
+// ❌ Invalid class names (compile error)
+class 1Student { }        // starts with digit
+class Bank Account { }    // space not allowed
+class int { }             // keyword
+```
+
+---
+
+### Object (Variable) Naming Rules:
+
+#### Rules (Mandatory):
+- Same as variable rules — letters, digits, `_`, `$`
+- Cannot start with a digit
+- Cannot be a keyword
+- Case sensitive
+
+#### Convention (Recommended):
+- Use **camelCase** — first word lowercase, next words start with capital
+- Should be **meaningful** — describe what the object represents
+- Start with a **lowercase letter**
+
+```java
+// ✅ Good object/variable names
+Student student = new Student();
+BankAccount myAccount = new BankAccount();
+Person p1 = new Person();
+int totalMarks = 95;
+String firstName = "Anuj";
+
+// ❌ Bad names (bad convention)
+Student Student = new Student();   // same as class name — confusing
+BankAccount BA = new BankAccount(); // not meaningful
+int x = 95;                        // not descriptive
+
+// ❌ Invalid names (compile error)
+Student 1student = new Student();  // starts with digit
+BankAccount my account = ...;      // space not allowed
+```
+
+---
+
+### Interface Naming Convention:
+- Same as class names — **PascalCase**
+- Often named as an **adjective** ending in `-able` or `-ible`
+
+```java
+interface Printable { }
+interface Runnable { }
+interface Serializable { }
+interface Comparable { }
+```
+
+---
+
+### Method Naming Convention:
+- Use **camelCase**
+- Start with a **lowercase letter**
+- Should be a **verb** — it does something
+
+```java
+void walk() { }
+void calculateTotal() { }
+void getUserName() { }
+void setAge(int age) { }
+```
+
+---
+
+### Complete Naming Conventions — Quick Reference:
+
+| Element | Convention | Example |
+|---------|-----------|---------|
+| **Class** | PascalCase (noun) | `BankAccount`, `StudentManager` |
+| **Object/Variable** | camelCase (start lowercase) | `myAccount`, `totalMarks` |
+| **Method** | camelCase (verb) | `calculateTotal()`, `getName()` |
+| **Interface** | PascalCase (adjective) | `Printable`, `Runnable` |
+| **Constant** | UPPER_SNAKE_CASE | `MAX_SIZE`, `PI`, `DEFAULT_TIMEOUT` |
+| **Package** | all lowercase | `com.school.models` |
+| **File** | Matches public class name | `BankAccount.java` |
+
+---
+
+### One Simple Rule to Remember Everything:
+
+```
+CLASSES & INTERFACES  →  PascalCase    →  BankAccount, Printable
+VARIABLES & METHODS   →  camelCase     →  myAccount, getBalance()
+CONSTANTS             →  UPPER_CASE    →  MAX_SIZE, PI
+PACKAGES              →  lowercase     →  com.school.models
+```
+
+---
+
+*End of Notes — Common Confusions Part 2*

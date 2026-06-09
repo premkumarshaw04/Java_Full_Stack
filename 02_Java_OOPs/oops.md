@@ -1,5 +1,6 @@
-# ☕ OOPs (Object Oriented Programming) in Java
+# OOPs (Object Oriented Programming) in Java
 
+## Resurce Used : **Anuj Kumar Sharma |** [Video Link](https://youtu.be/a199KZGMNxk?si=yhqIvsqNoDlZ31UL)
 ---
 
 ## 1. Java is a Case-Sensitive Language
@@ -2160,6 +2161,10 @@ public class Main {
 
 ### Types of Polymorphism
 
+>Both **Method Overloading and Method Overriding** are primarily examples of **Polymorphism** in Object-Oriented Programming (OOP).  
+>Method Overloading → Compile-time Polymorphism (Static Polymorphism)  
+>Method Overriding → Run-time Polymorphism (Dynamic Polymorphism)
+
 ---
 
 ### 1. Compile-Time Polymorphism (Method Overloading)
@@ -2974,7 +2979,7 @@ Shiva walked 20 steps
 
 ---
 
-# ☕ Java Notes — Inheritance, `extends` & `super`
+# Inheritance, `extends` & `super`
 
 ---
 
@@ -2998,6 +3003,307 @@ In simple terms — the child class **inherits** everything the parent has, and 
 | **Easy Maintenance** | Fix a bug in the parent class — all child classes get the fix automatically |
 | **Extensibility** | Child class can add new features without touching the parent class |
 | **Polymorphism support** | Inheritance is the foundation for runtime polymorphism (method overriding) |
+
+---
+
+# Types of Inheritance
+
+---
+
+## Types of Inheritance in Java
+
+Java supports **5 types of inheritance**. But before jumping in — one important rule:
+
+> ⚠️ **Java does NOT support Multiple Inheritance through classes** (one child, two parents). This is intentional — to avoid confusion and ambiguity. However, Java achieves it through **Interfaces** (covered later).
+
+---
+
+## 1. Single Inheritance
+
+**One parent → One child.**
+
+The simplest form. One class extends exactly one other class.
+
+```
+Person
+  └── Developer
+```
+
+```java
+class Person {
+    String name;
+
+    void eat() {
+        System.out.println(name + " is eating.");
+    }
+}
+
+class Developer extends Person {
+    void code() {
+        System.out.println(name + " is coding.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Developer d = new Developer();
+        d.name = "Anuj";
+        d.eat();    // inherited from Person → Anuj is eating.
+        d.code();   // Developer's own → Anuj is coding.
+    }
+}
+```
+
+---
+
+## 2. Multilevel Inheritance
+
+**A chain — child becomes parent of another child.**
+
+Class A → Class B → Class C. B inherits from A, and C inherits from B. C gets everything from both A and B.
+
+```
+Person
+  └── Developer
+        └── SeniorDeveloper
+```
+
+```java
+class Person {
+    String name;
+
+    void eat() {
+        System.out.println(name + " is eating.");
+    }
+}
+
+class Developer extends Person {
+    void code() {
+        System.out.println(name + " is coding.");
+    }
+}
+
+class SeniorDeveloper extends Developer {
+    void reviewCode() {
+        System.out.println(name + " is reviewing code.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        SeniorDeveloper sd = new SeniorDeveloper();
+        sd.name = "Anuj";
+
+        sd.eat();          // from Person        → Anuj is eating.
+        sd.code();         // from Developer     → Anuj is coding.
+        sd.reviewCode();   // own method         → Anuj is reviewing code.
+    }
+}
+```
+
+> 💡 `SeniorDeveloper` didn't define `eat()` or `code()` — it got them through the chain. This is the **property lookup flow** from inheritance — goes up the chain until found.
+
+---
+
+## 3. Hierarchical Inheritance
+
+**One parent → Multiple children.**
+
+One parent class is extended by more than one child class. Each child gets the parent's properties independently.
+
+```
+     Person
+    /      \
+Doctor   Teacher
+```
+
+```java
+class Person {
+    String name;
+
+    void eat() {
+        System.out.println(name + " is eating.");
+    }
+}
+
+class Doctor extends Person {
+    void treatPatient() {
+        System.out.println("Dr. " + name + " is treating a patient.");
+    }
+}
+
+class Teacher extends Person {
+    void teach() {
+        System.out.println(name + " is teaching.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Doctor d = new Doctor();
+        d.name = "Ramesh";
+        d.eat();             // from Person  → Ramesh is eating.
+        d.treatPatient();    // own method   → Dr. Ramesh is treating a patient.
+
+        Teacher t = new Teacher();
+        t.name = "Suresh";
+        t.eat();             // from Person  → Suresh is eating.
+        t.teach();           // own method   → Suresh is teaching.
+    }
+}
+```
+
+> 💡 `Doctor` and `Teacher` are **independent** of each other — they just share the same parent. Changes in one child don't affect the other.
+
+---
+
+## 4. Multiple Inheritance (Through Interfaces Only)
+
+**One child → Two or more parents.**
+
+As mentioned, Java **does not allow** this with classes. If two parent classes have a method with the same name, Java wouldn't know which one to use — this is called the **Diamond Problem**.
+
+```
+// ❌ NOT allowed in Java:
+class A { void hello() { } }
+class B { void hello() { } }
+class C extends A, B { }   // ERROR — which hello() to use?
+```
+
+Java solves this with **Interfaces** — a class can `implement` multiple interfaces.
+
+```
+  Flyable    Swimmable
+      \        /
+        Duck
+```
+
+```java
+interface Flyable {
+    void fly();   // no body — just declares the behaviour
+}
+
+interface Swimmable {
+    void swim();
+}
+
+class Duck implements Flyable, Swimmable {
+    String name;
+
+    Duck(String name) {
+        this.name = name;
+    }
+
+    public void fly() {
+        System.out.println(name + " is flying.");
+    }
+
+    public void swim() {
+        System.out.println(name + " is swimming.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Duck d = new Duck("Donald");
+        d.fly();    // Donald is flying.
+        d.swim();   // Donald is swimming.
+    }
+}
+```
+
+> 💡 Interfaces will be covered in detail later. For now just understand — **multiple inheritance in Java = interfaces**, not classes.
+
+---
+
+## 5. Hybrid Inheritance (Through Interfaces Only)
+
+**A combination of two or more types of inheritance.**
+
+For example — Multilevel + Multiple together. Again, only possible through interfaces in Java, not through classes.
+
+```
+       Person
+         |
+      Developer         (Single/Multilevel)
+      /       \
+Freelancer   FullTimer   (Hierarchical)
+```
+
+```java
+interface Billable {
+    void sendInvoice();
+}
+
+interface Salaried {
+    void receiveSalary();
+}
+
+class Person {
+    String name;
+    void eat() {
+        System.out.println(name + " is eating.");
+    }
+}
+
+class Developer extends Person {
+    void code() {
+        System.out.println(name + " is coding.");
+    }
+}
+
+class Freelancer extends Developer implements Billable {
+    Freelancer(String name) {
+        this.name = name;
+    }
+
+    public void sendInvoice() {
+        System.out.println(name + " sent an invoice.");
+    }
+}
+
+class FullTimer extends Developer implements Salaried {
+    FullTimer(String name) {
+        this.name = name;
+    }
+
+    public void receiveSalary() {
+        System.out.println(name + " received salary.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Freelancer f = new Freelancer("Anuj");
+        f.eat();           // from Person       → Anuj is eating.
+        f.code();          // from Developer    → Anuj is coding.
+        f.sendInvoice();   // own + interface   → Anuj sent an invoice.
+
+        FullTimer ft = new FullTimer("Prem");
+        ft.eat();              // from Person       → Prem is eating.
+        ft.code();             // from Developer    → Prem is coding.
+        ft.receiveSalary();    // own + interface   → Prem received salary.
+    }
+}
+```
+
+---
+
+## Quick Summary
+
+| Type | Structure | Supported Via |
+|------|-----------|--------------|
+| **Single** | One parent → One child | Classes ✅ |
+| **Multilevel** | A → B → C (chain) | Classes ✅ |
+| **Hierarchical** | One parent → Many children | Classes ✅ |
+| **Multiple** | One child → Two parents | Interfaces only ✅ |
+| **Hybrid** | Mix of above types | Interfaces only ✅ |
+
+> ⚠️ **Remember:** Multiple and Hybrid inheritance using **classes** is **not allowed** in Java. Only through **interfaces**.
+
+---
+
+*End of Notes — Types of Inheritance*
 
 ---
 
@@ -3322,7 +3628,7 @@ Developer (Child)
 
 ---
 
-# ☕ Java Notes — Packages, Access Modifiers & Encapsulation
+# Packages, Access Modifiers & Encapsulation
 
 ---
 
@@ -3969,3 +4275,442 @@ Data is protected but still usable in a safe, validated way
 ---
 
 *End of Notes — Packages, Access Modifiers & Encapsulation*
+
+---
+
+# Abstraction, Abstract Classes & Interfaces
+
+---
+
+## Abstraction
+
+### What is Abstraction?
+**Abstraction means hiding the internal complexity and showing only what is necessary to the user.**
+
+The user should know **what** something does — not **how** it does it internally.
+
+> 💡 **Basic understanding:** You press the accelerator in a car — the car speeds up. You don't need to know about the fuel injection system, pistons, or engine timing. That complexity is hidden. You only see what matters — the car moves faster.
+
+---
+
+### Why Do We Use It?
+- To reduce complexity for the user of a class
+- To enforce a structure — every child class **must** implement certain methods
+- To separate **what to do** from **how to do it**
+- To make large systems manageable — each layer only knows what it needs to
+
+---
+
+### Significance in Real-World Software Development:
+
+| Real World | What's Abstracted |
+|------------|------------------|
+| **Payment Gateway** | You call `pay()` — internally it handles UPI, card, net banking, encryption. You see none of that. |
+| **Database Connection** | You call `connect()` — internally it manages drivers, ports, credentials. Hidden from you. |
+| **Android Apps** | You call `sendNotification()` — Android handles background services, OS calls. You don't care. |
+| **ATM Machine** | You press "Withdraw" — internally it verifies PIN, checks balance, communicates with server. Hidden. |
+
+---
+
+### Two Ways to Achieve Abstraction in Java:
+1. **`abstract` keyword** — Partial abstraction
+2. **Interfaces** — Full abstraction
+
+---
+
+## 1. `abstract` Keyword
+
+### What is the `abstract` Keyword?
+`abstract` is a keyword used to declare a class or method as **incomplete** — meaning it is a template that child classes must complete.
+
+- An **abstract class** cannot be instantiated (you cannot create objects of it)
+- An **abstract method** has no body — just a declaration. The child class **must** provide the body.
+
+---
+
+### Before Using `abstract` — The Problem:
+
+```java
+class Car {
+    int price;
+
+    void start() {
+        System.out.println("Car is starting.");
+    }
+}
+
+class Audi extends Car { }
+class BMW extends Car { }
+```
+
+**What's wrong here?**
+- `Car` is just a concept — a real car is always an Audi, BMW, or some specific brand. Nobody drives a "Car" — they drive a specific type.
+- But nothing is stopping someone from writing `Car c = new Car()` — which makes no sense
+- Also, `start()` in `Car` prints "Car is starting" — but every car starts differently. This generic implementation is useless and misleading.
+- There is **no guarantee** that Audi or BMW will override `start()` — they might just inherit the wrong generic version
+
+---
+
+### After Using `abstract` — The Solution:
+
+```java
+public class mainClass {
+    public static void main(String[] args) {
+
+        // Car c = new Car();   ❌ ERROR — can't create object of abstract class
+        // Car is just a concept — making its object is useless
+
+        Audi a1 = new Audi();
+        a1.start();   // Output: Audi is starting.
+    }
+}
+
+class Audi extends Car {
+    @Override
+    void start() {
+        System.out.println("Audi is starting.");
+    }
+}
+
+class BMW extends Car {
+    @Override
+    void start() {
+        System.out.println("BMW is starting.");
+    }
+}
+
+abstract class Car {
+    int price;
+
+    abstract void start();   // Abstract method — no body, no { }
+}
+```
+
+**Output:**
+```
+Audi is starting.
+```
+
+---
+
+### Line-by-Line Explanation:
+
+| Line | Meaning |
+|------|---------|
+| `abstract class Car` | Car is declared abstract — **no one can create a `Car` object** directly. It exists only to be extended. |
+| `abstract void start()` | Abstract method — **only declaration, no body**. It says "every Car must have a `start()`, but I won't define how". |
+| `class Audi extends Car` | Audi is a child of Car — it inherits `price` and is **forced** to define `start()` |
+| `@Override` | Tells Java "I am providing the implementation of a method declared in the parent". Explained in detail below. |
+| `void start() { ... }` | Audi's own version of `start()` — this is the required implementation |
+| `Car c = new Car()` | ❌ This is blocked — abstract class cannot be instantiated |
+
+---
+
+### Why is This More Efficient Than Without `abstract`?
+
+| Without `abstract` | With `abstract` |
+|--------------------|----------------|
+| Anyone can create a `Car` object — which makes no real sense | `Car` object creation is **blocked at compile time** |
+| `Audi` and `BMW` might forget to override `start()` — they'd inherit the wrong generic version | Every child class is **forced** to override `start()` — compile error if they don't |
+| No guarantee of consistent behaviour across child classes | Guaranteed — every child **must** implement abstract methods |
+| Generic, meaningless implementation in parent | Parent has **no implementation** — each child defines its own correctly |
+
+---
+
+### What is an Abstract Method?
+
+An **abstract method** is a method declared with the `abstract` keyword that has **no body** — just the signature.
+
+```java
+abstract void start();    // ✅ abstract method — no body
+void start() { }          // ✅ concrete method — has body (even if empty)
+```
+
+#### Why define a method with no body?
+Because the abstract class is saying: *"I don't know HOW this should work — that depends on who extends me. But I guarantee that every child WILL have this method."*
+
+It is a **contract** — every child class must honour it by providing the implementation.
+
+#### Why does a compile error occur if you don't override it?
+Because Java sees: *"You extended an abstract class that has an abstract method. That method has no body yet. You haven't provided one either. So this class is still incomplete — I can't allow it."*
+
+```java
+class Ferrari extends Car {
+    // Did NOT override start()
+}
+// ❌ COMPILE ERROR: Ferrari is not abstract and does not override abstract method start() in Car
+```
+
+---
+
+### Rule: If a Method is Abstract, the Class Must Be Abstract Too
+
+You **cannot** have an abstract method inside a non-abstract class. Because a non-abstract class must be complete — ready to create objects. An abstract method makes it incomplete.
+
+```java
+class Car {
+    abstract void start();   // ❌ ERROR — Car is not abstract but has abstract method
+}
+
+abstract class Car {
+    abstract void start();   // ✅ Fine — Car is abstract, so it can have abstract methods
+}
+```
+
+---
+
+### What is `@Override`?
+
+`@Override` is an **annotation** (a special instruction to the compiler). It tells Java: *"The method below is intentionally overriding a method from the parent class."*
+
+#### What does it do?
+- It is not mandatory — the code works without it
+- But it makes Java **verify** that you are actually overriding something from the parent
+- If you make a typo in the method name (e.g., `strat()` instead of `start()`), Java will catch it and give an error — without `@Override`, Java would silently treat it as a new method
+
+```java
+class Audi extends Car {
+    @Override
+    void start() {              // ✅ Java confirms: yes, start() exists in Car
+        System.out.println("Audi is starting.");
+    }
+}
+
+class BMW extends Car {
+    @Override
+    void strat() {              // ❌ ERROR — no method called 'strat' in Car
+        System.out.println("BMW is starting.");
+    }
+}
+```
+
+#### Why we use it:
+- **Safety** — prevents accidental new method creation due to typos
+- **Readability** — anyone reading the code immediately knows this method overrides a parent
+- **Best practice** — always use it when overriding
+
+---
+
+## 2. Interfaces
+
+### What is an Interface?
+An **interface** is a completely abstract blueprint — it only declares **what** methods a class must have, never **how** they work. A class that uses an interface **must implement all its methods**.
+
+- All methods in an interface are **`public` and `abstract` by default** — you don't need to write those keywords
+- All variables in an interface are **`public`, `static`, and `final` by default** (constants)
+- A class uses `implements` keyword (not `extends`) to use an interface
+
+---
+
+### How Does it Achieve Abstraction?
+An interface provides **100% abstraction** — there is no implementation at all inside it. It is a pure contract. The implementing class decides everything about how the methods work.
+
+---
+
+### Why Do We Use Interfaces?
+
+| Reason | Meaning |
+|--------|---------|
+| **Full abstraction** | Interface has zero implementation — pure "what to do", never "how" |
+| **Multiple inheritance** | A class can implement multiple interfaces — solves Java's multiple inheritance limitation |
+| **Contract enforcement** | Forces every implementing class to define all methods |
+| **Loose coupling** | Code depends on the interface, not on a specific class — easier to swap implementations |
+
+---
+
+### Use Cases and Applications:
+
+| Area | Interface Used |
+|------|---------------|
+| **Payment systems** | `Payable` interface — `CreditCard`, `UPI`, `NetBanking` all implement it |
+| **Sorting algorithms** | `Comparable` interface — tells Java how to compare objects |
+| **Event handling** | `OnClickListener` interface — Android uses this for button clicks |
+| **Database layers** | `Repository` interface — switch from MySQL to MongoDB without changing business logic |
+| **Collections framework** | `List`, `Map`, `Set` in Java are all interfaces |
+
+---
+
+### Your Code — Explained:
+
+```java
+public class Interfaces implements Car, Person {
+
+    public static void main(String[] args) { }
+
+    @Override
+    public void start() {
+        System.out.println("My car is starting");
+    }
+
+    @Override
+    public void walk() {
+        System.out.println("I am Walking.");
+    }
+}
+
+interface Car {
+    // public abstract void start();  // you CAN write this explicitly
+    void start();   // same thing — public and abstract by default
+}
+
+interface Person {
+    void walk();
+}
+```
+
+| Line | Meaning |
+|------|---------|
+| `interface Car` | Declares a pure contract — any class that implements `Car` must define `start()` |
+| `void start()` | Abstract method by default — no body allowed inside interface |
+| `implements Car, Person` | The `Interfaces` class agrees to fulfil the contracts of **both** `Car` and `Person` |
+| `@Override public void start()` | Providing the actual body for `Car`'s `start()` method |
+| `@Override public void walk()` | Providing the actual body for `Person`'s `walk()` method |
+
+---
+
+### The Diamond Problem — Why Java Blocks Multiple Inheritance in Classes
+
+The **Diamond Problem** occurs when a class inherits from two classes that both have a method with the same name — Java doesn't know which version to use.
+
+```
+      A
+    (hello)
+    /     \
+   B       C
+(hello)  (hello)
+    \     /
+      D
+  (which hello? B's or C's?)
+```
+
+```java
+class A {
+    void hello() { System.out.println("Hello from A"); }
+}
+class B extends A {
+    void hello() { System.out.println("Hello from B"); }
+}
+class C extends A {
+    void hello() { System.out.println("Hello from C"); }
+}
+class D extends B, C { }   // ❌ Not allowed — which hello() does D get?
+```
+
+**Java's solution → Interfaces.** Since interfaces have no method bodies, there is no conflict — the implementing class writes its own body anyway:
+
+```java
+interface B {
+    void hello();   // no body
+}
+interface C {
+    void hello();   // no body
+}
+class D implements B, C {
+    @Override
+    public void hello() {
+        System.out.println("Hello from D");   // D writes its own — no conflict
+    }
+}
+```
+
+No ambiguity — `D` provides the only implementation. Problem solved.
+
+---
+
+## `abstract` Class vs Interface — The Difference
+
+Both help achieve abstraction, but they are used in different situations:
+
+| | Abstract Class | Interface |
+|--|---------------|-----------|
+| **Abstraction level** | Partial — can have both abstract and concrete methods | Full — all methods are abstract by default |
+| **Concrete methods** | ✅ Allowed | ❌ Not allowed (before Java 8) |
+| **Variables** | Can have regular instance variables | Only `public static final` constants |
+| **Constructor** | ✅ Can have constructors | ❌ Cannot have constructors |
+| **Keyword** | `extends` | `implements` |
+| **Multiple** | ❌ A class can extend only ONE abstract class | ✅ A class can implement MULTIPLE interfaces |
+| **When to use** | When classes share common code + some behaviour varies | When you want to define a pure contract with no shared code |
+
+---
+
+### Concrete Method — What is it?
+A **concrete method** is a normal method that **has a body** (implementation). It is the opposite of an abstract method.
+
+```java
+abstract class Car {
+    int price;
+
+    abstract void start();          // abstract method — no body
+
+    void showPrice() {              // concrete method — has body
+        System.out.println("Price: " + price);
+    }
+}
+```
+
+In an **abstract class** — both are allowed.
+In an **interface** — only abstract methods (no concrete methods, no body).
+
+---
+
+### Final Example — Both Side by Side:
+
+```java
+// Abstract class — partial abstraction
+abstract class Vehicle {
+    String brand;
+
+    // Concrete method — shared behaviour, has a body
+    void refuel() {
+        System.out.println(brand + " is being refuelled.");
+    }
+
+    // Abstract method — each vehicle starts differently
+    abstract void start();
+}
+
+// Interface — full abstraction, pure contract
+interface Electric {
+    void charge();   // no body — implementing class decides
+}
+
+class Tesla extends Vehicle implements Electric {
+    Tesla(String brand) {
+        this.brand = brand;
+    }
+
+    @Override
+    void start() {
+        System.out.println(brand + " starts silently.");
+    }
+
+    @Override
+    public void charge() {
+        System.out.println(brand + " is charging.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Tesla t = new Tesla("Tesla");
+        t.refuel();   // from abstract class (concrete method) → Tesla is being refuelled.
+        t.start();    // overridden abstract method            → Tesla starts silently.
+        t.charge();   // from interface                        → Tesla is charging.
+    }
+}
+```
+
+**Output:**
+```
+Tesla is being refuelled.
+Tesla starts silently.
+Tesla is charging.
+```
+
+> 💡 **When to use which:**
+> - Use **abstract class** when child classes share some common code (like `refuel()`) but also need to define their own behaviour for some methods
+> - Use **interface** when you just want to define a contract — no shared code, just "you must have these methods"
+
+---
+
+*End of Notes — Abstraction, Abstract Classes & Interfaces*
