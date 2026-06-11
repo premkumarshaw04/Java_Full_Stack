@@ -1548,8 +1548,52 @@ After clear, isEmpty: true
 
 ---
 
+# 2. Queue (Interface)
+
+Queue Interface  →  Ordered for processing, First In First Out (FIFO)  
+    ├── PriorityQueue (Class)  
+    ├── ArrayDeque    (Class)  
+    └── LinkedList    (Class)  
 
 
+>You can say:
+>Queue is an interface that defines queue-related operations such as add(), offer(), poll(), peek(), etc.  
+>PriorityQueue, ArrayDeque, and LinkedList are classes that implement the Queue interface and provide their own implementations of these operations.
+
+Queue : What it is | What it does | Advantages of using it | 
+
+The Queue interface specifies methods like:(First tell me(Explain) every method What they do, and then add a example)
+add() 
+offer() *
+remove()
+poll() * 
+element()
+peek() *
+
+[offer, poll and peek] we generally use these functions more.
+
+---
+
+classes that implement the Queue interface:
+
+i. PriorityQueue
+    What it is | What it does | Why we use it | Advantages and Use cases | Add one code example | Internally How it works | How priority is decided in it | Specific methods of PriorityQueue
+
+
+ii. ArrayDeque
+What is the basic idea of it(How it is different from the normal Queue)
+What it is | What it does | Why we use it | Advantages and Use cases | 
+
+Add one code example where perform all the below functions and add output in sequence |
+Specific(Personal) methods of ArrayDeque(offer() from Queue, offerFirst() and offerLast() from ArrayDeque, add all peek and poll)
+
+
+iii. LinkedList
+What it is | What it does | Why we use it | Advantages and Use cases | Add one code example | Specific(Personal) methods of LinkedList | Add one code example where perform all the functions
+
+---
+
+Note: What is comparator | Whta is the use of it | what it does | Advantages of using Comparator
 
 
 
