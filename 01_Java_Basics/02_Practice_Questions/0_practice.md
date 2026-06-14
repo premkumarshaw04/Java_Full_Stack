@@ -1,3 +1,18 @@
+# Naming Convention for java files:
+
+Use **`PascalCase`** for file names and class names.
+
+- No spaces.
+- Start every word with a capital letter.
+
+✅ `AreaOfCircle.java`  
+✅ `VolumeOfCylinder.java`  
+❌ `area_of_circle.java`  
+❌ `Area of Circle.java`  
+❌ `program1.java`
+
+---
+
 # 1. Area of Circle:
 
 ```java
@@ -27,7 +42,7 @@ public class AreaOfCircle {
 # Quick Clarifications on the above code:
 
 
-### 1. `System.out.print` vs `System.out.println`
+### i. `System.out.print` vs `System.out.println`
 
 | | `System.out.print` | `System.out.println` |
 |--|-------------------|----------------------|
@@ -47,7 +62,7 @@ System.out.println("Area of circle = " + area);
 
 ---
 
-### 2. `sc.close()`
+### ii. `sc.close()`
 
 `sc.close()` **closes the Scanner** — meaning it tells Java **"I'm done reading input, release the resources"**.
 
@@ -57,7 +72,7 @@ When you open a `Scanner`, it uses some memory and system resources in the backg
 
 ---
 
-### 3. `Scanner sc = new Scanner(System.in);`
+### iii. `Scanner sc = new Scanner(System.in);`
 
 This line **creates a Scanner object** that reads input from the **keyboard** (`System.in`).
 
@@ -160,4 +175,184 @@ public class VolumeOfCylinder {
 // Enter the radius: 3
 // Enter the height: 5
 // Volume of Cylinder = 141.37155
+```
+
+---
+
+# 5. Volume Of Cone
+
+```java
+import java.util.Scanner;
+
+public class VolumeOfCone {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter the radius: ");
+        double radius = sc.nextDouble();
+
+        System.out.print("Enter the height: ");
+        double height = sc.nextDouble();
+
+        double volume = (1.0 / 3.0) * 3.14159 * radius * radius * height;
+
+        System.out.println("Volume Of Cone = " + volume);
+
+        sc.close();
+    }
+}
+
+// Example Output: 
+
+// Enter the radius: 3
+// Enter the height: 5
+// Volume of Cone = 47.12385
+
+```
+
+---
+
+# 6. Total Surface Area of Cylinder
+
+```java
+import java.util.Scanner;
+
+public class TotalSurfaceAreaOfCylinder {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter the radius: ");
+        double radius = sc.nextDouble();
+
+        System.out.print("Enter the height: ");
+        double height = sc.nextDouble();
+
+        double TotalSurfaceArea = 2 * 3.14159 * radius * (radius + height);//TSA = 2πr(r+h)
+
+        System.out.println("Total Surface Area of Cylinder: " + TotalSurfaceArea);
+
+        sc.close();
+    }
+}
+
+// Example Output:
+
+// Enter the radius: 3
+// Enter the height: 5
+// Total Surface Area of Cylinder = 150.79632
+```
+
+---
+
+# 7. Total Surface Area Of Cone
+
+```
+// TSA=πr(r+l)
+
+// where:
+// r = radius
+// l = slant height
+```
+
+```java
+import java.util.Scanner;
+
+public class TotalSurfaceAreaOfCone {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter the radius: ");
+        double radius = sc.nextDouble();
+
+        System.out.print("Enter the slant height: ");
+        double slantHeight = sc.nextDouble();
+
+        double totalSurfaceArea = 3.14159 * radius * (radius + slantHeight);//TSA=πr(r+l)
+
+        System.out.println("Total Surface Area of cone: " + totalSurfaceArea);
+
+        sc.close();
+    }
+}
+
+// Example Output: 
+
+// Enter the radius: 3
+// Enter the slant height: 5
+// Total Surface Area of Cone = 75.39816
+
+```
+
+---
+
+# 8. Area of a Parallelogram
+
+```
+Formula:
+
+A = bh
+
+where:
+b = base
+h = height
+```
+
+```java
+import java.util.Scanner;
+
+public class AreaOfParallelogram {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter the base: ");
+        double base = sc.nextDouble();
+
+        System.out.print("Enter the Height: ");
+        double height = sc.nextDouble();
+
+        double area = base * height;
+
+        System.out.println("Area of Parallelogram = " + area);
+
+        sc.close();
+    }
+}
+
+// Example Output: 
+
+// Enter the base: 10
+// Enter the height: 5
+// Area of Parallelogram = 50.0
+```
+
+---
+
+# 9. Square and Cube of a number
+
+```java
+import java.util.Scanner;
+
+public class SquareAndCubeOfNumber {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int number = sc.nextInt();
+
+        int square = number * number;
+        int cube = number * number * number;
+
+        System.out.println("Square = " + square);
+        System.out.println("Cube = " + cube);
+
+        sc.close();
+    }
+}
+
+// Example Output: 
+
+// Enter a number: 5
+// Square = 25
+// Cube = 125
+
 ```
