@@ -1027,3 +1027,197 @@ Classes such as `ArrayList`, `LinkedList`, and `Vector` implement those operatio
 > An interface defines **what operations must be available**, while implementing classes decide **how those operations are performed**.
 
 ---
+
+# 9. What is `java.util` and Are There More Packages Like It?
+
+### What is a Package in Java?
+
+A **package** is simply a **folder/group of related classes and interfaces** bundled together. Just like you organize files into folders on your computer, Java organizes its built-in tools into packages.
+
+> 💡 When you write `import java.util.ArrayList;` — you're telling Java: **"Go into the `java` folder → `util` subfolder → and bring me the `ArrayList` class."**
+
+---
+
+### What is `java.util`?
+
+`java.util` is the **most commonly used** built-in Java package. It contains all the **utility classes and interfaces** you've been learning so far.
+
+**What lives inside `java.util`:**
+
+| Class/Interface | What It Is |
+|-----------------|------------|
+| `ArrayList`, `LinkedList`, `Vector`, `Stack` | List implementations |
+| `HashSet`, `LinkedHashSet`, `TreeSet` | Set implementations |
+| `HashMap`, `LinkedHashMap`, `TreeMap` | Map implementations |
+| `PriorityQueue`, `ArrayDeque` | Queue/Deque implementations |
+| `Collections` | Utility class for sorting, searching, etc. |
+| `Arrays` | Utility class for array operations |
+| `Iterator`, `ListIterator` | Traversal interfaces |
+| `Comparator` | External comparison interface |
+| `Scanner` | Reading user input |
+| `Random` | Generating random numbers |
+| `Date`, `Calendar` | Date and time (older API) |
+
+---
+
+### Other Important Java Packages:
+
+Yes — there are many more packages! Here are the most important ones you'll encounter:
+
+---
+
+#### `java.lang` — Core Language Package
+**Automatically imported** in every Java program — you never need to write `import java.lang.*` manually.
+
+| What It Contains | Examples |
+|-----------------|---------|
+| The most fundamental classes in Java | `String`, `Integer`, `Double`, `Boolean`, `Math`, `Object`, `System`, `Thread`, `StringBuilder` |
+
+```java
+// You use java.lang every day without realizing it:
+String name = "Aman";          // java.lang.String
+int x = Math.max(10, 20);      // java.lang.Math
+System.out.println("Hello");   // java.lang.System
+```
+
+> 💡 `Comparable` also lives in `java.lang` — that's why it doesn't need an import statement.
+
+---
+
+#### `java.io` — Input/Output Package
+Used for **reading and writing data** — files, keyboard input, streams.
+
+| What It Contains | Examples |
+|-----------------|---------|
+| File handling, reading/writing data | `File`, `FileReader`, `FileWriter`, `BufferedReader`, `BufferedWriter`, `InputStream`, `OutputStream` |
+
+```java
+import java.io.FileReader;
+import java.io.BufferedReader;
+
+// Read a file line by line
+BufferedReader reader = new BufferedReader(new FileReader("notes.txt"));
+```
+
+---
+
+#### `java.nio` — New Input/Output Package
+A **modern, faster version** of `java.io` — better performance for large file operations.
+
+| What It Contains | Examples |
+|-----------------|---------|
+| Modern file and channel-based I/O | `Path`, `Paths`, `Files`, `Channels`, `ByteBuffer` |
+
+```java
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+// Read all lines from a file in one line
+List<String> lines = Files.readAllLines(Paths.get("notes.txt"));
+```
+
+---
+
+#### `java.net` — Networking Package
+Used for **network communication** — connecting to the internet, sending/receiving data.
+
+| What It Contains | Examples |
+|-----------------|---------|
+| Networking tools | `URL`, `URLConnection`, `Socket`, `ServerSocket`, `HttpURLConnection` |
+
+```java
+import java.net.URL;
+
+URL url = new URL("https://www.google.com");
+// Used for making HTTP requests, building servers, etc.
+```
+
+---
+
+#### `java.time` — Date and Time Package (Modern)
+Introduced in **Java 8** — the modern, clean replacement for the old `java.util.Date` and `Calendar`.
+
+| What It Contains | Examples |
+|-----------------|---------|
+| Date, time, duration, timezone handling | `LocalDate`, `LocalTime`, `LocalDateTime`, `ZonedDateTime`, `Duration`, `Period` |
+
+```java
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+LocalDate today = LocalDate.now();          // 2025-08-15
+LocalDateTime now = LocalDateTime.now();    // 2025-08-15T14:30:00
+```
+
+---
+
+#### `java.math` — Mathematical Operations Package
+Used for **high-precision** number operations — when `int` or `double` aren't precise enough.
+
+| What It Contains | Examples |
+|-----------------|---------|
+| Arbitrary precision numbers | `BigInteger` (huge integers), `BigDecimal` (precise decimals) |
+
+```java
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
+BigInteger huge = new BigInteger("99999999999999999999999");
+BigDecimal precise = new BigDecimal("3.141592653589793238");
+// Used in banking, scientific calculations, cryptography
+```
+
+---
+
+#### `java.sql` — Database Package
+Used to **connect Java programs to databases** (MySQL, PostgreSQL, etc.).
+
+| What It Contains | Examples |
+|-----------------|---------|
+| Database connection and querying | `Connection`, `Statement`, `PreparedStatement`, `ResultSet`, `DriverManager` |
+
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/mydb", "user", "pass");
+// Used to run SQL queries from Java
+```
+
+---
+
+#### `java.util.concurrent` — Multithreading Utilities Package
+Used for writing **multi-threaded programs** — handling multiple tasks at the same time safely.
+
+| What It Contains | Examples |
+|-----------------|---------|
+| Thread-safe data structures and tools | `ExecutorService`, `ConcurrentHashMap`, `CountDownLatch`, `Semaphore`, `BlockingQueue` |
+
+```java
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+ExecutorService executor = Executors.newFixedThreadPool(4);
+// Run 4 tasks simultaneously
+```
+
+---
+
+### Quick Summary — All Important Packages:
+
+| Package | Purpose | Key Classes |
+|---------|---------|-------------|
+| `java.lang` | Core language — auto-imported | `String`, `Math`, `System`, `Object` |
+| `java.util` | Data structures & utilities | `ArrayList`, `HashMap`, `Collections`, `Scanner` |
+| `java.io` | File & stream I/O | `File`, `BufferedReader`, `FileWriter` |
+| `java.nio` | Modern fast I/O | `Files`, `Paths`, `Path` |
+| `java.net` | Networking | `URL`, `Socket`, `HttpURLConnection` |
+| `java.time` | Modern date & time | `LocalDate`, `LocalDateTime`, `Duration` |
+| `java.math` | High-precision numbers | `BigInteger`, `BigDecimal` |
+| `java.sql` | Database connectivity | `Connection`, `ResultSet`, `Statement` |
+| `java.util.concurrent` | Multi-threading tools | `ExecutorService`, `ConcurrentHashMap` |
+
+> 💡 As a Java beginner, **`java.lang` and `java.util`** are the two you'll use 90% of the time. The others become relevant when you go deeper into specific areas (files, networks, databases, etc.).
+
+
+---
