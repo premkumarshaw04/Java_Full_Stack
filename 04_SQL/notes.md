@@ -456,3 +456,315 @@ COUNTRY_ID COUNTRY_NAME    RE
          4 Oman            R3
          5 Saudi Arabia    R3
 ```
+
+## 3. Customers  -> Orders (One-to-Many)
+```
+customers
+•	customer_id (PK)
+•	customer_name
+•	country
+orders
+•	order_id (PK)
+•	customer_id (FK → customers.customer_id)
+•	amount
+•	order_date
+```
+
+```sql
+SQL> create table customers(
+  2  customer_id number primary key,
+  3  customer_name varchar(15),
+  4  country varchar(20)
+  5  );
+
+Table created.
+
+
+SQL> create table orders(
+  2  order_id number primary key,
+  3  customer_id number,
+  4  amount number(10, 2),
+  5  order_date date,
+  6  foreign key(customer_id) references customers(customer_id)
+  7  );
+
+Table created.
+
+```
+
+## 4. Users → User_Profile (One-to-One)
+```
+users
+•	user_id (PK)
+•	username
+user_profile
+•	profile_id (PK)
+•	user_id (FK → users.user_id & UNIQUE)
+•	phone
+•	address
+```
+
+```sql
+SQL> create table users(
+  2  user_id number primary key,
+  3  username varchar(20)
+  4  );
+
+Table created.
+
+SQL> create table user_profile(
+  2  profile_id number primary key,
+  3  user_id number unique,
+  4  phone varchar(15),
+  5  address varchar(50),
+  6  foreign key(user_id) references users(user_id)
+  7  );
+
+Table created.
+```
+>The key here is **user_id number unique** — this prevents a second profile from being linked to the same user.
+
+## 5. Categories → Products (One-to-Many)
+```
+categories
+•	category_id (PK)
+•	category_name
+products
+•	product_id (PK)
+•	product_name
+•	price
+•	category_id (FK → categories.category_id)
+```
+>Same One-to-Many pattern — one category can have many products.
+
+```sql
+SQL> create table categories(
+  2  category_id number primary key,
+  3  category_name varchar(20)
+  4  );
+
+Table created.
+
+SQL> create table products(
+  2  product_id number primary key,
+  3  product_name varchar(20),
+  4  price number(10,2),
+  5  category_id number,
+  6  foreign key(category_id) references categories(category_id)
+  7  );
+
+Table created.
+```
+```
+number(10, 2) means:
+10 → total digits allowed
+2 → digits after decimal point
+
+So it can store values like 99999999.99 (8 digits before + 2 after decimal).
+```
+
+## 6. Teachers → Classes (One-to-Many)
+
+```
+teachers
+•	teacher_id (PK)
+•	teacher_name
+classes
+•	class_id (PK)
+•	class_name
+•	teacher_id (FK → teachers.teacher_id)
+```
+
+```sql
+SQL> create table teachers(
+  2  teacher_id number primary key,
+  3  teacher_name varchar(20)
+  4  );
+
+Table created.
+
+SQL> create table classes(
+  2  class_id number primary key,
+  3  class_name varchar(15),
+  4  teacher_id number,
+  5  foreign key(teacher_id) references teachers(teacher_id)
+  6  );
+
+Table created.
+
+```
+
+## 7. Doctors → Patients (One-to-Many)
+
+```
+doctors
+•	doctor_id (PK)
+•	doctor_name
+•	specialization
+patients
+•	patient_id (PK)
+•	patient_name
+•	doctor_id (FK → doctors.doctor_id)
+```
+>One Doctor can have many patients.
+
+```sql
+SQL> create table doctors(
+  2  doctor_id number primary key,
+  3  doctor_name varchar(15),
+  4  specialization varchar(15)
+  5  );
+
+Table created.
+
+SQL> create table patients(
+  2  patient_id number primary key,
+  3  patient_name varchar(15),
+  4  doctor_id number,
+  5  foreign key(doctor_id) references doctors(doctor_id)
+  6  );
+
+Table created.
+
+```
+
+## 8. Flights → Tickets (One-to-Many)
+```
+flights
+•	flight_id (PK)
+•	flight_name
+•	source
+•	destination
+tickets
+•	ticket_id (PK)
+•	flight_id (FK → flights.flight_id)
+•	passenger_name
+```
+
+>One flight can have many tickets.
+
+```sql
+SQL> create table flights(
+  2  flight_id number primary key,
+  3  flight_name varchar(15),
+  4  source varchar(15),
+  5  destination varchar(15)
+  6  );
+
+Table created.
+
+SQL> create table tickets(
+  2  ticket_id number primary key,
+  3  flight_id number,
+  4  passenger_name varchar(15),
+  5  foreign key(flight_id) references flights(flight_id)
+  6  );
+
+Table created.
+
+```
+
+## 9. Hotels → Rooms (One-to-Many)
+```
+hotels
+•	hotel_id (PK)
+•	hotel_name
+•	city
+rooms
+•	room_id (PK)
+•	hotel_id (FK → hotels.hotel_id)
+•	room_type
+•	price_per_night
+```
+
+>One hotel can have many rooms.
+
+```sql
+SQL> create table hotels(
+  2  hotel_id number primary key,
+  3  hotel_name varchar(15),
+  4  city varchar(15)
+  5  );
+
+Table created.
+
+SQL> create table rooms(
+  2  room_id number primary key,
+  3  hotel_id number,
+  4  room_type varchar(15),
+  5  price_per_night number(10,2),
+  6  foreign key(hotel_id) references hotels(hotel_id)
+  7  );
+
+Table created.
+```
+
+## 10. Suppliers → Products (One-to-Many)
+```
+suppliers
+•	supplier_id (PK)
+•	supplier_name
+•	contact_no
+products
+•	product_id (PK)
+•	product_name
+•	supplier_id (FK → suppliers.supplier_id)
+•	unit_price
+
+```
+
+```sql
+```
+
+## 11. Employees ↔ Projects (Many-to-Many)
+```
+employees
+•	emp_id (PK)
+•	emp_name
+•	department
+projects
+•	project_id (PK)
+•	project_name
+employee_project
+•	emp_id (FK → employees.emp_id)
+•	project_id (FK → projects.project_id)
+•	(Composite PK: emp_id + project_id
+```
+
+```sql
+```
+
+## 12. Libraries → Books (One-to-Many) 
+```
+libraries
+•	library_id (PK)
+•	library_name
+•	address
+library_books
+•	book_id (PK)
+•	library_id (FK → libraries.library_id)
+•	title
+•	category
+```
+
+```sql
+```
+
+## 13. Banks → Accounts (One-to-Many)
+
+```
+banks
+•	bank_id (PK)
+•	bank_name
+•	branch_location
+accounts
+•	account_id (PK)
+•	bank_id (FK → banks.bank_id)
+•	account_holder
+•	balance
+```
+> Create two tables — **customers** first (since **orders** references it), then orders with a foreign key.
+
+```sql
+
+```
