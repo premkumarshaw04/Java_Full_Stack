@@ -317,3 +317,142 @@ SQL> commit;
 
 Commit complete.
 ```
+---
+
+# Queries Based On Foreign Keys:
+
+## 1. Example of Director and Movie table
+
+```sql
+SQL> create table director(
+  2  dir_id char(3) primary key,
+  3  dir_name varchar(15) not null,
+  4  dir_age number );
+
+Table created.
+
+SQL> create table movie(
+  2  m_id number primary key,
+  3  m_name varchar(20),
+  4  rel_date date,
+  5  dir_id char(3),
+  6  foreign key(dir_id) references director(dir_id) );
+
+Table created.
+
+SQL> insert into director values('D01', 'Rajamouli', 16);
+1 row created.
+
+SQL> insert into director values('D02', 'RGV', 46);
+1 row created.
+
+SQL> insert into director values('D03', 'Prashant', 35);
+1 row created.
+
+SQL> insert into director values('D04', 'Manoj', 34);
+1 row created.
+
+---------------------
+
+SQL> insert into movie values(1, 'Bahubali', '12-jan-2017', 'D01');
+1 row created.
+
+SQL> insert into movie values(2, 'KGF', '12-feb-2022', 'D03');
+1 row created.
+
+SQL> insert into movie values(3, 'Salaar', '15-apr-2023', 'D03');
+1 row created.
+
+SQL> insert into movie values(4, 'SQL', '15-june-2026', 'D04');
+1 row created.
+
+//-----Here you will get error because we do not have any Director having director id as D05
+SQL> insert into movie values(5, 'Java', '15-july-2026', 'D05');
+insert into movie values(5, 'Java', '15-july-2026', 'D05')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOTT.SYS_C009699) violated - parent key not
+found
+
+----------------
+
+SQL> select * from movie;
+
+      M_ID M_NAME               REL_DATE  DIR
+---------- -------------------- --------- ---
+         1 Bahubali             12-JAN-17 D01
+         2 KGF                  12-FEB-22 D03
+         3 Salaar               15-APR-23 D03
+         4 SQL                  15-JUN-26 D04
+
+SQL> select * from director;
+
+DIR DIR_NAME           DIR_AGE
+--- --------------- ----------
+D01 Rajamouli               16
+D02 RGV                     46
+D03 Prashant                35
+D04 Manoj                   34
+```
+
+## 2.  Table for Countries and their Regions
+
+```sql
+SQL> create table regions(
+  2  region_id char(2) primary key,
+  3  region_name varchar(15));
+
+Table created.
+
+SQL> create table countries(
+  2  country_id number primary key,
+  3  country_name varchar(15),
+  4  region_id char(2),
+  5  foreign key(region_id) references regions(region_id) );
+
+Table created.
+
+SQL> insert into regions values('R1', 'Asia');
+1 row created.
+
+SQL> insert into regions values('R2', 'Europe');
+1 row created.
+
+SQL> insert into regions values('R3', 'Middle East');
+1 row created.
+
+SQL> select * from regions;
+
+RE REGION_NAME
+-- ---------------
+R1 Asia
+R2 Europe
+R3 Middle East
+
+---------------
+
+SQL> insert into countries values(1, 'India', 'R1');
+1 row created.
+
+SQL> insert into countries values(2, 'China', 'R1');
+1 row created.
+
+SQL> insert into countries values(3, 'Iran', 'R3');
+1 row created.
+
+SQL> insert into countries values(4, 'Oman', 'R3');
+1 row created.
+
+SQL> insert into countries values(5, 'Saudi Arabia', 'R3');
+1 row created.
+
+SQL> select * from countries;
+
+COUNTRY_ID COUNTRY_NAME    RE
+---------- --------------- --
+         1 India           R1
+         2 China           R1
+         3 Iran            R3
+         4 Oman            R3
+         5 Saudi Arabia    R3
+```
