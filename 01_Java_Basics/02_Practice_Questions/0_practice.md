@@ -356,3 +356,72 @@ public class SquareAndCubeOfNumber {
 // Cube = 125
 
 ```
+
+# 10. Codes Based On Logical Operators
+
+## i. Logical AND
+>The file name should be same as the class name.
+
+```
+In case of using Notepad as Text Editor [Compilation and Execution in CMD]
+
+For compilation write : javac file_name.java 
+For Interpretation write : java file_name
+```
+
+```java
+class Program1
+{
+	public static void main(String[] args){
+		System.out.println(false && false);
+		System.out.println(false && true);
+		System.out.println(true && false);
+		System.out.println(true && true);
+	}
+}
+
+//To execute this code the two steps will be:
+// javac Program1.java
+// java Program1
+
+
+//Output:
+// false
+// false
+// false
+// true
+```
+
+## ii. Logical OR
+```java
+class Program2
+{
+	public static void main(String[] args){
+		System.out.println(false || false);
+		System.out.println(false || true);
+		System.out.println(true || false);
+		System.out.println(true || true);
+	}
+}
+
+//Output:
+// false
+// true
+// true
+// true
+```
+
+## iii. Logical NOT
+```java
+class Program3
+{
+	public static void main(String[] args){
+		System.out.println(!true); 
+		System.out.println(!false);
+	}
+}
+
+//Output:
+// false
+// true
+```
