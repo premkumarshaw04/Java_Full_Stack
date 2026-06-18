@@ -269,7 +269,7 @@ SQL> select * from mensCLG;
 
 ```
 
-## 4. Make a customer Table havig columns as [CID, name, email, phone(exact 10 digits)]
+## 4. Make a customer Table having columns as [CID, name, email, phone(exact 10 digits)]
 
 ```sql
 SQL> create table customer(
@@ -710,10 +710,28 @@ products
 •	product_name
 •	supplier_id (FK → suppliers.supplier_id)
 •	unit_price
-
 ```
 
+>One supplier can supply many products.
+
 ```sql
+SQL> create table suppliers(
+  2  supplier_id number primary key,
+  3  supplier_name varchar(20),
+  4  contact_no varchar(15)
+  5  );
+
+Table created.
+
+SQL> create table products(
+  2  product_id number primary key,
+  3  product_name varchar(20),
+  4  supplier_id number,
+  5  unit_price number(10,2),
+  6  foreign key(supplier_id) references suppliers (supplier_id)
+  7  );
+
+Table created.
 ```
 
 ## 11. Employees ↔ Projects (Many-to-Many)
@@ -731,8 +749,64 @@ employee_project
 •	(Composite PK: emp_id + project_id
 ```
 
+>Many-to-Many needs a junction table (employee_project) that holds both foreign keys together as a composite primary key.
+
 ```sql
+-- Employees table
+SQL> create table employees(
+  2  emp_id number primary key,
+  3  emp_name varchar(20),
+  4  department varchar(20)
+  5  );
+
+Table created.
+
+-- Projects Tables
+SQL> create table projects(
+  2  project_id number primary key,
+  3  project_name varchar(20)
+  4  );
+
+Table created.
+
+-- Junction table
+SQL> create table employee_project(
+  2  emp_id number,
+  3  project_id number,
+  4  primary key(emp_id, project_id),
+  5  foreign key(emp_id) references employees(emp_id),
+  6  foreign key(project_id) references projects(project_id)
+  7  );
+
+Table created.
 ```
+> The composite PK (emp_id + project_id) ensures one employee can't be assigned to the same project twice.
+
+Here's what's happening step by step:
+
+1. `employees` and `projects` are independent tables — no relation between them yet, just normal PK tables.
+
+2. The problem — One employee can work on many projects, and one project can have many employees. You can't store this in either table directly.
+
+3. Solution → Junction table `employee_project` — It sits in the middle and just stores pairs:
+
+```
+emp_id               project_id
+1                    101
+1                    102 ← Employee 1 is in 2 projects 
+2                    101 ← Project 101 has 2 employees
+```
+
+4. Composite Primary Key — `PRIMARY KEY (emp_id, project_id)` means the **combination** must be unique. So:
+   - Same employee can't be added to same project twice
+   - But same employee can appear with different projects ✓
+
+5. Two Foreign Keys —
+   - `emp_id` must exist in `employees`
+   - `project_id` must exist in `projects`
+   
+   So you can't assign an employee or project that doesn't exist.
+
 
 ## 12. Libraries → Books (One-to-Many) 
 ```
@@ -747,7 +821,26 @@ library_books
 •	category
 ```
 
+> One Liabrary can have many books.
+
 ```sql
+SQL> create table libraries(
+  2  library_id number primary key,
+  3  library_name varchar(20),
+  4  address varchar(100)
+  5  );
+
+Table created.
+
+SQL> create table library_books(
+  2  book_id number primary key,
+  3  library_id number,
+  4  title varchar(30),
+  5  category varchar(50),
+  6  foreign key(library_id) references libraries(library_id)
+  7  );
+
+Table created.
 ```
 
 ## 13. Banks → Accounts (One-to-Many)
@@ -763,8 +856,26 @@ accounts
 •	account_holder
 •	balance
 ```
-> Create two tables — **customers** first (since **orders** references it), then orders with a foreign key.
+
+> One bank can have many accounts.
 
 ```sql
 
+SQL> create table banks(
+  2  bank_id number primary key,
+  3  bank_name varchar(50),
+  4  branch_location varchar(100)
+  5  );
+
+Table created.
+
+SQL> create table accounts(
+  2  account_id number primary key,
+  3  bank_id number,
+  4  account_holder varchar(50),
+  5  balance number(15,2),
+  6  foreign key(bank_id) references banks(bank_id)
+  7  );
+
+Table created.
 ```
