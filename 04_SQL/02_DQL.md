@@ -88,10 +88,10 @@ ANNUAL SALARY
 ### 3. Write a query to display half term (6 months) Salary.
 
 ```sql
-SQL> SELECT SAL*6 AS "HALF TERM SAL"
+SQL> SELECT SAL*6 AS "HALF_TERM_SAL"
   2  FROM EMP;
 
-HALF TERM SAL
+HALF_TERM_SAL
 -------------
          4800
          9600
@@ -114,10 +114,10 @@ HALF TERM SAL
 ### 4. Write a query to display quarter salary.
 
 ```sql
-SQL> SELECT SAL*3 AS "QUARTER SAL"
+SQL> SELECT SAL*3 AS "QUARTER_SAL"
   2  FROM EMP;
 
-QUARTER SAL
+QUARTER_SAL
 -----------
        2400
        4800
