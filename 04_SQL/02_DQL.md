@@ -354,6 +354,15 @@ MILLER                        8100
 
 > It is a way of retrieving the data present in rows and columns.
 
+### 1. Write a query to display all the details of the employee earning salary greater than 2000
+2. Display all the details of the employees where designation is 'Manager'.
+3. Display all the details for employee Scott.
+4. Write a query to dsiplay all the details where department number is 20.
+5. Display all the details where designation(job) is 'Salesman', 'Analyst' and 'Clerk'.
+6. Display all the details where department no is 10, 20, 40 and 50.
+7. Write a query to display employee details where working in the department no is 10, 30, 60, 90 and working in the designation 'Manager', 'Analyst' and 'Clerk' and earning salary less than two thousand .
+8. Display all the details where Salary is greater than 1000 and less than 3000. 
+
 ---
 
 # Operators
@@ -372,3 +381,33 @@ Here is the list of operators:
 ```
 
 ## Queries Based on Operators:
+
+1. write a query to display employee name, where employee name starting with character 'M'.
+2. Display emp name where employee name ending with chracter 'R'.
+3. Display employee name where employee name consisting four chracters.
+4. Display employee name where employee name contains four characters and first letter is 'F'.
+5. Display employee name where employee name second character is 'A".
+6. Display employee name where the second last character of employee name is 'I'.
+7. Display employee name where employee name contains two consequtive 'L' characters.
+8. Display employee name where employee name is starting with character 'M' and character 'J'.
+9. Display all the details of employee where employee hired in month 'Dec'.
+10. Display all the details of employee where employee hired in the month Dec and Feb.
+11. Write a query to display employee name, where employee name not starting with character 'M'.
+12. Display all the details of employee where employee name not ending with character 'R'.
+13. Display all the details where employee name not contains five characters.
+14. Display all the details where designation Last three letters is 'GER'.
+15. Display employee details, where employee name not starting with character 'M' and 'J'.[Here we should not use OR]
+16. Display all the details of employee where employee not hired in the month 'Dec'.
+17. Display all the details where emp not hired in the month 'feb', 'dec' and 'Apr'.
+18. Write a query to display all the details where employee name starting with vowels character.
+19. Display all the details where employee name starting with consonant characters.
+20. Display all the details along with annual salary.
+21. Display all the details where employee working as 'Salesman', 'Clerk', 'Manager', and hired in the month 
+feb, apr, dec, june.
+22. Display all the details where employee not working in dept no 30,60,90 and job not starting with characters 'MAN' and 'ANA'.
+23. Display all the details where earning salary greater than 1000 and designation last second character is A, B.
+24. Display all the details along with annual salary where annual salary is greater than 12000.
+25. Write a query to display all the details where employee hired in the year 81.
+26. Write a query to display all the details where employee not hired in the year 80, 82 and 87.
+27. Write a query to display all the details where employee working in the department no 10, 20, 30, 40 and 
+employee name starting with consonant character and not working in the designation 'Analyst', 'clerk' and earning salary greater than 500 and less than 600 and hired in the month dec,sep, may,apr,feb. 
