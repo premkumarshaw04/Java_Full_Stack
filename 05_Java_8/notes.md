@@ -371,10 +371,576 @@ map.getOrDefault(key, defaultValue);    // avoid null checks
 - Works seamlessly with lambda expressions and streams
 
 ---
+
+# Functional Interface
+
 Now to use Lambda Expression we need to learn functional Interface.
 
-Functional interface:
-Interface having exaclty single abstract method but can have any number of defaults and
-static methods. 
-We can invoke lambda epression by using functional Interface.
+## Functional Interface
 
+> Functional interface:
+> Interface having exaclty single abstract method but can have any number of defaults and
+> static methods.
+> We can invoke lambda epression by using functional Interface.
+
+**Example:**
+```java
+interface Greeting {
+    void sayHello(String name); // single abstract method
+}
+
+Greeting greeting = name -> System.out.println("Hello, " + name); // invoked using lambda
+greeting.sayHello("Prem"); // Hello, Prem
+```
+
+---
+
+## @FunctionalInterface Annotation
+
+> It restrict the interface to be a Functional Interface.
+> So if people have already used some lambda expression and some new
+> team member added another abstract method in the Interface
+> all lambda expression will have errors.
+
+### What this annotation does
+
+`@FunctionalInterface` is placed on top of an interface to tell the compiler: "this interface must always have exactly one abstract method."
+
+```java
+@FunctionalInterface
+interface Greeting {
+    void sayHello(String name);
+}
+```
+
+If someone later tries to add a second abstract method to this interface, the **compiler will throw an error immediately** — instead of letting the code compile and breaking all the existing lambda expressions that use this interface.
+
+```java
+@FunctionalInterface
+interface Greeting {
+    void sayHello(String name);
+    void sayBye(String name); // ❌ Compile-time error: not a functional interface anymore
+}
+```
+
+### Why this matters
+
+- Without the annotation, the interface can still work as a functional interface (as long as it has just one abstract method) — the annotation is **optional**, not mandatory.
+- But using it acts as a **safety check**. It catches mistakes early (at compile time) rather than letting a teammate accidentally break the interface, which would otherwise cause errors everywhere that interface's lambda expressions are used.
+- This is especially useful in team projects, where someone unaware that an interface is meant to be functional might add another method without realizing the consequence.
+
+---
+
+### Q: What is the advantage of this annotation?
+
+**A:** It forces the compiler to check, at compile time, that the interface has exactly one abstract method. So if a teammate accidentally adds a second abstract method, the build fails immediately with a clear error — instead of the mistake silently breaking every existing lambda expression that uses this interface somewhere else in the codebase. It essentially catches a design mistake early, before it can cause hidden runtime/compile errors elsewhere.
+
+---
+
+# Inheritance in Functional Interface
+
+## What it does
+
+A functional interface can also take part in inheritance — it can `extend` one or more other interfaces, just like a normal interface. Since Java allows interfaces to extend multiple interfaces (unlike classes), a functional interface can inherit abstract methods, default methods, and static methods from its parent interface(s).
+
+Whether the resulting (child) interface is **still a functional interface** depends on how many distinct abstract methods it ends up with after inheritance — it must still have **exactly one abstract method** in total to qualify.
+
+## Benefits of using this
+
+- Allows code reuse — common method contracts can be defined once in a parent interface and reused by child interfaces.
+- Lets you build a hierarchy of related single-method contracts instead of repeating the same method everywhere.
+- Default and static methods from the parent interface also get inherited, so child interfaces don't need to redefine common logic.
+- Helps in designing flexible APIs where multiple related functional interfaces share a common base behavior.
+
+## How we use it
+
+Same as normal interface inheritance — using the `extends` keyword. A child interface can extend **one or multiple** interfaces:
+
+```java
+interface A {
+    void show();
+}
+
+interface B extends A {
+    // inherits show() from A
+}
+```
+
+```java
+interface A {
+    void show();
+}
+
+interface B {
+    void display();
+}
+
+interface C extends A, B {
+    // inherits both show() and display()
+}
+```
+
+---
+
+## The Four Conditions — When is an Inherited (Child) Interface Still a Functional Interface?
+
+### Condition 1: Child extends one interface, adds no new method
+
+```java
+interface A {
+    void show();
+}
+
+interface B extends A {
+    // no new abstract method added
+}
+```
+
+`B` has exactly one abstract method (`show`, inherited from `A`) → **B is a Functional Interface.** ✅ Can be used with a lambda.
+
+---
+
+### Condition 2: Child extends one interface and re-declares the same method
+
+```java
+interface A {
+    void show();
+}
+
+interface B extends A {
+    void show(); // re-declaring the same abstract method
+}
+```
+
+Re-declaring the exact same method (same name, same signature) doesn't count as adding a *new* method — it's still treated as a single abstract method → **B is a Functional Interface.** ✅
+
+---
+
+### Condition 3: Child extends two interfaces having the same abstract method (same signature)
+
+```java
+interface A {
+    void show();
+}
+
+interface B {
+    void show();
+}
+
+interface C extends A, B {
+}
+```
+
+Since both parent interfaces declare the **same method signature**, Java merges them into a single abstract method when inherited by `C` → **C is a Functional Interface.** ✅
+
+---
+
+### Condition 4: Child extends two interfaces having different abstract methods
+
+```java
+interface A {
+    void show();
+}
+
+interface B {
+    void display();
+}
+
+interface C extends A, B {
+}
+```
+
+`C` now inherits **two different abstract methods** (`show()` and `display()`) → **C is NOT a Functional Interface.** ❌ A lambda expression cannot be assigned to `C` directly, since a lambda can only implement a single abstract method.
+
+---
+
+### Quick Summary Table
+
+| Condition | Result |
+|---|---|
+| Extends 1 interface, no new method | ✅ Functional Interface |
+| Extends 1 interface, re-declares same method | ✅ Functional Interface |
+| Extends 2 interfaces, same method signature | ✅ Functional Interface |
+| Extends 2 interfaces, different methods | ❌ Not a Functional Interface |
+
+---
+
+# Default Methods Inside Interface
+
+> Until 1.7 only public abstract methods were allowed
+> whether we declare by writing or not.
+>
+> Similarly public static final variable were allowed.
+>
+> Since java 8 we can have concrete methods as well inside
+> interface
+
+## What is "Default Methods"
+
+A **default method** is a method inside an interface that has a method **body** (a concrete implementation), defined using the `default` keyword. Before Java 8, interfaces could only have abstract methods (no body) — default methods changed that by allowing interfaces to provide ready-to-use implementations too.
+
+## Why we use it
+
+- **Backward compatibility:** Before Java 8, if you added a new method to an existing interface, every class that implemented that interface would break (compile error) because it hadn't implemented the new method. Default methods solve this — you can add new functionality to an interface without breaking existing implementing classes.
+- This is exactly how Java itself added new methods (like `forEach()` to `Collection`, `stream()` to `Collection`, etc.) in Java 8 without breaking millions of existing classes that implement those interfaces.
+
+## What it does
+
+A default method provides a **fallback/default implementation** inside the interface itself. Classes that implement the interface:
+- Can use this default implementation as-is (no need to override it), **or**
+- Can override it with their own custom implementation if needed.
+
+## How we make it
+
+Use the `default` keyword before the method, along with a method body — just like a normal method in a class:
+
+```java
+interface Vehicle {
+    default void start() {
+        System.out.println("Vehicle starting...");
+    }
+}
+```
+
+## Example Code
+
+```java
+interface Vehicle {
+    default void start() {
+        System.out.println("Vehicle starting...");
+    }
+}
+
+class Car implements Vehicle {
+    // Not overriding start() — will use the default implementation
+}
+
+class Bike implements Vehicle {
+    @Override
+    public void start() {
+        System.out.println("Bike starting with a kick!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Vehicle car = new Car();
+        car.start();   // Output: Vehicle starting...
+
+        Vehicle bike = new Bike();
+        bike.start();  // Output: Bike starting with a kick!
+    }
+}
+```
+
+---
+
+# Famous Interview Question: Default Method Conflict (Diamond Problem)
+
+## The Problem
+
+```java
+package com.edigest.defaultMethods;
+
+interface A {
+    default void sayHello() {
+        System.out.println("A says Hello");
+    }
+}
+
+interface B {
+    default void sayHello() {
+        System.out.println("B says hello");
+    }
+}
+
+public class MyClass implements A, B {
+    public static void main(String[] args) {
+        MyClass myClass = new MyClass();
+        myClass.sayHello();
+    }
+}
+```
+
+### What is the problem here?
+
+This code **will not compile**.
+
+`MyClass` implements two interfaces, `A` and `B`, and **both** of them have a `default` method with the exact same signature: `sayHello()`. When `MyClass` tries to inherit from both interfaces, Java doesn't know **which version of `sayHello()`** to use — `A`'s version or `B`'s version.
+
+This is known as the **"Diamond Problem"** for default methods. Since both interfaces provide an actual implementation (not just an abstract declaration), there's a genuine conflict, and the compiler refuses to guess — it throws a compile-time error like:
+
+```
+error: class MyClass inherits unrelated defaults for sayHello() from types A and B
+```
+
+This is exactly the kind of ambiguity that Java's single inheritance rule (for classes) was designed to avoid — but since interfaces support multiple inheritance, this conflict becomes possible with default methods.
+
+---
+
+## The Solution
+
+To fix this, `MyClass` **must override** the conflicting method and explicitly tell Java which interface's version to use (or provide entirely new logic).
+
+```java
+package com.edigest.defaultMethods;
+
+interface A {
+    default void sayHello() {
+        System.out.println("A says Hello");
+    }
+}
+
+interface B {
+    default void sayHello() {
+        System.out.println("B says hello");
+    }
+}
+
+public class MyClass implements A, B {
+
+    @Override
+    public void sayHello() {
+        A.super.sayHello(); // explicitly choosing A's version
+    }
+
+    public static void main(String[] args) {
+        MyClass myClass = new MyClass();
+        myClass.sayHello(); // Output: A says Hello
+    }
+}
+```
+
+### Explanation of the solution
+
+- By overriding `sayHello()` inside `MyClass`, we resolve the ambiguity ourselves instead of leaving it to the compiler.
+- Inside the override, we use the special syntax **`InterfaceName.super.methodName()`** — here, `A.super.sayHello()` — to explicitly call interface `A`'s default implementation.
+- We could just as easily call `B.super.sayHello()` instead, or even call **both**:
+  ```java
+  @Override
+  public void sayHello() {
+      A.super.sayHello();
+      B.super.sayHello();
+  }
+  ```
+- Or write a completely new implementation instead of reusing either interface's version:
+  ```java
+  @Override
+  public void sayHello() {
+      System.out.println("MyClass says Hello");
+  }
+  ```
+
+This pattern (`Interface.super.method()`) is the standard way Java requires you to resolve conflicts when a class implements multiple interfaces that share a default method with the same signature.
+
+---
+
+# Static Methods in Interface
+
+> Static Methods in Interface are those methods,
+> which are defined in the interface with the
+> keyword static.
+> static methods contain the complete definition of
+> the function
+> cannot be overridden or changed in theimplementation class
+
+## Q: What are the rules to access Static method of an interface in implementation class
+
+**A:** The rules are:
+
+1. A static method in an interface belongs to the **interface itself**, not to the implementing class or its objects.
+2. It is **not inherited** by the implementing class — so you cannot call it using an object of the implementing class.
+3. The **only way** to access it is by using the **interface name directly**: `InterfaceName.methodName()`.
+4. It **cannot be overridden** in the implementing class. Even if the implementing class defines a method with the same signature, it is treated as a completely separate, unrelated method — not an override.
+
+## Example Code
+
+```java
+package com.edigest.defaultMethods;
+
+interface A {
+    static void sayHello() {
+        System.out.println("Hello !");
+    }
+}
+
+public class MyClass implements A {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        // obj.sayHello();   // ❌ Not allowed — cannot access static method via object/class instance
+
+        A.sayHello();        // ✅ Correct way — access using the interface name directly
+    }
+}
+
+// Note: sayHello() cannot be overridden in MyClass.
+```
+
+---
+
+## Main Method Inside Interface
+
+we can write main(Static) method inside interface.
+
+Since `main()` is just a `public static` method, and interfaces are allowed to have static methods (with a body) since Java 8, you can technically define and run a `main()` method directly inside an interface.
+
+```java
+package com.edigest.staticMethods;
+
+public interface MyInterface {
+    public static void main(String[] args) {
+        System.out.println("Hello from Interface!");
+    }
+}
+```
+
+Running this interface directly will execute the `main()` method, just like it would in a regular class, and print:
+
+```
+Hello from Interface!
+```
+
+---
+
+# How to Use Lambda Expression
+
+> Functional Interface act as data type for lambda expression.
+
+## Example
+
+**Employee.java**
+```java
+package org.example;
+
+public interface Employee {
+    String getName();
+}
+```
+
+**Main.java**
+```java
+package org.example;
+
+public class Main {
+    public static void main(String[] args) {
+        Employee employee = () -> "Software Engineer";
+        System.out.println(employee.getName());
+
+        // now we dont need separate implementation class and we can directly use interface.
+    }
+}
+```
+
+**Output:**
+```
+Software Engineer
+```
+
+## Explanation
+
+> Interface reference can be used to hold lambda expression.
+> Using lambda expression we don't need to use any
+> separate implementation class.
+
+Normally, to use an interface, you'd need to create a separate class that implements it:
+
+```java
+class SoftwareEngineer implements Employee {
+    @Override
+    public String getName() {
+        return "Software Engineer";
+    }
+}
+
+Employee employee = new SoftwareEngineer();
+```
+
+But since `Employee` is a **Functional Interface** (it has exactly one abstract method, `getName()`), we can skip creating a separate implementation class entirely. Instead, we directly assign a **lambda expression** to an `Employee` reference:
+
+```java
+Employee employee = () -> "Software Engineer";
+```
+
+Here:
+- `Employee` acts as the **data type** for the lambda expression.
+- The lambda `() -> "Software Engineer"` is treated as the implementation of `getName()` — no parameters (matching `getName()`'s signature) and it returns `"Software Engineer"`.
+- Calling `employee.getName()` runs this lambda and returns `"Software Engineer"`.
+
+This is the core idea behind using lambda expressions in Java — they let you provide behavior directly, without the boilerplate of writing a whole separate class just to implement one method.
+
+--- 
+
+# Thread using Lambda Expression
+
+## Example
+
+```java
+package org.example;
+
+public class Main {
+    public static void main(String[] args) {
+        Runnable runnable = () -> {
+            for (int i = 1; i <= 10; i++) {
+                System.out.println("Hello " + i);
+            }
+        };
+
+        Thread childThread = new Thread(runnable);
+        childThread.run();
+    }
+}
+```
+
+## Explanation
+
+`Runnable` is a **Functional Interface** built into Java — it has exactly one abstract method:
+
+```java
+void run();
+```
+
+Before Java 8, to create a thread's task, you'd normally write an anonymous class:
+
+```java
+Runnable runnable = new Runnable() {
+    @Override
+    public void run() {
+        for (int i = 1; i <= 10; i++) {
+            System.out.println("Hello " + i);
+        }
+    }
+};
+```
+
+Since `Runnable` is a functional interface, this can be replaced with a much shorter **lambda expression**:
+
+```java
+Runnable runnable = () -> {
+    for (int i = 1; i <= 10; i++) {
+        System.out.println("Hello " + i);
+    }
+};
+```
+
+This lambda becomes the implementation of `run()`. We then pass this `Runnable` to a `Thread` object:
+
+```java
+Thread childThread = new Thread(runnable);
+```
+
+## Important point: `run()` vs `start()`
+
+In the example above, `childThread.run()` is called — but this is worth being careful about:
+
+- `childThread.run()` → just calls the `run()` method like a **normal method call**, on the **current/main thread itself**. No new thread is actually created.
+- `childThread.start()` → this is what actually creates and starts a **new thread**, which then internally calls `run()` on that new thread.
+
+So to truly run this code in parallel on a separate thread, you should use:
+
+```java
+childThread.start(); // ✅ actually starts a new thread
+```
+
+Using `.run()` instead of `.start()` is a common mistake — the code will still execute and produce output, but it won't run on a separate thread, defeating the purpose of using `Thread` in the first place.
+
+---
