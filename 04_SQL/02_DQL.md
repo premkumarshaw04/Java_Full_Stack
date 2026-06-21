@@ -352,16 +352,182 @@ MILLER                        8100
 
 ## Queries Based on Selection:
 
-> It is a way of retrieving the data present in rows and columns.
+> Selection is a way of retrieving the data present in rows and columns.
 
-### 1. Write a query to display all the details of the employee earning salary greater than 2000
-2. Display all the details of the employees where designation is 'Manager'.
-3. Display all the details for employee Scott.
-4. Write a query to dsiplay all the details where department number is 20.
-5. Display all the details where designation(job) is 'Salesman', 'Analyst' and 'Clerk'.
-6. Display all the details where department no is 10, 20, 40 and 50.
-7. Write a query to display employee details where working in the department no is 10, 30, 60, 90 and working in the designation 'Manager', 'Analyst' and 'Clerk' and earning salary less than two thousand .
-8. Display all the details where Salary is greater than 1000 and less than 3000. 
+### 1. Write a query to display all the details of the employee earning salary greater than 2000.
+```sql
+SQL> SELECT * FROM EMP
+  2  WHERE SAL > 2000;
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975               20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850               30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450               10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000               20
+      7839 KING       PRESIDENT            17-NOV-81       5000               10
+      7902 FORD       ANALYST         7566 03-DEC-81       3000               20
+
+6 rows selected.
+```
+### 2. Display all the details of the employees where designation is 'Manager'.
+```sql
+SQL> SELECT * FROM EMP
+  2  WHERE JOB = 'MANAGER';
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+
+```
+
+### 3. Display all the details for employee Scott.
+```sql
+SQL> SELECT * FROM EMP
+  2  WHERE ENAME = 'SCOTT';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+
+```
+
+### 4. Write a query to dsiplay all the details where department number is 20.
+```sql
+SQL> SELECT * FROM EMP
+  2  WHERE DEPTNO = 20;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+```
+
+### 5. Display all the details where designation(job) is 'Salesman', 'Analyst' and 'Clerk'.
+```sql
+SQL> SELECT * FROM EMP
+  2  WHERE JOB IN ('SALESMAN', 'ANALYST', 'CLERK');
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+10 rows selected.
+```
+>Another Approach
+
+```SQL
+SQL> SELECT * FROM EMP
+  2  WHERE JOB = 'SALESMAN' OR JOB = 'ANALYST' OR JOB = 'CLERK';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+10 rows selected.
+```
+
+### 6. Display all the details where department no is 10, 20, 40 and 50.
+```sql
+SQL> SELECT * FROM EMP
+  2  WHERE DEPTNO IN (10,20,40,50);
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+8 rows selected.
+```
+>Another Approach 
+```sql
+SQL> SELECT * FROM EMP
+  2  WHERE DEPTNO = 10 OR DEPTNO = 20 OR DEPTNO = 40 OR DEPTNO = 50;
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+8 rows selected.
+```
+
+### 7. Write a query to display employee details where working in the department no is 10, 30, 60, 90 and working in the designation 'Manager', 'Analyst' and 'Clerk' and earning salary less than two thousand .
+```sql
+SQL> SELECT * FROM EMP
+  2  WHERE DEPTNO IN (10, 30, 60, 90)
+  3  AND JOB IN ('MANAGER', 'ANALYST', 'CLERK')
+  4  AND SAL < 2000;
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+```
+
+### 8. Display all the details where Salary is greater than 1000 and less than 3000. 
+```sql
+SQL> SELECT * FROM EMP
+  2  WHERE SAL > 1000 AND SAL < 3000;
+
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+9 rows selected.
+
+```
 
 ---
 
@@ -382,32 +548,138 @@ Here is the list of operators:
 
 ## Queries Based on Operators:
 
-1. write a query to display employee name, where employee name starting with character 'M'.
-2. Display emp name where employee name ending with chracter 'R'.
-3. Display employee name where employee name consisting four chracters.
-4. Display employee name where employee name contains four characters and first letter is 'F'.
-5. Display employee name where employee name second character is 'A".
-6. Display employee name where the second last character of employee name is 'I'.
-7. Display employee name where employee name contains two consequtive 'L' characters.
-8. Display employee name where employee name is starting with character 'M' and character 'J'.
-9. Display all the details of employee where employee hired in month 'Dec'.
-10. Display all the details of employee where employee hired in the month Dec and Feb.
-11. Write a query to display employee name, where employee name not starting with character 'M'.
-12. Display all the details of employee where employee name not ending with character 'R'.
-13. Display all the details where employee name not contains five characters.
-14. Display all the details where designation Last three letters is 'GER'.
-15. Display employee details, where employee name not starting with character 'M' and 'J'.[Here we should not use OR]
-16. Display all the details of employee where employee not hired in the month 'Dec'.
-17. Display all the details where emp not hired in the month 'feb', 'dec' and 'Apr'.
-18. Write a query to display all the details where employee name starting with vowels character.
-19. Display all the details where employee name starting with consonant characters.
-20. Display all the details along with annual salary.
-21. Display all the details where employee working as 'Salesman', 'Clerk', 'Manager', and hired in the month 
-feb, apr, dec, june.
-22. Display all the details where employee not working in dept no 30,60,90 and job not starting with characters 'MAN' and 'ANA'.
-23. Display all the details where earning salary greater than 1000 and designation last second character is A, B.
-24. Display all the details along with annual salary where annual salary is greater than 12000.
-25. Write a query to display all the details where employee hired in the year 81.
-26. Write a query to display all the details where employee not hired in the year 80, 82 and 87.
-27. Write a query to display all the details where employee working in the department no 10, 20, 30, 40 and 
-employee name starting with consonant character and not working in the designation 'Analyst', 'clerk' and earning salary greater than 500 and less than 600 and hired in the month dec,sep, may,apr,feb. 
+### 1. write a query to display employee name, where employee name starting with character 'M'.
+```sql
+
+```
+
+### 2. Display emp name where employee name ending with chracter 'R'.
+```sql
+
+```
+
+### 3. Display employee details where employee name consisting four chracters.
+```sql
+
+```
+
+### 4. Display employee name where employee name contains four characters and first letter is 'F'.
+```sql
+
+```
+
+### 5. Display employee name where employee name second character is 'A".
+```sql
+
+```
+
+### 6. Display employee name where the second last character of employee name is 'I'.
+```sql
+
+```
+
+### 7. Display employee name where employee name contains two consequtive 'L' characters.
+```sql
+
+```
+
+### 8. Display employee name where employee name is starting with character 'M' and character 'J'.
+```sql
+
+```
+
+### 9. Display all the details of employee where employee hired in month 'Dec'.
+```sql
+
+```
+
+### 10. Display all the details of employee where employee hired in the month Dec and Feb.
+```sql
+
+```
+
+### 11. Write a query to display employee name, where employee name not starting with character 'M'.
+```sql
+
+```
+
+### 12. Display all the details of employee where employee name not ending with character 'R'.
+```sql
+
+```
+
+### 13. Display all the details where employee name not contains five characters.
+```sql
+
+```
+
+### 14. Display all the details where designation Last three letters is 'GER'.
+```sql
+
+```
+
+### 15. Display employee details, where employee name not starting with character 'M' and 'J'.[Here we should not use OR]
+```sql
+
+```
+
+### 16. Display all the details of employee where employee not hired in the month 'Dec'.
+```sql
+
+```
+
+### 17. Display all the details where emp not hired in the month 'feb', 'dec' and 'Apr'.
+```sql
+
+```
+
+### 18. Write a query to display all the details where employee name starting with vowels character.
+```sql
+
+```
+
+### 19. Display all the details where employee name starting with consonant characters.
+```sql
+
+```
+
+### 20. Display all the details along with annual salary.
+```sql
+
+```
+
+### 21. Display all the details where employee working as 'Salesman', 'Clerk', 'Manager', and hired in the month feb, apr, dec, june.
+```sql
+
+```
+
+### 22. Display all the details where employee not working in dept no 30,60,90 and job not starting with characters 'MAN' and 'ANA'.
+```sql
+
+```
+
+### 23. Display all the details where earning salary greater than 1000 and designation last second character is A, B.
+```sql
+
+```
+
+### 24. Display all the details along with annual salary where annual salary is greater than 12000.
+```sql
+
+```
+
+### 25. Write a query to display all the details where employee hired in the year 81.
+```sql
+
+```
+
+### 26. Write a query to display all the details where employee not hired in the year 80, 82 and 87.
+```sql
+
+```
+
+### 27. Write a query to display all the details where employee working in the department no 10, 20, 30, 40 and employee name starting with consonant character and not working in the designation 'Analyst', 'clerk' and earning salary greater than 500 and less than 600 and hired in the month Dec,Sep, May, Apr,Feb. 
+```sql
+
+```
+
