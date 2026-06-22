@@ -550,136 +550,537 @@ Here is the list of operators:
 
 ### 1. write a query to display employee name, where employee name starting with character 'M'.
 ```sql
+SQL> SELECT ENAME FROM EMP
+  2  WHERE ENAME LIKE 'M%';
 
+ENAME
+----------
+MARTIN
+MILLER
 ```
 
 ### 2. Display emp name where employee name ending with chracter 'R'.
 ```sql
+SQL> SELECT ENAME FROM EMP
+  2  WHERE ENAME LIKE '%R';
 
+ENAME
+----------
+TURNER
+MILLER
 ```
 
 ### 3. Display employee details where employee name consisting four chracters.
 ```sql
+SQL> SELECT ENAME FROM EMP
+  2  WHERE ENAME LIKE '____';
 
+ENAME
+----------
+WARD
+KING
+FORD
 ```
 
 ### 4. Display employee name where employee name contains four characters and first letter is 'F'.
 ```sql
+SQL> SELECT ENAME FROM EMP
+  2  WHERE ENAME LIKE 'F___';
 
+ENAME
+----------
+FORD
 ```
 
 ### 5. Display employee name where employee name second character is 'A".
 ```sql
+SELECT ENAME FROM EMP
+  2  WHERE ENAME LIKE '_A%';
 
+ENAME
+----------
+WARD
+MARTIN
+JAMES
 ```
 
 ### 6. Display employee name where the second last character of employee name is 'I'.
 ```sql
+SQL> SELECT ENAME FROM EMP
+  2  WHERE ENAME LIKE '%I_';
 
+ENAME
+----------
+MARTIN
 ```
 
 ### 7. Display employee name where employee name contains two consequtive 'L' characters.
 ```sql
+SQL> SELECT ENAME FROM EMP
+  2  WHERE ENAME LIKE '%LL%';
 
+ENAME
+----------
+ALLEN
+MILLER
 ```
 
 ### 8. Display employee name where employee name is starting with character 'M' and character 'J'.
 ```sql
+SQL> SELECT ENAME FROM EMP
+  2  WHERE ENAME LIKE 'M%' OR ENAME LIKE 'J%';
 
+ENAME
+----------
+JONES
+MARTIN
+JAMES
+MILLER
 ```
 
 ### 9. Display all the details of employee where employee hired in month 'Dec'.
 ```sql
+SQL> SELECT * FROM EMP
+  2  WHERE HIREDATE LIKE '%DEC%';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800       20
+      7900 JAMES      CLERK           7698 03-DEC-81        950       30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000       20
 
 ```
 
 ### 10. Display all the details of employee where employee hired in the month Dec and Feb.
 ```sql
+ SELECT * FROM EMP
+  2  WHERE HIREDATE LIKE '%DEC%' OR HIREDATE LIKE '%FEB%';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800       20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300     30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500     30
+      7900 JAMES      CLERK           7698 03-DEC-81        950       30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000       20
 
 ```
 
 ### 11. Write a query to display employee name, where employee name not starting with character 'M'.
 ```sql
+SQL> SELECT ENAME FROM EMP
+  2  WHERE ENAME NOT LIKE 'M%';
 
+ENAME
+----------
+SMITH
+ALLEN
+WARD
+JONES
+BLAKE
+CLARK
+SCOTT
+KING
+TURNER
+ADAMS
+JAMES
+FORD
 ```
 
 ### 12. Display all the details of employee where employee name not ending with character 'R'.
 ```sql
+SQL> SELECT * FROM EMP
+  2  WHERE ENAME NOT LIKE '%R';
 
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800       20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300     30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500     30
+      7566 JONES      MANAGER         7839 02-APR-81       2975       20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400     30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850       30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450       10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000       20
+      7839 KING       PRESIDENT            17-NOV-81       5000       10
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100       20
+      7900 JAMES      CLERK           7698 03-DEC-81        950       30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000       20
+
+12 rows selected.
 ```
 
 ### 13. Display all the details where employee name not contains five characters.
 ```sql
+SQL> SELECT * FROM EMP
+  2  WHERE ENAME NOT LIKE '_____';
 
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500     30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400     30
+      7839 KING       PRESIDENT            17-NOV-81       5000       10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500     0          30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000       20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300       10
+
+6 rows selected.
 ```
 
 ### 14. Display all the details where designation Last three letters is 'GER'.
 ```sql
+SQL> SELECT * FROM EMP
+  2  WHERE JOB LIKE '%GER';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975       20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850       30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450       10
 
 ```
 
 ### 15. Display employee details, where employee name not starting with character 'M' and 'J'.[Here we should not use OR]
 ```sql
+SQL> SELECT * FROM EMP
+  2  WHERE ENAME NOT LIKE 'M%'
+  3  AND ENAME NOT LIKE 'J%';
 
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800       20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300     30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500     30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850       30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450       10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000       20
+      7839 KING       PRESIDENT            17-NOV-81       5000       10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500     0          30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100       20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000       20
+
+10 rows selected.
 ```
 
 ### 16. Display all the details of employee where employee not hired in the month 'Dec'.
 ```sql
+SQL> SELECT * FROM EMP
+  2  WHERE HIREDATE NOT LIKE '%DEC%';
 
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300     30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500     30
+      7566 JONES      MANAGER         7839 02-APR-81       2975       20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400     30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850       30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450       10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000       20
+      7839 KING       PRESIDENT            17-NOV-81       5000       10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500     0          30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100       20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300       10
+
+11 rows selected.
 ```
 
 ### 17. Display all the details where emp not hired in the month 'feb', 'dec' and 'Apr'.
 ```sql
 
+SQL> SELECT * FROM EMP
+  2  WHERE HIREDATE NOT LIKE '%DEC%' 
+  3  AND HIREDATE NOT LIKE '%FEB%' 
+  4  AND HIREDATE NOT LIKE '%APR%';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400     30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850       30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450       10
+      7839 KING       PRESIDENT            17-NOV-81       5000       10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500     0          30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100       20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300       10
+
+7 rows selected.
 ```
 
 ### 18. Write a query to display all the details where employee name starting with vowels character.
 ```sql
+SQL> SELECT * FROM EMP
+  2  WHERE ENAME LIKE 'A%'
+  3  OR ENAME LIKE 'E%'
+  4  OR ENAME LIKE 'I%'
+  5  OR ENAME LIKE 'O%'
+  6  OR ENAME LIKE 'U%';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300     30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100       20
 
 ```
 
 ### 19. Display all the details where employee name starting with consonant characters.
 ```sql
+SQL> SELECT * FROM EMP
+  2  WHERE ENAME NOT LIKE 'A%'
+  3  AND ENAME NOT LIKE 'E%'
+  4  AND ENAME NOT LIKE 'I%'
+  5  AND ENAME NOT LIKE 'O%'
+  6  AND ENAME NOT LIKE 'U%';
 
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800       20
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500     30
+      7566 JONES      MANAGER         7839 02-APR-81       2975       20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400     30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850       30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450       10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000       20
+      7839 KING       PRESIDENT            17-NOV-81       5000       10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500     0          30
+      7900 JAMES      CLERK           7698 03-DEC-81        950       30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000       20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300       10
+
+12 rows selected.
 ```
 
-### 20. Display all the details along with annual salary.
+### 20. Display all the details along with annual salary. [IMPORTANT]
 ```sql
+SQL> SELECT EMP.*, SAL*12 AS "ANNUAL_SAL"
+  2  FROM EMP;
 
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO ANNUAL_SAL
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800       20        9600
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300     30      19200
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500     30      15000
+      7566 JONES      MANAGER         7839 02-APR-81       2975       20       35700
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400     30      15000
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850       30       34200
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450       10       29400
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000       20       36000
+      7839 KING       PRESIDENT            17-NOV-81       5000       10       60000
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500     0          30      18000
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100       20       13200
+      7900 JAMES      CLERK           7698 03-DEC-81        950       30       11400
+      7902 FORD       ANALYST         7566 03-DEC-81       3000       20       36000
+      7934 MILLER     CLERK           7782 23-JAN-82       1300       10       15600
+
+14 rows selected.
 ```
 
 ### 21. Display all the details where employee working as 'Salesman', 'Clerk', 'Manager', and hired in the month feb, apr, dec, june.
 ```sql
+SQL> SELECT * FROM EMP
+  2  WHERE JOB IN ('SALESMAN', 'CLERK', 'MANAGER')
+  3  AND (HIREDATE LIKE '%APR%' OR
+  4  HIREDATE LIKE '%FEB%' OR
+  5  HIREDATE LIKE '%DEC%' OR
+  6  HIREDATE LIKE '%JUN%');
 
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800       20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300     30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500     30
+      7566 JONES      MANAGER         7839 02-APR-81       2975       20
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450       10
+      7900 JAMES      CLERK           7698 03-DEC-81        950       30
+
+6 rows selected.
 ```
 
 ### 22. Display all the details where employee not working in dept no 30,60,90 and job not starting with characters 'MAN' and 'ANA'.
 ```sql
+SQL> SELECT * FROM EMP
+  2  WHERE DEPTNO NOT IN (30,60,90)
+  3  AND JOB NOT LIKE 'MAN%'
+  4  AND JOB NOT LIKE 'ANA%';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800       20
+      7839 KING       PRESIDENT            17-NOV-81       5000       10
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100       20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300       10
 
 ```
 
 ### 23. Display all the details where earning salary greater than 1000 and designation last second character is A, B.
 ```sql
+SQL> SELECT * FROM EMP
+  2  WHERE SAL > 1000
+  3  AND (JOB LIKE '%A_' OR
+  4  JOB LIKE '%B');
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300     30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500     30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400     30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500     0          30
 
 ```
 
 ### 24. Display all the details along with annual salary where annual salary is greater than 12000.
 ```sql
+SQL> SELECT EMP.*, SAL*12 AS "ANNUAL_SAL"
+  2  FROM EMP
+  3  WHERE SAL*12 > 12000;
 
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO ANNUAL_SAL
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300     30      19200
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500     30      15000
+      7566 JONES      MANAGER         7839 02-APR-81       2975       20       35700
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400     30      15000
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850       30       34200
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450       10       29400
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000       20       36000
+      7839 KING       PRESIDENT            17-NOV-81       5000       10       60000
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500     0          30      18000
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100       20       13200
+      7902 FORD       ANALYST         7566 03-DEC-81       3000       20       36000
+      7934 MILLER     CLERK           7782 23-JAN-82       1300       10       15600
+
+12 rows selected.
 ```
 
 ### 25. Write a query to display all the details where employee hired in the year 81.
 ```sql
+SQL> SELECT * FROM EMP
+  2  WHERE HIREDATE LIKE '%81';
 
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300     30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500     30
+      7566 JONES      MANAGER         7839 02-APR-81       2975       20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400     30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850       30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450       10
+      7839 KING       PRESIDENT            17-NOV-81       5000       10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500     0          30
+      7900 JAMES      CLERK           7698 03-DEC-81        950       30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000       20
+
+10 rows selected.
 ```
 
 ### 26. Write a query to display all the details where employee not hired in the year 80, 82 and 87.
 ```sql
+SQL> SELECT * FROM EMP
+  2  WHERE HIREDATE NOT LIKE '%80'
+  3  AND HIREDATE NOT LIKE '%82'
+  4  AND HIREDATE NOT LIKE '%87';
 
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300     30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500     30
+      7566 JONES      MANAGER         7839 02-APR-81       2975       20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400     30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850       30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450       10
+      7839 KING       PRESIDENT            17-NOV-81       5000       10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500     0          30
+      7900 JAMES      CLERK           7698 03-DEC-81        950       30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000       20
+
+10 rows selected.
 ```
 
-### 27. Write a query to display all the details where employee working in the department no 10, 20, 30, 40 and employee name starting with consonant character and not working in the designation 'Analyst', 'clerk' and earning salary greater than 500 and less than 600 and hired in the month Dec,Sep, May, Apr,Feb. 
+### 27. Write a query to display all the details where employee working in the department no 10, 20, 30, 40 and employee name starting with consonant character and not working in the designation 'Analyst', 'clerk' and earning salary greater than 500 and less than 600 and hired in the month Dec,Sep, May, Apr,Feb. [IMPORTANT] 
 ```sql
+SQL> SELECT * FROM EMP
+  2  WHERE DEPTNO IN (10,20,30,40)
+  3  AND ENAME NOT LIKE 'A%'
+  4  AND ENAME NOT LIKE 'E%'
+  5  AND ENAME NOT LIKE 'I%'
+  6  AND ENAME NOT LIKE 'O%'
+  7  AND ENAME NOT LIKE 'U%'
+  8  AND JOB NOT IN ('ANALYST', 'CLERK')
+  9  AND SAL > 500 AND SAL < 600
+ 10  AND (HIREDATE LIKE '%DEC%'
+ 11  OR HIREDATE LIKE '%SEP%'
+ 12  OR HIREDATE LIKE '%MAY%'
+ 13  OR HIREDATE LIKE '%APR%'
+ 14  OR HIREDATE LIKE '%FEB%');
 
+no rows selected
 ```
 
+### 28. Write a query to display employee, where employees earning commission.
+29. Display employee where employees not earning commission.
+30. all the details of emp, where ename starts with consonant character and earning salary greater than 1000 and less than 5000 and employees not earning any commision and working in the designation Salesman, Analyst, Manager and Clerk.
+
+---
+
+# Function
+
+## Function Hierarchy
+
+```
+Function
+│
+├──── User Defined
+│
+└──── Pre Defined
+          │
+          ├──── Single Row Functions
+          │              │
+          │              ├──── Character Single Row Function
+          │              │              │
+          │              │              ├──── Case Manipulation
+          │              │              │
+          │              │              └──── Character Manipulation
+          │              │
+          │              ├──── Number Single Row Function
+          │              │
+          │              ├──── Date Single Row Function
+          │              │
+          │              ├──── General Single Row Function
+          │              │
+          │              └──── Conversion Single Row Function
+          │
+          └──── Multi Row Functions
+```
+
+## In Case Manipulation we have three functions:
+
+>upper(argument)  
+>lower(argument)  
+>initcap(argument)
+
+## In Character Manipulation we have these functions:
+
+>substring  
+>replace  
+>instring  
+>reverse  
+>concat  
+>trim
+
+## Queries based on Functions:
+
+### 1. Write a query to display first letter from the employee name.
+### 2. Write a query to display first two letters from the employye name.
+### 3. Write a query to display first three letters from the employye name.
+### 4. Write a query to display second letter from the employee name.
+### 5. Write a query to display last letter from the employee name.
+### 6. Write a query to display last two letters from the employee name.
+### 7. Write a query to display last 2nd letter from employee name.
+### 8. Input: PUSHPA | OUTPUT: USHA  [Use replace]
+### 9. Input: manoj@gmail.com | find index value for '@'.
+### 10. Find the index of first space in the given input. [Input: manoj a n]
+### 11. Find the index of second space in the given input. [Input: manoj a m]
+### 12. Find number of character 'A' in the given input. [Input: NAYANA].
