@@ -1100,22 +1100,26 @@ Function
 ### 11. Find the index of second space in the given input. [Input: manoj a m]
 ### 12. Find number of character 'A' in the given input. [Input: NAYANA].
 
+---
 
-```
+## Number Single Row Function
+1. mod function
+2. abs function
+3. power function
+4. square root
+5. round function [Important]
+6. trunc function [Important]
 
-SQL*Plus: Release 11.1.0.6.0 - Production on Tue Jun 23 11:15:32 2026
+## Date Single row function
+1. extract function(day/month/year from column)
+2. add_months('date1', no_of_months)
+3. months_between('date1', 'date2')
+4. last_day('date1')
 
-Copyright (c) 1982, 2007, Oracle.  All rights reserved.
+## Queries based on Number Single row function and Date Single row function
 
-Enter user-name: scott
-Enter password:
-
-Connected to:
-Oracle Database 11g Enterprise Edition Release 11.1.0.6.0 - Production
-With the Partitioning, OLAP, Data Mining and Real Application Testing options
-
-SQL> NUMBER SINGLE ROW FUNCTIONS
-SP2-0734: unknown command beginning "NUMBER SIN..." - rest of line ignored.
+```sql
+-- Number Single row function
 SQL> SELECT MOD(11,2) FROM DUAL;
 
  MOD(11,2)
@@ -1139,16 +1143,10 @@ SQL> SELECT SQRT(100) FROM DUAL;
  SQRT(100)
 ----------
         10
+```
 
-SQL> ROUND FUNCTION
-SP2-0734: unknown command beginning "ROUND FUNC..." - rest of line ignored.
-SQL> SELECT ROUND(37.7547, 2);
-SELECT ROUND(37.7547, 2)
-                       *
-ERROR at line 1:
-ORA-00923: FROM keyword not found where expected
-
-
+```sql
+--ROUND FUNCTION
 SQL> SELECT ROUND(37.7547, 2) FROM DUAL;
 
 ROUND(37.7547,2)
@@ -1197,7 +1195,10 @@ ROUND(78.764,-3)
 ----------------
                0
 
-SQL> TRUNC FUNCTION
+```
+
+```sql
+--TRUNC FUNCTION
 SP2-0734: unknown command beginning "TRUNC FUNC..." - rest of line ignored.
 SQL> SELECT TRUNC (37.7547, 2) FROM DUAL;
 
@@ -1246,9 +1247,10 @@ SQL> SELECT TRUNC (78.764, -3) FROM DUAL;
 TRUNC(78.764,-3)
 ----------------
                0
+```
 
-SQL> DATE SINGLE ROW FUNCTION
-SP2-0734: unknown command beginning "DATE SINGL..." - rest of line ignored.
+```SQL
+-- DATE SINGLE ROW FUNCTION
 SQL> SELECT EXTRACT (MONTH FROM HIREDATE) FROM EMP;
 
 EXTRACT(MONTHFROMHIREDATE)
@@ -1273,13 +1275,30 @@ EXTRACT(MONTHFROMHIREDATE)
 
 14 rows selected.
 
-SQL> SELECT ADD_MONTHS('12-JUN-2027', '12-JUN-2026') FROM DUAL;
-SELECT ADD_MONTHS('12-JUN-2027', '12-JUN-2026') FROM DUAL
-                                 *
-ERROR at line 1:
-ORA-01722: invalid number
+SQL> SET PAGES 100 LINES 100
+SQL> SELECT EXTRACT (MONTH FROM HIREDATE) FROM EMP;
 
+EXTRACT(MONTHFROMHIREDATE)
+--------------------------
+                        12
+                         2
+                         2
+                         4
+                         9
+                         5
+                         6
+                         4
+                        11
+                         9
+                         5
+                        12
+                        12
+                         1
 
+14 rows selected.
+```
+
+```SQL
 SQL> SELECT ADD_MONTHS('12-JUN-2027', 12) FROM DUAL;
 
 ADD_MONTH
@@ -1291,13 +1310,18 @@ SQL> SELECT ADD_MONTHS('12-JUN-2027', 6) FROM DUAL;
 ADD_MONTH
 ---------
 12-DEC-27
+```
 
+```SQL
 SQL> SELECT MONTHS_BETWEEN ('12-JUN-2027', '12-JUN-2026') FROM DUAL;
 
 MONTHS_BETWEEN('12-JUN-2027','12-JUN-2026')
 -------------------------------------------
                                          12
 
+```                                         
+
+```SQL
 SQL> SELECT LAST_DAY('10-FEB-2020') FROM DUAL;
 
 LAST_DAY(
@@ -1305,4 +1329,3 @@ LAST_DAY(
 29-FEB-20
 
 SQL>
-```
