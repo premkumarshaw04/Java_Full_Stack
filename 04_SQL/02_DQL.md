@@ -1018,10 +1018,24 @@ SQL> SELECT * FROM EMP
 
 no rows selected
 ```
+> Another Approach
+
+```sql
+SELECT * FROM EMP
+WHERE DEPTNO IN (10,20,30,40)
+AND ENAME NOT LIKE 'A%' 
+AND ENAME NOT LIKE 'E%' 
+AND ENAME NOT LIKE 'I%'
+AND ENAME NOT LIKE 'O%' 
+AND ENAME NOT LIKE 'U%'
+AND JOB NOT IN ('ANALYST','CLERK')
+AND SAL > 500 AND SAL < 600
+AND TO_CHAR(HIREDATE,'MON') IN ('DEC','SEP','MAY','APR','FEB');
+```
 
 ### 28. Write a query to display employee, where employees earning commission.
-29. Display employee where employees not earning commission.
-30. all the details of emp, where ename starts with consonant character and earning salary greater than 1000 and less than 5000 and employees not earning any commision and working in the designation Salesman, Analyst, Manager and Clerk.
+### 29. Display employee where employees not earning commission.
+### 30. all the details of emp, where ename starts with consonant character and earning salary greater than 1000 and less than 5000 and employees not earning any commision and working in the designation Salesman, Analyst, Manager and Clerk.
 
 ---
 
@@ -1055,13 +1069,14 @@ Function
           └──── Multi Row Functions
 ```
 
-## In Case Manipulation we have three functions:
+## Queries based on Character Single Row Function
+### In Case Manipulation we have three functions:
 
 >upper(argument)  
 >lower(argument)  
 >initcap(argument)
 
-## In Character Manipulation we have these functions:
+### In Character Manipulation we have these functions:
 
 >substring  
 >replace  
@@ -1070,7 +1085,7 @@ Function
 >concat  
 >trim
 
-## Queries based on Functions:
+## Queries based on Character Manipulation:
 
 ### 1. Write a query to display first letter from the employee name.
 ### 2. Write a query to display first two letters from the employye name.
@@ -1084,3 +1099,210 @@ Function
 ### 10. Find the index of first space in the given input. [Input: manoj a n]
 ### 11. Find the index of second space in the given input. [Input: manoj a m]
 ### 12. Find number of character 'A' in the given input. [Input: NAYANA].
+
+
+```
+
+SQL*Plus: Release 11.1.0.6.0 - Production on Tue Jun 23 11:15:32 2026
+
+Copyright (c) 1982, 2007, Oracle.  All rights reserved.
+
+Enter user-name: scott
+Enter password:
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.1.0.6.0 - Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+SQL> NUMBER SINGLE ROW FUNCTIONS
+SP2-0734: unknown command beginning "NUMBER SIN..." - rest of line ignored.
+SQL> SELECT MOD(11,2) FROM DUAL;
+
+ MOD(11,2)
+----------
+         1
+
+SQL> SELECT ABS(-100) FROM DUAL;
+
+ ABS(-100)
+----------
+       100
+
+SQL> SELECT POWER(3,4) FROM DUAL;
+
+POWER(3,4)
+----------
+        81
+
+SQL> SELECT SQRT(100) FROM DUAL;
+
+ SQRT(100)
+----------
+        10
+
+SQL> ROUND FUNCTION
+SP2-0734: unknown command beginning "ROUND FUNC..." - rest of line ignored.
+SQL> SELECT ROUND(37.7547, 2);
+SELECT ROUND(37.7547, 2)
+                       *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT ROUND(37.7547, 2) FROM DUAL;
+
+ROUND(37.7547,2)
+----------------
+           37.75
+
+SQL> SELECT ROUND(37.7567, 2) FROM DUAL;
+
+ROUND(37.7567,2)
+----------------
+           37.76
+
+SQL> SELECT ROUND (3476.123, -3) FROM DUAL;
+
+ROUND(3476.123,-3)
+------------------
+              3000
+
+SQL> SELECT ROUND (678.98, 1) FROM DUAL;
+
+ROUND(678.98,1)
+---------------
+            679
+
+SQL> SELECT ROUND (987.17, -3) FROM DUAL;
+
+ROUND(987.17,-3)
+----------------
+            1000
+
+SQL> SELECT ROUND (47.18, -2) FROM DUAL;
+
+ROUND(47.18,-2)
+---------------
+              0
+
+SQL> SELECT ROUND (78.764, 3) FROM DUAL;
+
+ROUND(78.764,3)
+---------------
+         78.764
+
+SQL> SELECT ROUND (78.764, -3) FROM DUAL;
+
+ROUND(78.764,-3)
+----------------
+               0
+
+SQL> TRUNC FUNCTION
+SP2-0734: unknown command beginning "TRUNC FUNC..." - rest of line ignored.
+SQL> SELECT TRUNC (37.7547, 2) FROM DUAL;
+
+TRUNC(37.7547,2)
+----------------
+           37.75
+
+SQL> SELECT TRUNC (37.7567, 2) FROM DUAL;
+
+TRUNC(37.7567,2)
+----------------
+           37.75
+
+SQL> SELECT TRUNC (3476.123, -3) FROM DUAL;
+
+TRUNC(3476.123,-3)
+------------------
+              3000
+
+SQL> SELECT TRUNC (678.98, 1) FROM DUAL;
+
+TRUNC(678.98,1)
+---------------
+          678.9
+
+SQL> SELECT TRUNC (987.17, -3) FROM DUAL;
+
+TRUNC(987.17,-3)
+----------------
+               0
+
+SQL> SELECT TRUNC (47.18, -2) FROM DUAL;
+
+TRUNC(47.18,-2)
+---------------
+              0
+
+SQL> SELECT TRUNC (78.764, 3) FROM DUAL;
+
+TRUNC(78.764,3)
+---------------
+         78.764
+
+SQL> SELECT TRUNC (78.764, -3) FROM DUAL;
+
+TRUNC(78.764,-3)
+----------------
+               0
+
+SQL> DATE SINGLE ROW FUNCTION
+SP2-0734: unknown command beginning "DATE SINGL..." - rest of line ignored.
+SQL> SELECT EXTRACT (MONTH FROM HIREDATE) FROM EMP;
+
+EXTRACT(MONTHFROMHIREDATE)
+--------------------------
+                        12
+                         2
+                         2
+                         4
+                         9
+                         5
+                         6
+                         4
+                        11
+                         9
+                         5
+
+EXTRACT(MONTHFROMHIREDATE)
+--------------------------
+                        12
+                        12
+                         1
+
+14 rows selected.
+
+SQL> SELECT ADD_MONTHS('12-JUN-2027', '12-JUN-2026') FROM DUAL;
+SELECT ADD_MONTHS('12-JUN-2027', '12-JUN-2026') FROM DUAL
+                                 *
+ERROR at line 1:
+ORA-01722: invalid number
+
+
+SQL> SELECT ADD_MONTHS('12-JUN-2027', 12) FROM DUAL;
+
+ADD_MONTH
+---------
+12-JUN-28
+
+SQL> SELECT ADD_MONTHS('12-JUN-2027', 6) FROM DUAL;
+
+ADD_MONTH
+---------
+12-DEC-27
+
+SQL> SELECT MONTHS_BETWEEN ('12-JUN-2027', '12-JUN-2026') FROM DUAL;
+
+MONTHS_BETWEEN('12-JUN-2027','12-JUN-2026')
+-------------------------------------------
+                                         12
+
+SQL> SELECT LAST_DAY('10-FEB-2020') FROM DUAL;
+
+LAST_DAY(
+---------
+29-FEB-20
+
+SQL>
+```
