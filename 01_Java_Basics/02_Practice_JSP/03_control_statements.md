@@ -481,3 +481,5 @@ class Program8
 //Output
 //Boy Underage
 ```
+
+# 2. Switch Statments

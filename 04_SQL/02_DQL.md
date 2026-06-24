@@ -1069,6 +1069,8 @@ Function
           └──── Multi Row Functions
 ```
 
+# Single Row Functions
+
 ## Queries based on Character Single Row Function
 ### In Case Manipulation we have three functions:
 
@@ -1327,5 +1329,109 @@ SQL> SELECT LAST_DAY('10-FEB-2020') FROM DUAL;
 LAST_DAY(
 ---------
 29-FEB-20
+```
 
-SQL>
+1. Write a query to display details of employee where they are earning even salary.
+2. Write a query to display details of employee where they are earning odd salary.
+3. Display all the employee name, where employee name consisting even no of characters.
+4. Display all the employee name, where employee name consisting odd no of characters.
+5. find the square root for the employees salary.
+6. Write a query to display emp name, employee hired year.
+7. Write a query to display emp name, employee experience.
+8. Display all the details of the employee along with the employees experience.
+9. Find last day from the column hiredate.
+10. find all the details along with the experience, where experience is greater than 30.
+
+## General Single row function
+
+>nvl(argument1, argument2)  |    (Null value logic)  
+>nvl2(argument1, argument2, argument3)   |     (Null value logic 2)
+
+>Note:   
+>100 + null => null  
+>100 * null => null  
+
+```sql
+SQL> SELECT ENAME, SAL, COMM, SAL+NVL(COMM,0)
+  2  FROM EMP;
+
+ENAME             SAL       COMM SAL+NVL(COMM,0)
+---------- ---------- ---------- ---------------
+SMITH             800                        800
+ALLEN            1600        300            1900
+WARD             1250        500            1750
+JONES            2975                       2975
+MARTIN           1250       1400            2650
+BLAKE            2850                       2850
+CLARK            2450                       2450
+SCOTT            3000                       3000
+KING             5000                       5000
+TURNER           1500          0            1500
+ADAMS            1100                       1100
+
+ENAME             SAL       COMM SAL+NVL(COMM,0)
+---------- ---------- ---------- ---------------
+JAMES             950                        950
+FORD             3000                       3000
+MILLER           1300                       1300
+
+14 rows selected.
+
+
+SQL> SET PAGES 100 LINES 100;
+SQL> SELECT ENAME, SAL, COMM, NVL2(COMM, 'EARNING COMMISION', 'NO COMMISION') STATUS
+  2  FROM EMP;
+
+ENAME             SAL       COMM STATUS
+---------- ---------- ---------- -----------------
+SMITH             800            NO COMMISION
+ALLEN            1600        300 EARNING COMMISION
+WARD             1250        500 EARNING COMMISION
+JONES            2975            NO COMMISION
+MARTIN           1250       1400 EARNING COMMISION
+BLAKE            2850            NO COMMISION
+CLARK            2450            NO COMMISION
+SCOTT            3000            NO COMMISION
+KING             5000            NO COMMISION
+TURNER           1500          0 EARNING COMMISION
+ADAMS            1100            NO COMMISION
+JAMES             950            NO COMMISION
+FORD             3000            NO COMMISION
+MILLER           1300            NO COMMISION
+
+14 rows selected.
+```
+
+# Multi Row Functions
+
+```
+Multi Row Functions:
+  Maximum
+  Minimum
+  Average
+  Sum
+  Count
+```
+## Queries based on Multi row functions.
+
+### 1. Write a query to find maximum salary.
+### 2. Write a query to find minimum salary.
+### 3. Write a query to find Average salary.
+### 4. Write a query to find total salary.
+### 5. Write a query to find number of rows(records).
+### 6. Write a query to find maximum salary present in the department 10.
+### 7. Write a query to find total salary where designation is Salesman and Analyst.
+### 8. Find the average salary from the hired year 81.
+### 9. Find the no of employees present in the department no 30.
+### 10. Find the no of employees working as a clerk and Salesman.
+### 11. Write a query to find no of employees where emp name starting with vowel character.
+### 12. Find maximum, minimum, average and total salary.
+### 13. Find maximum salary, employee name.
+### 14. Find minimum salary, employee name.
+### 15. Find maximum salary, where maximum salary is greater than 3000.
+### 16. Find no of employees who is hired in the month feb, dec, april.
+### 17. Find no of employees who is hired in the year 80, 82, 87.
+### 18. Find the no of employees who is earning salary greater than 1000 and less than 3000.
+### 19. Find maximum salary from the hired year 81.
+### 20. Find the minimum salary from the hired year 81.
+### 21. Find maximum and minimum salary where dept no is 20 and employee name starting with consonant character.
