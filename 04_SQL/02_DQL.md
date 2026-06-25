@@ -1105,18 +1105,24 @@ Function
 ---
 
 ## Number Single Row Function
+```
+All number single row functions
 1. mod function
 2. abs function
 3. power function
 4. square root
 5. round function [Important]
 6. trunc function [Important]
+```
 
 ## Date Single row function
+```
+All Date single row functions
 1. extract function(day/month/year from column)
 2. add_months('date1', no_of_months)
 3. months_between('date1', 'date2')
 4. last_day('date1')
+```
 
 ## Queries based on Number Single row function and Date Single row function
 
@@ -1331,16 +1337,16 @@ LAST_DAY(
 29-FEB-20
 ```
 
-1. Write a query to display details of employee where they are earning even salary.
-2. Write a query to display details of employee where they are earning odd salary.
-3. Display all the employee name, where employee name consisting even no of characters.
-4. Display all the employee name, where employee name consisting odd no of characters.
-5. find the square root for the employees salary.
-6. Write a query to display emp name, employee hired year.
-7. Write a query to display emp name, employee experience.
-8. Display all the details of the employee along with the employees experience.
-9. Find last day from the column hiredate.
-10. find all the details along with the experience, where experience is greater than 30.
+### 1. Write a query to display details of employee where they are earning even salary.
+### 2. Write a query to display details of employee where they are earning odd salary.
+### 3. Display all the employee name, where employee name consisting even no of characters.
+### 4. Display all the employee name, where employee name consisting odd no of characters.
+### 5. find the square root for the employees salary.
+### 6. Write a query to display emp name, employee hired year.
+### 7. Write a query to display emp name, employee experience.
+### 8. Display all the details of the employee along with the employees experience.
+### 9. Find last day from the column hiredate.
+### 10. find all the details along with the experience, where experience is greater than 30.
 
 ## General Single row function
 
@@ -1435,3 +1441,56 @@ Multi Row Functions:
 ### 19. Find maximum salary from the hired year 81.
 ### 20. Find the minimum salary from the hired year 81.
 ### 21. Find maximum and minimum salary where dept no is 20 and employee name starting with consonant character.
+
+---
+
+# Group By
+
+> Order Of Execution:  
+> i. from  
+> ii. where (executes row by row)  
+> iii. group by (executes row by row)  
+> iv. select
+
+## Queries based on Group By.
+
+### 1. Write a query to find no of employees working in the each department except department 10.
+### 2. Find maximum salary in each department.
+### 3. Find total salary present in the each designation except President.
+### 4. Find the employees working in the each department where emp name starting with consonant characters.
+### 5. Write a query to find no of employees in each designation only if they hired in the year 81.
+
+## Having 
+
+> Having is a SQL clause used to filter the group records.  
+> Having executes group by group.  
+>Multi row functions are allowed in having clause.  
+> having executes after group by.
+
+```
+Order of Execution:
+  from  
+  where (row by row execution)  
+  group by(row by row execution)  
+  having (group by group execution)
+  select
+```
+
+### 1. Find the no of employees working in each department where more than one employee working in the each department.
+### 2. find the total salary present in each job, where total salary is greater than 5700.
+### 3. Find maximum salary present in the each department where maximum salary is greater than 2900.
+### 4. Find number of employees working(hired) in the each job where they are hired in the year 81 where at least two employees are working in each job.
+### 5. find the duplicate salary.
+### 6. Find the duplicate employee name.
+### 7. Find the unique designation.
+### 8. Find the unique salary.
+### 9. Find the no of employees working in each department where employees are not earning any commision and atleast two employees are working in each department.
+### 10. find the no employees hired in the each year.
+### 11. Find the number of employees hired in the each month.
+### 12. Find the first highest salary.
+### 13. Find the first lowest salary.
+### 14. find the first hiredate.
+### 15. Find the last hiredate.
+### 16. Find the no of employees hired in the each month, where more than one employee hired in the each month.
+
+
