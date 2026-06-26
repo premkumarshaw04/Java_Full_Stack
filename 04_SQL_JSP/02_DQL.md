@@ -1033,9 +1033,108 @@ AND SAL > 500 AND SAL < 600
 AND TO_CHAR(HIREDATE,'MON') IN ('DEC','SEP','MAY','APR','FEB');
 ```
 
+## Between
+
+>by default low range act as ">=" and high range act as "<="
+
+### sal >= 1250 and sal <= 3000
+```sql
+SQL> SELECT * FROM EMP
+  2  WHERE SAL BETWEEN 1250 AND 3000;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300    30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500    30
+      7566 JONES      MANAGER         7839 02-APR-81       2975               20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400    30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850               30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450               10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000               20
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000               20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300               10
+
+10 rows selected.
+```
+
+### sal > 1250 and sal < 3000
+```SQL
+SQL> SELECT * FROM EMP
+  2  WHERE SAL BETWEEN 1251 AND 2999;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300    30
+      7566 JONES      MANAGER         7839 02-APR-81       2975               20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850               30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450               10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0    30
+      7934 MILLER     CLERK           7782 23-JAN-82       1300               10
+
+6 rows selected.
+```
+
 ### 48. Write a query to display employee, where employees earning commission.
+```SQL
+SQL> SELECT ENAME FROM EMP
+  2  WHERE COMM IS NOT NULL;
+
+ENAME
+----------
+ALLEN
+WARD
+MARTIN
+TURNER
+
+```
+
 ### 49. Display employee where employees not earning commission.
+```SQL
+
+SQL> SELECT * FROM EMP
+  2  WHERE COMM IS NULL;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800               20
+      7566 JONES      MANAGER         7839 02-APR-81       2975               20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850               30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450               10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000               20
+      7839 KING       PRESIDENT            17-NOV-81       5000               10
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100               20
+      7900 JAMES      CLERK           7698 03-DEC-81        950               30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000               20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300               10
+
+10 rows selected.
+```
+
 ### 50. all the details of emp, where ename starts with consonant character and earning salary greater than 1000 and less than 5000 and employees not earning any commision and working in the designation Salesman, Analyst, Manager and Clerk.
+```SQL
+SQL> SELECT * FROM EMP
+  2  WHERE ENAME NOT LIKE 'A%'
+  3  AND ENAME NOT LIKE 'E%'
+  4  AND ENAME NOT LIKE 'I%'
+  5  AND ENAME NOT LIKE 'O%'
+  6  AND ENAME NOT LIKE 'U%'
+  7  AND SAL > 1000 AND SAL < 5000
+  8  AND COMM IS NULL
+  9  AND JOB IN ('SALESMAN', 'ANALYST', 'MANAGER', 'CLERK');
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975               20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850               30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450               10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000               20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000               20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300               10
+
+6 rows selected.
+```
 
 ---
 
@@ -1072,12 +1171,47 @@ Function
 # Single Row Functions
 
 ## Queries based on Character Single Row Function
+
+---
 ### In Case Manipulation we have three functions:
 
 >upper(argument)  
 >lower(argument)  
 >initcap(argument)
 
+### Queries based on Case manipulation:
+
+```sql
+-- INPUT: prem 
+
+SQL> SELECT UPPER('prem') FROM DUAL; --DUAL is the dummy table.
+
+UPPE
+----
+PREM
+```
+
+```sql
+-- INPUT: RAJU
+
+SQL> SELECT LOWER('RAJU') FROM DUAL;
+
+LOWE
+----
+raju
+```
+
+```sql
+-- INPUT: i love your salary.
+SQL> SELECT INITCAP('i love your salary') FROM DUAL;
+
+INITCAP('ILOVEYOUR
+------------------
+I Love Your Salary
+
+```
+
+---
 ### In Character Manipulation we have these functions:
 
 >substring  

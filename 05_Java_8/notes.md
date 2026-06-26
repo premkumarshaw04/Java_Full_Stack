@@ -944,3 +944,17 @@ childThread.start(); // ✅ actually starts a new thread
 Using `.run()` instead of `.start()` is a common mistake — the code will still execute and produce output, but it won't run on a separate thread, defeating the purpose of using `Thread` in the first place.
 
 ---
+
+# Comparator using Lambda Expression:
+
+What is comparator | Why we use it | benefits of using comparator | How we use comparator using lambda expression (explain and add one exmaple code)
+
+# Lambda Expression and Anonymous Inner class.
+
+What is anonymous Inner class.
+Why it is needed 
+Benefits of using Annonumous Inner class
+Add aexample code and explain
+
+# variables and this in lambda expression:
+
