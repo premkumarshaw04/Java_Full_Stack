@@ -354,7 +354,7 @@ MILLER                        8100
 
 > Selection is a way of retrieving the data present in rows and columns.
 
-### 1. Write a query to display all the details of the employee earning salary greater than 2000.
+### 13. Write a query to display all the details of the employee earning salary greater than 2000.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE SAL > 2000;
@@ -371,7 +371,7 @@ SQL> SELECT * FROM EMP
 
 6 rows selected.
 ```
-### 2. Display all the details of the employees where designation is 'Manager'.
+### 14. Display all the details of the employees where designation is 'Manager'.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE JOB = 'MANAGER';
@@ -385,7 +385,7 @@ SQL> SELECT * FROM EMP
 
 ```
 
-### 3. Display all the details for employee Scott.
+### 15. Display all the details for employee Scott.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE ENAME = 'SCOTT';
@@ -396,7 +396,7 @@ SQL> SELECT * FROM EMP
 
 ```
 
-### 4. Write a query to dsiplay all the details where department number is 20.
+### 16. Write a query to dsiplay all the details where department number is 20.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE DEPTNO = 20;
@@ -411,7 +411,7 @@ SQL> SELECT * FROM EMP
 
 ```
 
-### 5. Display all the details where designation(job) is 'Salesman', 'Analyst' and 'Clerk'.
+### 17. Display all the details where designation(job) is 'Salesman', 'Analyst' and 'Clerk'.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE JOB IN ('SALESMAN', 'ANALYST', 'CLERK');
@@ -453,7 +453,7 @@ SQL> SELECT * FROM EMP
 10 rows selected.
 ```
 
-### 6. Display all the details where department no is 10, 20, 40 and 50.
+### 18. Display all the details where department no is 10, 20, 40 and 50.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE DEPTNO IN (10,20,40,50);
@@ -491,7 +491,7 @@ SQL> SELECT * FROM EMP
 8 rows selected.
 ```
 
-### 7. Write a query to display employee details where working in the department no is 10, 30, 60, 90 and working in the designation 'Manager', 'Analyst' and 'Clerk' and earning salary less than two thousand .
+### 19. Write a query to display employee details where working in the department no is 10, 30, 60, 90 and working in the designation 'Manager', 'Analyst' and 'Clerk' and earning salary less than two thousand .
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE DEPTNO IN (10, 30, 60, 90)
@@ -506,7 +506,7 @@ SQL> SELECT * FROM EMP
 
 ```
 
-### 8. Display all the details where Salary is greater than 1000 and less than 3000. 
+### 20. Display all the details where Salary is greater than 1000 and less than 3000. 
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE SAL > 1000 AND SAL < 3000;
@@ -548,7 +548,7 @@ Here is the list of operators:
 
 ## Queries Based on Operators:
 
-### 1. write a query to display employee name, where employee name starting with character 'M'.
+### 21. write a query to display employee name, where employee name starting with character 'M'.
 ```sql
 SQL> SELECT ENAME FROM EMP
   2  WHERE ENAME LIKE 'M%';
@@ -559,7 +559,7 @@ MARTIN
 MILLER
 ```
 
-### 2. Display emp name where employee name ending with chracter 'R'.
+### 22. Display emp name where employee name ending with chracter 'R'.
 ```sql
 SQL> SELECT ENAME FROM EMP
   2  WHERE ENAME LIKE '%R';
@@ -570,7 +570,7 @@ TURNER
 MILLER
 ```
 
-### 3. Display employee details where employee name consisting four chracters.
+### 23. Display employee details where employee name consisting four chracters.
 ```sql
 SQL> SELECT ENAME FROM EMP
   2  WHERE ENAME LIKE '____';
@@ -582,7 +582,7 @@ KING
 FORD
 ```
 
-### 4. Display employee name where employee name contains four characters and first letter is 'F'.
+### 24. Display employee name where employee name contains four characters and first letter is 'F'.
 ```sql
 SQL> SELECT ENAME FROM EMP
   2  WHERE ENAME LIKE 'F___';
@@ -592,7 +592,7 @@ ENAME
 FORD
 ```
 
-### 5. Display employee name where employee name second character is 'A".
+### 25. Display employee name where employee name second character is 'A".
 ```sql
 SELECT ENAME FROM EMP
   2  WHERE ENAME LIKE '_A%';
@@ -604,7 +604,7 @@ MARTIN
 JAMES
 ```
 
-### 6. Display employee name where the second last character of employee name is 'I'.
+### 26. Display employee name where the second last character of employee name is 'I'.
 ```sql
 SQL> SELECT ENAME FROM EMP
   2  WHERE ENAME LIKE '%I_';
@@ -614,7 +614,7 @@ ENAME
 MARTIN
 ```
 
-### 7. Display employee name where employee name contains two consequtive 'L' characters.
+### 27. Display employee name where employee name contains two consequtive 'L' characters.
 ```sql
 SQL> SELECT ENAME FROM EMP
   2  WHERE ENAME LIKE '%LL%';
@@ -625,7 +625,7 @@ ALLEN
 MILLER
 ```
 
-### 8. Display employee name where employee name is starting with character 'M' and character 'J'.
+### 28. Display employee name where employee name is starting with character 'M' and character 'J'.
 ```sql
 SQL> SELECT ENAME FROM EMP
   2  WHERE ENAME LIKE 'M%' OR ENAME LIKE 'J%';
@@ -638,7 +638,7 @@ JAMES
 MILLER
 ```
 
-### 9. Display all the details of employee where employee hired in month 'Dec'.
+### 29. Display all the details of employee where employee hired in month 'Dec'.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE HIREDATE LIKE '%DEC%';
@@ -651,7 +651,7 @@ SQL> SELECT * FROM EMP
 
 ```
 
-### 10. Display all the details of employee where employee hired in the month Dec and Feb.
+### 30. Display all the details of employee where employee hired in the month Dec and Feb.
 ```sql
  SELECT * FROM EMP
   2  WHERE HIREDATE LIKE '%DEC%' OR HIREDATE LIKE '%FEB%';
@@ -666,7 +666,7 @@ SQL> SELECT * FROM EMP
 
 ```
 
-### 11. Write a query to display employee name, where employee name not starting with character 'M'.
+### 31. Write a query to display employee name, where employee name not starting with character 'M'.
 ```sql
 SQL> SELECT ENAME FROM EMP
   2  WHERE ENAME NOT LIKE 'M%';
@@ -687,7 +687,7 @@ JAMES
 FORD
 ```
 
-### 12. Display all the details of employee where employee name not ending with character 'R'.
+### 32. Display all the details of employee where employee name not ending with character 'R'.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE ENAME NOT LIKE '%R';
@@ -711,7 +711,7 @@ SQL> SELECT * FROM EMP
 12 rows selected.
 ```
 
-### 13. Display all the details where employee name not contains five characters.
+### 33. Display all the details where employee name not contains five characters.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE ENAME NOT LIKE '_____';
@@ -729,7 +729,7 @@ SQL> SELECT * FROM EMP
 6 rows selected.
 ```
 
-### 14. Display all the details where designation Last three letters is 'GER'.
+### 34. Display all the details where designation Last three letters is 'GER'.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE JOB LIKE '%GER';
@@ -742,7 +742,7 @@ SQL> SELECT * FROM EMP
 
 ```
 
-### 15. Display employee details, where employee name not starting with character 'M' and 'J'.[Here we should not use OR]
+### 35. Display employee details, where employee name not starting with character 'M' and 'J'.[Here we should not use OR]
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE ENAME NOT LIKE 'M%'
@@ -764,7 +764,7 @@ SQL> SELECT * FROM EMP
 10 rows selected.
 ```
 
-### 16. Display all the details of employee where employee not hired in the month 'Dec'.
+### 36. Display all the details of employee where employee not hired in the month 'Dec'.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE HIREDATE NOT LIKE '%DEC%';
@@ -787,7 +787,7 @@ SQL> SELECT * FROM EMP
 11 rows selected.
 ```
 
-### 17. Display all the details where emp not hired in the month 'feb', 'dec' and 'Apr'.
+### 37. Display all the details where emp not hired in the month 'feb', 'dec' and 'Apr'.
 ```sql
 
 SQL> SELECT * FROM EMP
@@ -808,7 +808,7 @@ SQL> SELECT * FROM EMP
 7 rows selected.
 ```
 
-### 18. Write a query to display all the details where employee name starting with vowels character.
+### 38. Write a query to display all the details where employee name starting with vowels character.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE ENAME LIKE 'A%'
@@ -824,7 +824,7 @@ SQL> SELECT * FROM EMP
 
 ```
 
-### 19. Display all the details where employee name starting with consonant characters.
+### 39. Display all the details where employee name starting with consonant characters.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE ENAME NOT LIKE 'A%'
@@ -851,7 +851,7 @@ SQL> SELECT * FROM EMP
 12 rows selected.
 ```
 
-### 20. Display all the details along with annual salary. [IMPORTANT]
+### 40. Display all the details along with annual salary. [IMPORTANT]
 ```sql
 SQL> SELECT EMP.*, SAL*12 AS "ANNUAL_SAL"
   2  FROM EMP;
@@ -876,7 +876,7 @@ SQL> SELECT EMP.*, SAL*12 AS "ANNUAL_SAL"
 14 rows selected.
 ```
 
-### 21. Display all the details where employee working as 'Salesman', 'Clerk', 'Manager', and hired in the month feb, apr, dec, june.
+### 41. Display all the details where employee working as 'Salesman', 'Clerk', 'Manager', and hired in the month feb, apr, dec, june.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE JOB IN ('SALESMAN', 'CLERK', 'MANAGER')
@@ -897,7 +897,7 @@ SQL> SELECT * FROM EMP
 6 rows selected.
 ```
 
-### 22. Display all the details where employee not working in dept no 30,60,90 and job not starting with characters 'MAN' and 'ANA'.
+### 42. Display all the details where employee not working in dept no 30,60,90 and job not starting with characters 'MAN' and 'ANA'.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE DEPTNO NOT IN (30,60,90)
@@ -913,7 +913,7 @@ SQL> SELECT * FROM EMP
 
 ```
 
-### 23. Display all the details where earning salary greater than 1000 and designation last second character is A, B.
+### 43. Display all the details where earning salary greater than 1000 and designation last second character is A, B.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE SAL > 1000
@@ -929,7 +929,7 @@ SQL> SELECT * FROM EMP
 
 ```
 
-### 24. Display all the details along with annual salary where annual salary is greater than 12000.
+### 44. Display all the details along with annual salary where annual salary is greater than 12000.
 ```sql
 SQL> SELECT EMP.*, SAL*12 AS "ANNUAL_SAL"
   2  FROM EMP
@@ -954,7 +954,7 @@ SQL> SELECT EMP.*, SAL*12 AS "ANNUAL_SAL"
 12 rows selected.
 ```
 
-### 25. Write a query to display all the details where employee hired in the year 81.
+### 45. Write a query to display all the details where employee hired in the year 81.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE HIREDATE LIKE '%81';
@@ -975,7 +975,7 @@ SQL> SELECT * FROM EMP
 10 rows selected.
 ```
 
-### 26. Write a query to display all the details where employee not hired in the year 80, 82 and 87.
+### 46. Write a query to display all the details where employee not hired in the year 80, 82 and 87.
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE HIREDATE NOT LIKE '%80'
@@ -999,7 +999,7 @@ SQL> SELECT * FROM EMP
 10 rows selected.
 ```
 
-### 27. Write a query to display all the details where employee working in the department no 10, 20, 30, 40 and employee name starting with consonant character and not working in the designation 'Analyst', 'clerk' and earning salary greater than 500 and less than 600 and hired in the month Dec,Sep, May, Apr,Feb. [IMPORTANT] 
+### 47. Write a query to display all the details where employee working in the department no 10, 20, 30, 40 and employee name starting with consonant character and not working in the designation 'Analyst', 'clerk' and earning salary greater than 500 and less than 600 and hired in the month Dec,Sep, May, Apr,Feb. [IMPORTANT] 
 ```sql
 SQL> SELECT * FROM EMP
   2  WHERE DEPTNO IN (10,20,30,40)
@@ -1033,9 +1033,9 @@ AND SAL > 500 AND SAL < 600
 AND TO_CHAR(HIREDATE,'MON') IN ('DEC','SEP','MAY','APR','FEB');
 ```
 
-### 28. Write a query to display employee, where employees earning commission.
-### 29. Display employee where employees not earning commission.
-### 30. all the details of emp, where ename starts with consonant character and earning salary greater than 1000 and less than 5000 and employees not earning any commision and working in the designation Salesman, Analyst, Manager and Clerk.
+### 48. Write a query to display employee, where employees earning commission.
+### 49. Display employee where employees not earning commission.
+### 50. all the details of emp, where ename starts with consonant character and earning salary greater than 1000 and less than 5000 and employees not earning any commision and working in the designation Salesman, Analyst, Manager and Clerk.
 
 ---
 
@@ -1089,18 +1089,18 @@ Function
 
 ## Queries based on Character Manipulation:
 
-### 1. Write a query to display first letter from the employee name.
-### 2. Write a query to display first two letters from the employye name.
-### 3. Write a query to display first three letters from the employye name.
-### 4. Write a query to display second letter from the employee name.
-### 5. Write a query to display last letter from the employee name.
-### 6. Write a query to display last two letters from the employee name.
-### 7. Write a query to display last 2nd letter from employee name.
-### 8. Input: PUSHPA | OUTPUT: USHA  [Use replace]
-### 9. Input: manoj@gmail.com | find index value for '@'.
-### 10. Find the index of first space in the given input. [Input: manoj a n]
-### 11. Find the index of second space in the given input. [Input: manoj a m]
-### 12. Find number of character 'A' in the given input. [Input: NAYANA].
+### 51. Write a query to display first letter from the employee name.
+### 52. Write a query to display first two letters from the employye name.
+### 53. Write a query to display first three letters from the employye name.
+### 54. Write a query to display second letter from the employee name.
+### 55. Write a query to display last letter from the employee name.
+### 56. Write a query to display last two letters from the employee name.
+### 57. Write a query to display last 2nd letter from employee name.
+### 58. Input: PUSHPA | OUTPUT: USHA  [Use replace]
+### 59. Input: manoj@gmail.com | find index value for '@'.
+### 60. Find the index of first space in the given input. [Input: manoj a n]
+### 61. Find the index of second space in the given input. [Input: manoj a m]
+### 62. Find number of character 'A' in the given input. [Input: NAYANA].
 
 ---
 
@@ -1337,16 +1337,16 @@ LAST_DAY(
 29-FEB-20
 ```
 
-### 1. Write a query to display details of employee where they are earning even salary.
-### 2. Write a query to display details of employee where they are earning odd salary.
-### 3. Display all the employee name, where employee name consisting even no of characters.
-### 4. Display all the employee name, where employee name consisting odd no of characters.
-### 5. find the square root for the employees salary.
-### 6. Write a query to display emp name, employee hired year.
-### 7. Write a query to display emp name, employee experience.
-### 8. Display all the details of the employee along with the employees experience.
-### 9. Find last day from the column hiredate.
-### 10. find all the details along with the experience, where experience is greater than 30.
+### 63. Write a query to display details of employee where they are earning even salary.
+### 64. Write a query to display details of employee where they are earning odd salary.
+### 65. Display all the employee name, where employee name consisting even no of characters.
+### 66. Display all the employee name, where employee name consisting odd no of characters.
+### 67. find the square root for the employees salary.
+### 68. Write a query to display emp name, employee hired year.
+### 69. Write a query to display emp name, employee experience.
+### 70. Display all the details of the employee along with the employees experience.
+### 71. Find last day from the column hiredate.
+### 72. find all the details along with the experience, where experience is greater than 30.
 
 ## General Single row function
 
@@ -1420,27 +1420,27 @@ Multi Row Functions:
 ```
 ## Queries based on Multi row functions.
 
-### 1. Write a query to find maximum salary.
-### 2. Write a query to find minimum salary.
-### 3. Write a query to find Average salary.
-### 4. Write a query to find total salary.
-### 5. Write a query to find number of rows(records).
-### 6. Write a query to find maximum salary present in the department 10.
-### 7. Write a query to find total salary where designation is Salesman and Analyst.
-### 8. Find the average salary from the hired year 81.
-### 9. Find the no of employees present in the department no 30.
-### 10. Find the no of employees working as a clerk and Salesman.
-### 11. Write a query to find no of employees where emp name starting with vowel character.
-### 12. Find maximum, minimum, average and total salary.
-### 13. Find maximum salary, employee name.
-### 14. Find minimum salary, employee name.
-### 15. Find maximum salary, where maximum salary is greater than 3000.
-### 16. Find no of employees who is hired in the month feb, dec, april.
-### 17. Find no of employees who is hired in the year 80, 82, 87.
-### 18. Find the no of employees who is earning salary greater than 1000 and less than 3000.
-### 19. Find maximum salary from the hired year 81.
-### 20. Find the minimum salary from the hired year 81.
-### 21. Find maximum and minimum salary where dept no is 20 and employee name starting with consonant character.
+### 73. Write a query to find maximum salary.
+### 74. Write a query to find minimum salary.
+### 75. Write a query to find Average salary.
+### 76. Write a query to find total salary.
+### 77. Write a query to find number of rows(records).
+### 78. Write a query to find maximum salary present in the department 10.
+### 79. Write a query to find total salary where designation is Salesman and Analyst.
+### 80. Find the average salary from the hired year 81.
+### 81. Find the no of employees present in the department no 30.
+### 82. Find the no of employees working as a clerk and Salesman.
+### 83. Write a query to find no of employees where emp name starting with vowel character.
+### 84. Find maximum, minimum, average and total salary.
+### 85. Find maximum salary, employee name.
+### 86. Find minimum salary, employee name.
+### 87. Find maximum salary, where maximum salary is greater than 3000.
+### 88. Find no of employees who is hired in the month feb, dec, april.
+### 89. Find no of employees who is hired in the year 80, 82, 87.
+### 90. Find the no of employees who is earning salary greater than 1000 and less than 3000.
+### 91. Find maximum salary from the hired year 81.
+### 92. Find the minimum salary from the hired year 81.
+### 93. Find maximum and minimum salary where dept no is 20 and employee name starting with consonant character.
 
 ---
 
@@ -1454,11 +1454,11 @@ Multi Row Functions:
 
 ## Queries based on Group By.
 
-### 1. Write a query to find no of employees working in the each department except department 10.
-### 2. Find maximum salary in each department.
-### 3. Find total salary present in the each designation except President.
-### 4. Find the employees working in the each department where emp name starting with consonant characters.
-### 5. Write a query to find no of employees in each designation only if they hired in the year 81.
+### 94. Write a query to find no of employees working in the each department except department 10.
+### 95. Find maximum salary in each department.
+### 96. Find total salary present in the each designation except President.
+### 97. Find the employees working in the each department where emp name starting with consonant characters.
+### 98. Write a query to find no of employees in each designation only if they hired in the year 81.
 
 ## Having 
 
@@ -1476,21 +1476,37 @@ Order of Execution:
   select
 ```
 
-### 1. Find the no of employees working in each department where more than one employee working in the each department.
-### 2. find the total salary present in each job, where total salary is greater than 5700.
-### 3. Find maximum salary present in the each department where maximum salary is greater than 2900.
-### 4. Find number of employees working(hired) in the each job where they are hired in the year 81 where at least two employees are working in each job.
-### 5. find the duplicate salary.
-### 6. Find the duplicate employee name.
-### 7. Find the unique designation.
-### 8. Find the unique salary.
-### 9. Find the no of employees working in each department where employees are not earning any commision and atleast two employees are working in each department.
-### 10. find the no employees hired in the each year.
-### 11. Find the number of employees hired in the each month.
-### 12. Find the first highest salary.
-### 13. Find the first lowest salary.
-### 14. find the first hiredate.
-### 15. Find the last hiredate.
-### 16. Find the no of employees hired in the each month, where more than one employee hired in the each month.
+### 99. Find the no of employees working in each department where more than one employee working in the each department.
+### 100. find the total salary present in each job, where total salary is greater than 5700.
+### 101. Find maximum salary present in the each department where maximum salary is greater than 2900.
+### 102. Find number of employees working(hired) in the each job where they are hired in the year 81 where at least two employees are working in each job.
+### 103. find the duplicate salary.
+### 104. Find the duplicate employee name.
+### 105. Find the unique designation.
+### 106. Find the unique salary.
+### 107. Find the no of employees working in each department where employees are not earning any commision and atleast two employees are working in each department.
+### 108. find the no employees hired in the each year.
+### 109. Find the number of employees hired in the each month.
+### 110. Find the first highest salary.
+### 111. Find the first lowest salary.
+### 112. find the first hiredate.
+### 113. Find the last hiredate.
+### 114. Find the no of employees hired in the each month, where more than one employee hired in the each month.
 
+---
+
+# Order By
+
+> Queries based on Order by:
+
+### 115. Write a query to display employee name and order the employee name is ascending.
+### 116. Display employee name, salary , Order the salary in descending.
+### 117. Write a query to display all the details and order the hiredate in ascending.
+### 118. Write a query to display all the details of employee where employee name starting with consonant character and not earning any commision and order the salary in ascending.
+### 119. Write a query to display no of employees working in each department, order the department no in ascending.
+### 120. Write a query to display total salary present in each job and order the job in descending.
+### 121. Write a query to display no of employees working in each job where at least two employees are working in each job and order the job in ascending.
+### 122. Write a query to display no of employees working in each department where employees hired in the year 81 and more than two employees are working in the department and order the deptno in ascending.
+### 123. Display all the details of employee along with annual salary, order the annual salaray in descending.
+### 124. Write a query to display all the details where employee name consisting odd characters and order the employee name in ascending.
 
