@@ -483,3 +483,166 @@ class Program8
 ```
 
 # 2. Switch Statments
+
+```java
+class Program1
+{
+	public static void main(String[] args)
+	{
+		int choice = 3;
+		switch(choice)
+		{
+			case 1 : System.out.println("COD");
+			break;
+			case 2 : System.out.println("CARD");
+			break;
+			case 3 : System.out.println("UPI");
+			break;
+			case 4 : System.out.println("NETBANKING");
+			break;
+			default : System.out.println("INVALID");
+		}
+	}
+}
+
+//Output:
+//UPI
+```
+
+```java
+class Program2
+{
+	public static void main(String[] args)
+	{
+		int option = 3;
+		switch(option)
+		{
+			case 1 : System.out.println("English");
+			break;
+			case 2 : System.out.println("Kannada");
+			break;
+			case 3 : System.out.println("Hindi");
+			break;
+			
+			default : System.out.println("Invalid Selection");
+		}
+	}
+}
+//Output:
+//Hindi
+```
+
+```java
+class Program3
+{
+	public static void main(String[] args)
+	{
+		int choice = 5;
+		switch(choice)
+		{
+			case 1 : System.out.println("Cash Withdrawl");
+			break;
+			case 2 : System.out.println("Balance Enquiry");
+			break;
+			case 3 : System.out.println("PIN Change");
+			break;
+			case 4 : System.out.println("Mini Statement");
+			break;
+			
+			default : System.out.println("Invalid Choice");
+		}
+	}	
+}
+//Output:
+//Invalid Choice
+```
+
+```java
+class Program4
+{
+	public static void main(String[] args)
+	{
+		int choice = 4;
+		
+		switch(choice)
+		{
+			case 1 : System.out.println("Excellent");
+			break;
+			case 2 : System.out.println("Good");
+			break;
+			case 3 : System.out.println("Average");
+			break;
+			case 4 : System.out.println("Poor");
+			break;
+			
+			default : System.out.println("Skip");
+		}
+	}
+}
+
+//Output:
+//Poor
+```
+
+```java
+class Program5
+{
+	public static void main(String[] args)
+	{
+		char choice = 'A';
+		
+		//char choice = 'a'; //Error : Because Java is case sensitive language 
+		
+		switch(choice)
+		{
+			case 'A' : System.out.println("Apple");
+			break;
+			case 'B' : System.out.println("Ball");
+			break;
+			case 'C' : System.out.println("Cat");
+			break;
+			case 'D' : System.out.println("Dog");
+			break;
+			case 'E' : System.out.println("Elephant");
+			break;
+			case 'F' : System.out.println("Fox");
+			break;
+			
+			default : System.out.println("Under Development");
+		}
+	}
+}
+
+//Output:
+//A : Apple
+
+//a : Under Development
+
+```
+
+```java
+class Program6
+{
+	public static void main(String[] args)
+	{
+		int amount = 20;
+		switch(amount)
+		{
+			case 30 : System.out.println("Frooti");
+			break;
+			case 40 : System.out.println("Dairy Milk");
+			break;
+			case 10 : System.out.println("Lays");
+			break;
+			case 20 : System.out.println("Biscuit");
+			break;
+			
+			default : System.out.println("No Product Found");
+		}
+	}
+}
+
+//Output:
+//Biscuit
+```
+---
