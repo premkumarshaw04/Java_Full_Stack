@@ -2566,13 +2566,216 @@ Order of Execution:
 > Queries based on Order by:
 
 ### 115. Write a query to display employee name and order the employee name is ascending.
+```sql
+SQL> SELECT ENAME FROM EMP
+  2  ORDER BY ENAME ASC;
+
+ENAME
+----------
+ADAMS
+ALLEN
+BLAKE
+CLARK
+FORD
+JAMES
+JONES
+KING
+MARTIN
+MILLER
+SCOTT
+SMITH
+TURNER
+WARD
+
+14 rows selected.
+```
+
 ### 116. Display employee name, salary , Order the salary in descending.
+```sql
+SQL> SELECT ENAME, SAL
+  2  FROM EMP
+  3  ORDER BY SAL DESC;
+
+ENAME             SAL
+---------- ----------
+KING             5000
+FORD             3000
+SCOTT            3000
+JONES            2975
+BLAKE            2850
+CLARK            2450
+ALLEN            1600
+TURNER           1500
+MILLER           1300
+WARD             1250
+MARTIN           1250
+ADAMS            1100
+JAMES             950
+SMITH             800
+
+14 rows selected.
+```
+
 ### 117. Write a query to display all the details and order the hiredate in ascending.
+```sql
+SQL> SELECT * FROM EMP
+  2  ORDER BY HIREDATE ASC;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800               20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300    30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500    30
+      7566 JONES      MANAGER         7839 02-APR-81       2975               20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850               30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450               10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0    30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400    30
+      7839 KING       PRESIDENT            17-NOV-81       5000               10
+      7900 JAMES      CLERK           7698 03-DEC-81        950               30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000               20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300               10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000               20
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100               20
+
+14 rows selected.
+```
+
 ### 118. Write a query to display all the details of employee where employee name starting with consonant character and not earning any commision and order the salary in ascending.
+```sql
+SQL> SELECT * FROM EMP
+  2  WHERE SUBSTR(ENAME, 1 , 1) NOT IN ('A','E','I','O','U')
+  3  AND COMM IS NULL
+  4  ORDER BY SAL ASC;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800               20
+      7900 JAMES      CLERK           7698 03-DEC-81        950               30
+      7934 MILLER     CLERK           7782 23-JAN-82       1300               10
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450               10
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850               30
+      7566 JONES      MANAGER         7839 02-APR-81       2975               20
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000               20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000               20
+      7839 KING       PRESIDENT            17-NOV-81       5000               10
+
+9 rows selected.
+```
+
 ### 119. Write a query to display no of employees working in each department, order the department no in ascending.
+```sql
+SQL> SELECT COUNT(*), DEPTNO
+  2  FROM EMP
+  3  GROUP BY DEPTNO
+  4  ORDER BY DEPTNO ASC;
+
+  COUNT(*)     DEPTNO
+---------- ----------
+         3         10
+         5         20
+         6         30
+
+SQL>
+```
+
 ### 120. Write a query to display total salary present in each job and order the job in descending.
+```sql
+SQL> SELECT SUM(SAL), JOB
+  2  FROM EMP
+  3  GROUP BY JOB
+  4  ORDER BY JOB DESC;
+
+  SUM(SAL) JOB
+---------- ---------
+      5600 SALESMAN
+      5000 PRESIDENT
+      8275 MANAGER
+      4150 CLERK
+      6000 ANALYST
+
+SQL>
+```
+
 ### 121. Write a query to display no of employees working in each job where at least two employees are working in each job and order the job in ascending.
+```sql
+SQL> SELECT COUNT(*), JOB
+  2  FROM EMP
+  3  GROUP BY JOB
+  4  HAVING COUNT(*) >= 2
+  5  ORDER BY JOB ASC;
+
+  COUNT(*) JOB
+---------- ---------
+         2 ANALYST
+         4 CLERK
+         3 MANAGER
+         4 SALESMAN
+
+SQL>
+```
+
 ### 122. Write a query to display no of employees working in each department where employees hired in the year 81 and more than two employees are working in the department and order the deptno in ascending.
+```sql
+SQL> SELECT COUNT(*), DEPTNO
+  2  FROM EMP
+  3  WHERE HIREDATE LIKE '%81'
+  4  GROUP BY DEPTNO
+  5  HAVING COUNT(*) > 2
+  6  ORDER BY DEPTNO ASC;
+
+  COUNT(*)     DEPTNO
+---------- ----------
+         6         30
+
+SQL>
+```
+
 ### 123. Display all the details of employee along with annual salary, order the annual salaray in descending.
+```sql
+SQL> SELECT EMP.*, SAL*12
+  2  FROM EMP
+  3  ORDER BY SAL*12 DESC;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO         SAL*12
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------
+      7839 KING       PRESIDENT            17-NOV-81       5000               10       60000
+      7902 FORD       ANALYST         7566 03-DEC-81       3000               20       36000
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000               20       36000
+      7566 JONES      MANAGER         7839 02-APR-81       2975               20       35700
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850               30       34200
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450               10       29400
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300    30       19200
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0    30       18000
+      7934 MILLER     CLERK           7782 23-JAN-82       1300               10       15600
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500    30       15000
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400    30       15000
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100               20       13200
+      7900 JAMES      CLERK           7698 03-DEC-81        950               30       11400
+      7369 SMITH      CLERK           7902 17-DEC-80        800               20        9600
+
+14 rows selected.
+```
+
 ### 124. Write a query to display all the details where employee name consisting odd characters and order the employee name in ascending.
+```sql
+SQL> SELECT * FROM EMP
+  2  WHERE MOD(LENGTH(ENAME),2) != 0
+  3  ORDER BY ENAME ASC;
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100               20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300    30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850               30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450               10
+      7900 JAMES      CLERK           7698 03-DEC-81        950               30
+      7566 JONES      MANAGER         7839 02-APR-81       2975               20
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000               20
+      7369 SMITH      CLERK           7902 17-DEC-80        800               20
+
+8 rows selected.
+```
+
 
