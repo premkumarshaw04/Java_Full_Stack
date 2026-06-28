@@ -1214,6 +1214,266 @@ I Love Your Salary
 ---
 ### In Character Manipulation we have these functions:
 
+> SUBSTR — extract part of a string  | Substring
+> REPLACE — replace characters in a string  
+> INSTR — find position of a character | Instring  
+> REVERSE — reverse a string  
+> CONCAT — join two strings  
+> TRIM — remove spaces or characters 
+
+## Queries based on Character Manipulation:
+
+### 51. Write a query to display first letter from the employee name.
+```sql
+SQL> SELECT ENAME, SUBSTR(ENAME,1,1) AS "FIRST_LETTER"
+  2  FROM EMP;
+
+ENAME      F
+---------- -
+SMITH      S
+ALLEN      A
+WARD       W
+JONES      J
+MARTIN     M
+BLAKE      B
+CLARK      C
+SCOTT      S
+KING       K
+TURNER     T
+ADAMS      A
+JAMES      J
+FORD       F
+MILLER     M
+
+14 rows selected.
+```
+
+### 52. Write a query to display first two letters from the employye name.
+```sql
+SQL> SELECT ENAME, SUBSTR(ENAME, 1 , 2) FROM EMP;
+
+ENAME      SU
+---------- --
+SMITH      SM
+ALLEN      AL
+WARD       WA
+JONES      JO
+MARTIN     MA
+BLAKE      BL
+CLARK      CL
+SCOTT      SC
+KING       KI
+TURNER     TU
+ADAMS      AD
+JAMES      JA
+FORD       FO
+MILLER     MI
+
+14 rows selected.
+```
+
+### 53. Write a query to display first three letters from the employye name.
+```sql
+SQL> SELECT ENAME, SUBSTR(ENAME, 1, 3) FROM EMP;
+
+ENAME      SUB
+---------- ---
+SMITH      SMI
+ALLEN      ALL
+WARD       WAR
+JONES      JON
+MARTIN     MAR
+BLAKE      BLA
+CLARK      CLA
+SCOTT      SCO
+KING       KIN
+TURNER     TUR
+ADAMS      ADA
+JAMES      JAM
+FORD       FOR
+MILLER     MIL
+
+14 rows selected.
+```
+
+### 54. Write a query to display second letter from the employee name.
+```sql
+SQL> SELECT ENAME, SUBSTR(ENAME, 2, 1) FROM EMP;
+
+ENAME      S
+---------- -
+SMITH      M
+ALLEN      L
+WARD       A
+JONES      O
+MARTIN     A
+BLAKE      L
+CLARK      L
+SCOTT      C
+KING       I
+TURNER     U
+ADAMS      D
+JAMES      A
+FORD       O
+MILLER     I
+
+14 rows selected.
+```
+
+### 55. Write a query to display last letter from the employee name.[Important]
+```sql
+SQL> SELECT ENAME, SUBSTR(ENAME, -1, 1) FROM EMP;
+
+ENAME      S
+---------- -
+SMITH      H
+ALLEN      N
+WARD       D
+JONES      S
+MARTIN     N
+BLAKE      E
+CLARK      K
+SCOTT      T
+KING       G
+TURNER     R
+ADAMS      S
+JAMES      S
+FORD       D
+MILLER     R
+
+14 rows selected.
+```
+
+### 56. Write a query to display last two letters from the employee name.
+```sql
+SQL> SELECT ENAME, SUBSTR(ENAME, -2, 2) FROM EMP;
+
+ENAME      SU
+---------- --
+SMITH      TH
+ALLEN      EN
+WARD       RD
+JONES      ES
+MARTIN     IN
+BLAKE      KE
+CLARK      RK
+SCOTT      TT
+KING       NG
+TURNER     ER
+ADAMS      MS
+JAMES      ES
+FORD       RD
+MILLER     ER
+
+14 rows selected.
+```
+
+### 57. Write a query to display last 2nd letter from employee name.
+```sql
+SQL> SELECT ENAME, SUBSTR(ENAME, -2, 1) FROM EMP;
+
+ENAME      S
+---------- -
+SMITH      T
+ALLEN      E
+WARD       R
+JONES      E
+MARTIN     I
+BLAKE      K
+CLARK      R
+SCOTT      T
+KING       N
+TURNER     E
+ADAMS      M
+JAMES      E
+FORD       R
+MILLER     E
+
+14 rows selected.
+```
+
+### 58. Input: PUSHPA | OUTPUT: USHA  [Use replace]
+```sql
+SQL> SELECT REPLACE ('PUSHPA', 'P') FROM DUAL; --DUAL IS A DUMMY TABLE.
+
+REPL
+----
+USHA
+```
+how to make comments in SQLJun 24Claude responded: In Oracle SQL, there are two ways to write comments:In Oracle SQL, there are two ways to write comments:
+1. Single line comment — using --
+sql-- This is a single line comment
+SELECT * FROM EMP; -- this fetches all employees
+2. Multi line comment — using /* */
+sql/* This is a
+   multi line comment */
+SELECT * FROM EMP;
+Comments are ignored by the SQL engine — they are only for human readability and documentation purposes.You said: WHAT ARE THE CONVERSION SINGLE ROW FUNCTIONSWHAT ARE THE CONVERSION SINGLE ROW FUNCTIONSJun 24Claude responded: In Oracle SQL, Conversion Single Row Functions are used to convert a value from one data type to another.In Oracle SQL, Conversion Single Row Functions are used to convert a value from one data type to another.
+There are 3 main conversion functions:
+1. TO_CHAR — converts a Number or Date to a String
+sqlSELECT TO_CHAR(HIREDATE, 'DD-MON-YYYY') FROM EMP;
+SELECT TO_CHAR(SAL, '$9999') FROM EMP;
+2. TO_NUMBER — converts a String to a Number
+sqlSELECT TO_NUMBER('1234') FROM DUAL;
+3. TO_DATE — converts a String to a Date
+sqlSELECT TO_DATE('17-DEC-1980', 'DD-MON-YYYY') FROM DUAL;
+
+Quick reference table:
+FunctionConverts FromConverts ToTO_CHARNumber / DateStringTO_NUMBERStringNumberTO_DATEStringDate### 48. Write a query to display employee, where employees earning commission.
+### 49. Display employee where employees not earning commission.
+### 50. all the details of emp, where ename starts with consonant character and earning salary greater than 1000 and less than 5000 and employees not earning any commision and working in the designation Salesman, Analyst, Manager and Clerk.Jun 27Claude responded: SELECT *markdown### 48. Write a query to display employee, where employees earning commission.
+```sql
+SELECT *
+FROM EMP
+WHERE COMM IS NOT NULL AND COMM > 0;
+```
+ EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+
+  7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+  7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+  7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+
+### 49. Display employee where employees not earning commission.
+```sql
+SELECT *
+FROM EMP
+WHERE COMM IS NULL OR COMM = 0;
+```
+ EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+
+  7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+  7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+  7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+  7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+  7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+  7839 KING       PRESIDENT            17-NOV-81       5000                    10
+  7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+  7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+  7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+  7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+  7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+### 50. All the details of emp, where ename starts with consonant character and earning salary greater than 1000 and less than 5000 and employees not earning any commission and working in the designation Salesman, Analyst, Manager and Clerk.
+```sql
+SELECT *
+FROM EMP
+WHERE ENAME NOT LIKE 'A%' AND ENAME NOT LIKE 'E%' AND ENAME NOT LIKE 'I%'
+AND ENAME NOT LIKE 'O%' AND ENAME NOT LIKE 'U%'
+AND SAL > 1000 AND SAL < 5000
+AND (COMM IS NULL OR COMM = 0)
+AND JOB IN ('SALESMAN', 'ANALYST', 'MANAGER', 'CLERK');
+```
+ EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+
+  7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+  7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+  7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+  7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+  7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+  7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+  7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+### In Character Manipulation we have these functions:
+
 >substring  
 >replace  
 >instring  
@@ -1235,6 +1495,333 @@ I Love Your Salary
 ### 60. Find the index of first space in the given input. [Input: manoj a n]
 ### 61. Find the index of second space in the given input. [Input: manoj a m]
 ### 62. Find number of character 'A' in the given input. [Input: NAYANA].
+(Solve it)Show more10:06 PMClaude responded: SELECT ENAME, SUBSTR(ENAME, 1, 1) AS FIRST_LETTERmarkdown### In Character Manipulation we have these functions:
+
+> SUBSTR — extract part of a string  
+> REPLACE — replace characters in a string  
+> INSTR — find position of a character  
+> REVERSE — reverse a string  
+> CONCAT — join two strings  
+> TRIM — remove spaces or characters
+
+## Queries based on Character Manipulation:
+
+### 51. Write a query to display first letter from the employee name.
+```sql
+SELECT ENAME, SUBSTR(ENAME, 1, 1) AS FIRST_LETTER
+FROM EMP;
+```
+ENAME      FIRST_LETTER
+
+SMITH      S
+
+ALLEN      A
+
+WARD       W
+
+JONES      J
+
+MARTIN     M
+
+BLAKE      B
+
+CLARK      C
+
+SCOTT      S
+
+KING       K
+
+TURNER     T
+
+ADAMS      A
+
+JAMES      J
+
+FORD       F
+
+MILLER     M
+
+### 52. Write a query to display first two letters from the employee name.
+```sql
+SELECT ENAME, SUBSTR(ENAME, 1, 2) AS FIRST_TWO
+FROM EMP;
+```
+ENAME      FIRST_TWO
+
+SMITH      SM
+
+ALLEN      AL
+
+WARD       WA
+
+JONES      JO
+
+MARTIN     MA
+
+BLAKE      BL
+
+CLARK      CL
+
+SCOTT      SC
+
+KING       KI
+
+TURNER     TU
+
+ADAMS      AD
+
+JAMES      JA
+
+FORD       FO
+
+MILLER     MI
+
+### 53. Write a query to display first three letters from the employee name.
+```sql
+SELECT ENAME, SUBSTR(ENAME, 1, 3) AS FIRST_THREE
+FROM EMP;
+```
+ENAME      FIRST_THREE
+
+SMITH      SMI
+
+ALLEN      ALL
+
+WARD       WAR
+
+JONES      JON
+
+MARTIN     MAR
+
+BLAKE      BLA
+
+CLARK      CLA
+
+SCOTT      SCO
+
+KING       KIN
+
+TURNER     TUR
+
+ADAMS      ADA
+
+JAMES      JAM
+
+FORD       FOR
+
+MILLER     MIL
+
+### 54. Write a query to display second letter from the employee name.
+```sql
+SELECT ENAME, SUBSTR(ENAME, 2, 1) AS SECOND_LETTER
+FROM EMP;
+```
+ENAME      SECOND_LETTER
+
+SMITH      M
+
+ALLEN      L
+
+WARD       A
+
+JONES      O
+
+MARTIN     A
+
+BLAKE      L
+
+CLARK      L
+
+SCOTT      C
+
+KING       I
+
+TURNER     U
+
+ADAMS      D
+
+JAMES      A
+
+FORD       O
+
+MILLER     I
+
+### 55. Write a query to display last letter from the employee name.
+```sql
+SELECT ENAME, SUBSTR(ENAME, -1, 1) AS LAST_LETTER
+FROM EMP;
+```
+ENAME      LAST_LETTER
+
+SMITH      H
+
+ALLEN      N
+
+WARD       D
+
+JONES      S
+
+MARTIN     N
+
+BLAKE      E
+
+CLARK      K
+
+SCOTT      T
+
+KING       G
+
+TURNER     R
+
+ADAMS      S
+
+JAMES      S
+
+FORD       D
+
+MILLER     R
+
+### 56. Write a query to display last two letters from the employee name.
+```sql
+SELECT ENAME, SUBSTR(ENAME, -2, 2) AS LAST_TWO
+FROM EMP;
+```
+ENAME      LAST_TWO
+
+SMITH      TH
+
+ALLEN      EN
+
+WARD       RD
+
+JONES      ES
+
+MARTIN     IN
+
+BLAKE      KE
+
+CLARK      RK
+
+SCOTT      TT
+
+KING       NG
+
+TURNER     ER
+
+ADAMS      MS
+
+JAMES      ES
+
+FORD       RD
+
+MILLER     ER
+
+### 57. Write a query to display last 2nd letter from employee name.
+```sql
+SELECT ENAME, SUBSTR(ENAME, -2, 1) AS SECOND_LAST_LETTER
+FROM EMP;
+```
+ENAME      SECOND_LAST_LETTER
+
+SMITH      T
+
+ALLEN      E
+
+WARD       R
+
+JONES      E
+
+MARTIN     I
+
+BLAKE      K
+
+CLARK      R
+
+SCOTT      T
+
+KING       N
+
+TURNER     E
+
+ADAMS      M
+
+JAMES      E
+
+FORD       R
+
+MILLER     E
+
+### 58. Input: PUSHPA | OUTPUT: USHA  [Use replace]
+```sql
+SELECT REPLACE(REPLACE('PUSHPA', 'P', ''), 'P', '') AS OUTPUT
+FROM DUAL;
+```
+OUTPUT
+USHA
+
+> REPLACE removes all occurrences of 'P' from 'PUSHPA', giving 'USHA'.
+
+### 59. Input: manoj@gmail.com | find index value for '@'.
+```sql
+SQL> SELECT INSTR('manoj@gmail.com', '@', 1, 1) FROM DUAL;
+--Argument 1 is original String.
+--Argument 2 is Character.
+--Argument 3 is Position.
+--Argument 4 is nth occurence.
+
+
+INSTR('MANOJ@GMAIL.COM','@',1,1)
+--------------------------------
+                               6
+```
+
+```SQL
+--ANOTHER APPROACH:
+SQL> SELECT INSTR('manoj@gmail.com', '@') AS INDEX_OF_AT
+  2  FROM DUAL;
+
+INDEX_OF_AT
+-----------
+          6
+```
+> '@' is at position 6 in 'manoj@gmail.com'.
+
+### 60. Find the index of first space in the given input. [Input: manoj a n]
+```sql
+SQL> SELECT INSTR('manoj a n', ' ', 1, 1) AS FIRST_SPACE
+  2  FROM DUAL;
+
+FIRST_SPACE
+-----------
+          6
+```
+> First Space is at Position 6.
+
+
+### 61. Find the index of second space in the given input. [Input: manoj a m]
+```sql
+
+SQL> SELECT INSTR('manoj a m', ' ', 1, 2) AS SECOND_SPACE
+  2  FROM DUAL;
+
+SECOND_SPACE
+------------
+           8
+```
+
+### 62. Find number of character 'A' in the given input. [Input: NAYANA].
+```sql
+SQL> SELECT LENGTH('NAYANA') - LENGTH(REPLACE('NAYANA', 'A'))
+  2  AS COUNT_OF_A
+  3  FROM DUAL;
+
+COUNT_OF_A
+----------
+         3
+```
+> Logic: total length of 'NAYANA' is 6.   
+> After removing all 'A's, 'NYN' has length 3. So 6 - 3 = 3 occurrences of 'A'.
+
 
 ---
 
@@ -1472,15 +2059,360 @@ LAST_DAY(
 ```
 
 ### 63. Write a query to display details of employee where they are earning even salary.
+```SQL
+SQL> SELECT *
+  2  FROM EMP
+  3  WHERE MOD(SAL, 2) = 0;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800               20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300    30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500    30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400    30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850               30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450               10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000               20
+      7839 KING       PRESIDENT            17-NOV-81       5000               10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0    30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100               20
+      7900 JAMES      CLERK           7698 03-DEC-81        950               30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000               20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300               10
+
+13 rows selected.
+```
 ### 64. Write a query to display details of employee where they are earning odd salary.
+```SQL
+SQL> set pages 100 lines 100;
+SQL> SELECT *
+  2  FROM EMP
+  3  WHERE MOD(SAL, 2) != 0;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+
+```
 ### 65. Display all the employee name, where employee name consisting even no of characters.
+```SQL
+SQL> SELECT * FROM EMP
+  2  WHERE MOD(LENGTH(ENAME), 2) = 0;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500    30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400    30
+      7839 KING       PRESIDENT            17-NOV-81       5000               10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000               20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300               10
+
+6 rows selected.
+```
+
 ### 66. Display all the employee name, where employee name consisting odd no of characters.
+```SQL
+SQL> SELECT ENAME
+  2  FROM EMP
+  3  WHERE MOD(LENGTH(ENAME), 2) != 0;
+
+ENAME
+----------
+SMITH
+ALLEN
+JONES
+BLAKE
+CLARK
+SCOTT
+ADAMS
+JAMES
+
+8 rows selected.
+```
+
 ### 67. find the square root for the employees salary.
+```SQL
+SQL> SELECT SQRT(SAL) AS SQRT_SAL
+  2  FROM EMP;
+
+  SQRT_SAL
+----------
+28.2842712
+        40
+35.3553391
+54.5435606
+35.3553391
+53.3853913
+49.4974747
+54.7722558
+70.7106781
+38.7298335
+33.1662479
+  30.82207
+54.7722558
+36.0555128
+
+14 rows selected.
+```
+
 ### 68. Write a query to display emp name, employee hired year.
+```SQL
+SQL> SELECT ENAME, EXTRACT(YEAR FROM HIREDATE) AS HIRED_YEAR
+  2  FROM EMP;
+
+ENAME      HIRED_YEAR
+---------- ----------
+SMITH            1980
+ALLEN            1981
+WARD             1981
+JONES            1981
+MARTIN           1981
+BLAKE            1981
+CLARK            1981
+SCOTT            1987
+KING             1981
+TURNER           1981
+ADAMS            1987
+JAMES            1981
+FORD             1981
+MILLER           1982
+
+14 rows selected.
+```
+
 ### 69. Write a query to display emp name, employee experience.
+```SQL
+SQL> SELECT ENAME, MONTHS_BETWEEN(SYSDATE, HIREDATE) / 12
+  2  AS EXPERIENCE_YEAR
+  3  FROM EMP;
+
+ENAME      EXPERIENCE_YEAR
+---------- ---------------
+SMITH           45.5321965
+ALLEN           45.3574653
+WARD             45.352089
+JONES           45.2391857
+MARTIN               44.75
+BLAKE           45.1585406
+CLARK           45.0537019
+SCOTT           39.1934868
+KING            44.6155298
+TURNER            44.80639
+ADAMS           39.0994008
+JAMES           44.5698309
+FORD            44.5698309
+MILLER          44.4327341
+
+14 rows selected.
+```
+>IF WE WANT TO ROUND OF THE YEARS:
+```SQL
+SQL> SELECT ENAME, TRUNC(MONTHS_BETWEEN(SYSDATE, HIREDATE) / 12)
+  2  AS EXPERIENCE_YEAR
+  3  FROM EMP;
+
+ENAME      EXPERIENCE_YEAR
+---------- ---------------
+SMITH                   45
+ALLEN                   45
+WARD                    45
+JONES                   45
+MARTIN                  44
+BLAKE                   45
+CLARK                   45
+SCOTT                   39
+KING                    44
+TURNER                  44
+ADAMS                   39
+JAMES                   44
+FORD                    44
+MILLER                  44
+
+14 rows selected.
+```
+```
+SYSDATE is a built-in Oracle SQL function that returns the current date and time of the database server.
+
+In this query:
+MONTHS_BETWEEN(SYSDATE, HIREDATE)
+
+This calculates how many months have passed from the employee's hire date up to today, then dividing by 12 converts months into years, and TRUNC removes the decimal part to give a whole number.
+
+Example for SMITH:
+
+HIREDATE = 17-DEC-1980
+SYSDATE = today (28-JUN-2026)
+Months between = ~satan545 months → divided by 12 → 45 years experience
+
+So SYSDATE simply means "today's date" — it automatically updates every day without you needing to hardcode any date.
+```
+
 ### 70. Display all the details of the employee along with the employees experience.
+```SQL
+SQL> SELECT EMP.*, MONTHS_BETWEEN(SYSDATE, HIREDATE) / 12
+  2  AS EXPERIENCE_YEAR
+  3  FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+EXPERIENCE_YEAR
+---------------
+      7369 SMITH      CLERK           7902 17-DEC-80        800               20
+     45.5322188
+
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300    30
+     45.3574876
+
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500    30
+     45.3521112
+
+      7566 JONES      MANAGER         7839 02-APR-81       2975               20
+      45.239208
+
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400    30
+          44.75
+
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850               30
+     45.1585629
+
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450               10
+     45.0537241
+
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000               20
+     39.1935091
+
+      7839 KING       PRESIDENT            17-NOV-81       5000               10
+     44.6155521
+
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0    30
+     44.8064123
+
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100               20
+     39.0994231
+
+      7900 JAMES      CLERK           7698 03-DEC-81        950               30
+     44.5698532
+
+      7902 FORD       ANALYST         7566 03-DEC-81       3000               20
+     44.5698532
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300               10
+     44.4327564
+
+
+14 rows selected.
+```
+
 ### 71. Find last day from the column hiredate.
+```SQL
+SQL> SELECT ENAME, LAST_DAY(HIREDATE) AS LAST_DAY_OF_MONTH
+  2  FROM EMP;
+
+ENAME      LAST_DAY_
+---------- ---------
+SMITH      31-DEC-80
+ALLEN      28-FEB-81
+WARD       28-FEB-81
+JONES      30-APR-81
+MARTIN     30-SEP-81
+BLAKE      31-MAY-81
+CLARK      30-JUN-81
+SCOTT      30-APR-87
+KING       30-NOV-81
+TURNER     30-SEP-81
+ADAMS      31-MAY-87
+JAMES      31-DEC-81
+FORD       31-DEC-81
+MILLER     31-JAN-82
+
+14 rows selected.
+```
+
 ### 72. find all the details along with the experience, where experience is greater than 30.
+```SQL
+
+SQL> SELECT EMP.*, MONTHS_BETWEEN(SYSDATE, HIREDATE) / 12
+  2  AS EXPERIENCE FROM EMP
+  3  WHERE MONTHS_BETWEEN(SYSDATE, HIREDATE) / 12 > 30;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO EXPERIENCE
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800               20 45.5322296
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300    30 45.3574984
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500    30 45.3521221
+      7566 JONES      MANAGER         7839 02-APR-81       2975               20 45.2392188
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400    30       44.75
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850               30 45.1585737
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450               10  45.053735
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000               20 39.1935199
+      7839 KING       PRESIDENT            17-NOV-81       5000               10 44.6155629
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0    30 44.8064231
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100               20 39.0994339
+      7900 JAMES      CLERK           7698 03-DEC-81        950               30  44.569864
+      7902 FORD       ANALYST         7566 03-DEC-81       3000               20  44.569864
+      7934 MILLER     CLERK           7782 23-JAN-82       1300               10 44.4327672
+
+14 rows selected.
+```
+>ANOTHER APPROACH:
+```SQL
+SQL> SELECT EMP.*, TRUNC(MONTHS_BETWEEN(SYSDATE, HIREDATE) / 12) AS EXPERIENCE_YEARS
+  2  FROM EMP
+  3  WHERE TRUNC(MONTHS_BETWEEN(SYSDATE, HIREDATE) / 12) > 30;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+EXPERIENCE_YEARS
+----------------
+      7369 SMITH      CLERK           7902 17-DEC-80        800               20
+              45
+
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300    30
+              45
+
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500    30
+              45
+
+      7566 JONES      MANAGER         7839 02-APR-81       2975               20
+              45
+
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400    30
+              44
+
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850               30
+              45
+
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450               10
+              45
+
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000               20
+              39
+
+      7839 KING       PRESIDENT            17-NOV-81       5000               10
+              44
+
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0    30
+              44
+
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100               20
+              39
+
+      7900 JAMES      CLERK           7698 03-DEC-81        950               30
+              44
+
+      7902 FORD       ANALYST         7566 03-DEC-81       3000               20
+              44
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300               10
+              44
+
+
+14 rows selected.
+
+```
+
+---
 
 ## General Single row function
 
