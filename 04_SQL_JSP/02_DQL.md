@@ -2487,26 +2487,109 @@ Multi Row Functions:
 ## Queries based on Multi row functions.
 
 ### 73. Write a query to find maximum salary.
+```sql
+
+```
+
 ### 74. Write a query to find minimum salary.
+```sql
+
+```
+
 ### 75. Write a query to find Average salary.
+```sql
+
+```
+
 ### 76. Write a query to find total salary.
+```sql
+
+```
+
 ### 77. Write a query to find number of rows(records).
+```sql
+
+```
+
 ### 78. Write a query to find maximum salary present in the department 10.
+```sql
+
+```
+
 ### 79. Write a query to find total salary where designation is Salesman and Analyst.
+```sql
+
+```
+
 ### 80. Find the average salary from the hired year 81.
+```sql
+
+```
+
 ### 81. Find the no of employees present in the department no 30.
+```sql
+
+```
+
 ### 82. Find the no of employees working as a clerk and Salesman.
+```sql
+
+```
+
 ### 83. Write a query to find no of employees where emp name starting with vowel character.
+```sql
+
+```
+
 ### 84. Find maximum, minimum, average and total salary.
+```sql
+
+```
+
 ### 85. Find maximum salary, employee name.
+```sql
+
+```
+
 ### 86. Find minimum salary, employee name.
+```sql
+
+```
+
 ### 87. Find maximum salary, where maximum salary is greater than 3000.
+```sql
+
+```
+
 ### 88. Find no of employees who is hired in the month feb, dec, april.
+```sql
+
+```
+
 ### 89. Find no of employees who is hired in the year 80, 82, 87.
+```sql
+
+```
+
 ### 90. Find the no of employees who is earning salary greater than 1000 and less than 3000.
+```sql
+
+```
+
 ### 91. Find maximum salary from the hired year 81.
+```sql
+
+```
+
 ### 92. Find the minimum salary from the hired year 81.
+```sql
+
+```
+
 ### 93. Find maximum and minimum salary where dept no is 20 and employee name starting with consonant character.
+```sql
+
+```
 
 ---
 
@@ -2521,12 +2604,81 @@ Multi Row Functions:
 ## Queries based on Group By.
 
 ### 94. Write a query to find no of employees working in the each department except department 10.
-### 95. Find maximum salary in each department.
-### 96. Find total salary present in the each designation except President.
-### 97. Find the employees working in the each department where emp name starting with consonant characters.
-### 98. Write a query to find no of employees in each designation only if they hired in the year 81.
+```SQL
+SQL> SELECT COUNT(*), DEPTNO
+  2  FROM EMP
+  3  WHERE (DEPTNO != 10)
+  4  GROUP BY DEPTNO;
 
-## Having 
+  COUNT(*)     DEPTNO
+---------- ----------
+         6         30
+         5         20
+
+```
+
+### 95. Find maximum salary in each department.
+```sql
+SQL> SELECT DEPTNO, MAX(SAL) AS MAX_SALARY
+  2  FROM EMP
+  3  GROUP BY DEPTNO;
+
+    DEPTNO MAX_SALARY
+---------- ----------
+        30       2850
+        20       3000
+        10       5000
+
+```
+
+### 96. Find total salary present in the each designation except President.
+```SQL
+SQL> SELECT SUM(SAL), JOB
+  2  FROM EMP
+  3  WHERE JOB != 'PRESIDENT'
+  4  GROUP BY JOB;
+
+  SUM(SAL) JOB
+---------- ---------
+      4150 CLERK
+      5600 SALESMAN
+      8275 MANAGER
+      6000 ANALYST
+
+```
+
+### 97. Find the employees working in the each department where emp name starting with consonant characters.
+```SQL
+SQL> SELECT COUNT(*), DEPTNO
+  2  FROM EMP
+  3  WHERE SUBSTR(ENAME, 1, 1) NOT IN ('A', 'E', 'I', 'O', 'U')
+  4  GROUP BY DEPTNO;
+
+  COUNT(*)     DEPTNO
+---------- ----------
+         5         30
+         4         20
+         3         10
+```
+
+### 98. Write a query to find no of employees in each designation only if they hired in the year 81.
+```SQL
+SQL> SELECT COUNT(*) JOB
+  2  FROM EMP
+  3  WHERE HIREDATE LIKE '%81'
+  4  GROUP BY JOB;
+
+       JOB
+----------
+         4
+         1
+         1
+         3
+         1
+```
+---
+
+# Having 
 
 > Having is a SQL clause used to filter the group records.  
 > Having executes group by group.  
@@ -2543,21 +2695,223 @@ Order of Execution:
 ```
 
 ### 99. Find the no of employees working in each department where more than one employee working in the each department.
+```sql
+SQL> SELECT COUNT(*), DEPTNO
+  2  FROM EMP
+  3  GROUP BY DEPTNO
+  4  HAVING COUNT(*) > 1;
+
+  COUNT(*)     DEPTNO
+---------- ----------
+         6         30
+         5         20
+         3         10
+
+```
+
 ### 100. find the total salary present in each job, where total salary is greater than 5700.
+```sql
+SQL> SELECT SUM(SAL), JOB
+  2  FROM EMP
+  3  GROUP BY JOB
+  4  HAVING SUM(SAL) > 5700;
+
+  SUM(SAL) JOB
+---------- ---------
+      8275 MANAGER
+      6000 ANALYST
+
+```
+
 ### 101. Find maximum salary present in the each department where maximum salary is greater than 2900.
+```sql
+SQL> SELECT MAX(SAL), DEPTNO
+  2  FROM EMP
+  3  GROUP BY DEPTNO
+  4  HAVING MAX(SAL) > 2900;
+
+  MAX(SAL)     DEPTNO
+---------- ----------
+      3000         20
+      5000         10
+
+```
+
 ### 102. Find number of employees working(hired) in the each job where they are hired in the year 81 where at least two employees are working in each job.
+```sql
+SQL> SELECT COUNT(*), JOB
+  2  FROM EMP
+  3  WHERE HIREDATE LIKE '%81'
+  4  GROUP BY JOB
+  5  HAVING COUNT(*) >= 2;
+
+  COUNT(*) JOB
+---------- ---------
+         4 SALESMAN
+         3 MANAGER
+
+```
+
 ### 103. find the duplicate salary.
+```sql
+SQL> SELECT SAL, COUNT(*)
+  2  FROM EMP
+  3  GROUP BY SAL
+  4  HAVING COUNT(*) > 1;
+
+       SAL   COUNT(*)
+---------- ----------
+      1250          2
+      3000          2
+```
+
 ### 104. Find the duplicate employee name.
+```sql
+SQL> SELECT ENAME FROM EMP
+  2  GROUP BY ENAME
+  3  HAVING COUNT(*) > 1;
+
+no rows selected
+```
+
 ### 105. Find the unique designation.
+```sql
+SQL> SELECT JOB FROM EMP
+  2  GROUP BY JOB
+  3  HAVING COUNT(*) = 1;
+
+JOB
+---------
+PRESIDENT
+```
+
 ### 106. Find the unique salary.
+```sql
+SQL> SELECT SAL FROM EMP
+  2  GROUP BY SAL
+  3  HAVING COUNT(*) = 1;
+
+       SAL
+----------
+      2450
+      5000
+      1300
+      2850
+      2975
+      1100
+       800
+      1600
+      1500
+       950
+
+10 rows selected.
+```
+
 ### 107. Find the no of employees working in each department where employees are not earning any commision and atleast two employees are working in each department.
-### 108. find the no employees hired in the each year.
+```sql
+SQL> SELECT COUNT(*), DEPTNO
+  2  FROM EMP
+  3  WHERE COMM IS NULL
+  4  GROUP BY DEPTNO
+  5  HAVING COUNT(*) >= 2;
+
+  COUNT(*)     DEPTNO
+---------- ----------
+         2         30
+         5         20
+         3         10
+
+```
+
+### 108. find the no OF employees hired in the each year.
+```sql
+SQL> SELECT COUNT(*), EXTRACT(YEAR FROM HIREDATE)
+  2  FROM EMP
+  3  GROUP BY EXTRACT(YEAR FROM HIREDATE);
+
+  COUNT(*) EXTRACT(YEARFROMHIREDATE)
+---------- -------------------------
+         1                      1982
+         2                      1987
+         1                      1980
+        10                      1981
+
+```
+
 ### 109. Find the number of employees hired in the each month.
+```sql
+SQL> SELECT COUNT(*), EXTRACT(MONTH FROM HIREDATE)
+  2  FROM EMP
+  3  GROUP BY EXTRACT(MONTH FROM HIREDATE);
+
+  COUNT(*) EXTRACT(MONTHFROMHIREDATE)
+---------- --------------------------
+         1                          1
+         1                          6
+         1                         11
+         2                          2
+         2                          4
+         2                          5
+         3                         12
+         2                          9
+
+8 rows selected.
+
+```
+
 ### 110. Find the first highest salary.
+```sql
+SQL> SELECT MAX(SAL) FROM EMP;
+
+  MAX(SAL)
+----------
+      5000
+```
+
 ### 111. Find the first lowest salary.
+```sql
+SQL> SELECT MIN(SAL) FROM EMP;
+
+  MIN(SAL)
+----------
+       800
+```
+
 ### 112. find the first hiredate.
+```sql
+SQL> SELECT MIN(HIREDATE) FROM EMP;
+
+MIN(HIRED
+---------
+17-DEC-80
+```
+
 ### 113. Find the last hiredate.
+```sql
+SQL> SELECT MAX(HIREDATE) FROM EMP;
+
+MAX(HIRED
+---------
+23-MAY-87
+```
+
 ### 114. Find the no of employees hired in the each month, where more than one employee hired in the each month.
+```sql
+SQL> SELECT COUNT(*), EXTRACT(MONTH FROM HIREDATE)
+  2  FROM EMP
+  3  GROUP BY EXTRACT(MONTH FROM HIREDATE)
+  4  HAVING COUNT(*) > 1;
+
+  COUNT(*) EXTRACT(MONTHFROMHIREDATE)
+---------- --------------------------
+         2                          2
+         2                          4
+         2                          5
+         3                         12
+         2                          9
+
+```
+
 
 ---
 
