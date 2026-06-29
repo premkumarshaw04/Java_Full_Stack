@@ -2488,107 +2488,254 @@ Multi Row Functions:
 
 ### 73. Write a query to find maximum salary.
 ```sql
+SQL> SELECT MAX(SAL) AS MAX_SALARY
+  2  FROM EMP;
 
+MAX_SALARY
+----------
+      5000
 ```
 
 ### 74. Write a query to find minimum salary.
 ```sql
+SQL> SELECT MIN(SAL) AS MIN_SALARY
+  2  FROM EMP;
 
+MIN_SALARY
+----------
+       800
 ```
 
 ### 75. Write a query to find Average salary.
 ```sql
+SQL> SELECT AVG(SAL) AS AVG_SALARY
+  2  FROM EMP;
 
+AVG_SALARY
+----------
+2073.21429
 ```
 
 ### 76. Write a query to find total salary.
 ```sql
+SQL> SELECT SUM(SAL) AS TOTAL_SALARY
+  2  FROM EMP;
 
+TOTAL_SALARY
+------------
+       29025
 ```
 
 ### 77. Write a query to find number of rows(records).
 ```sql
+SQL> SELECT COUNT(*) AS TOTAL_RECORDS
+  2  FROM EMP;
 
+TOTAL_RECORDS
+-------------
+           14
 ```
 
 ### 78. Write a query to find maximum salary present in the department 10.
 ```sql
+SQL> SELECT MAX(SAL) AS MAX_SALARY
+  2  FROM EMP
+  3  WHERE DEPTNO = 10;
 
+MAX_SALARY
+----------
+      5000
 ```
 
 ### 79. Write a query to find total salary where designation is Salesman and Analyst.
 ```sql
 
+SQL> SELECT SUM(SAL) AS TOTAL_SALARY
+  2  FROM EMP
+  3  WHERE JOB IN ('SALESMAN', 'ANALYST');
+
+TOTAL_SALARY
+------------
+       11600
 ```
 
 ### 80. Find the average salary from the hired year 81.
 ```sql
+SQL> SELECT AVG(SAL) AS AVG_SALARY
+  2  FROM EMP
+  3  WHERE HIREDATE LIKE '%81';
 
+AVG_SALARY
+----------
+    2282.5
+```
+>ANOTHER APPROACH
+```SQL
+SQL> SELECT AVG(SAL) AS AVG_SALARY
+  2  FROM EMP
+  3  WHERE EXTRACT(YEAR FROM HIREDATE) = 1981;
+
+AVG_SALARY
+----------
+    2282.5
 ```
 
 ### 81. Find the no of employees present in the department no 30.
 ```sql
+SQL> SELECT COUNT(*) AS EMP_COUNT
+  2  FROM EMP
+  3  WHERE DEPTNO = 30;
 
+ EMP_COUNT
+----------
+         6
 ```
 
 ### 82. Find the no of employees working as a clerk and Salesman.
 ```sql
+SQL> SELECT COUNT(*) AS EMP_COUNT
+  2  FROM EMP
+  3  WHERE JOB IN ('CLERK', 'SALESMAN');
 
+ EMP_COUNT
+----------
+         8
 ```
 
 ### 83. Write a query to find no of employees where emp name starting with vowel character.
 ```sql
+SQL> SELECT COUNT(*) AS EMP_COUNT
+  2  FROM EMP
+  3  WHERE SUBSTR(ENAME,1,1) IN ('A','E','I','O','U');
 
+ EMP_COUNT
+----------
+         2
+```
+>ANOTHER APPROACH
+```sql
+SQL> SELECT COUNT(*) AS EMP_COUNT
+  2  FROM EMP
+  3  WHERE ENAME LIKE 'A%'
+  4  OR ENAME LIKE 'E%'
+  5  OR ENAME LIKE 'I%'
+  6  OR ENAME LIKE 'O%'
+  7  OR ENAME LIKE 'U%';
+
+ EMP_COUNT
+----------
+         2
 ```
 
 ### 84. Find maximum, minimum, average and total salary.
 ```sql
+SQL> SELECT MAX(SAL) AS MAX_SALARY,
+  2  MIN(SAL) AS MIN_SALARY,
+  3  AVG(SAL) AS AVG_SALARY,
+  4  SUM(SAL) AS TOTAL_SALARY
+  5  FROM EMP;
 
+MAX_SALARY MIN_SALARY AVG_SALARY TOTAL_SALARY
+---------- ---------- ---------- ------------
+      5000        800 2073.21429        29025
 ```
-
+---
 ### 85. Find maximum salary, employee name.
-```sql
-
-```
-
 ### 86. Find minimum salary, employee name.
-```sql
-
-```
-
 ### 87. Find maximum salary, where maximum salary is greater than 3000.
-```sql
-
 ```
+For question number 85, 86 and 87, we will get error because:
+i. Multi row functions + columns = error
+ii. multi row function is not allowed in where class.
+```
+---
 
 ### 88. Find no of employees who is hired in the month feb, dec, april.
 ```sql
+SQL> SELECT COUNT(*) AS EMP_COUNT
+  2  FROM EMP
+  3  WHERE HIREDATE LIKE '%FEB'
+  4  OR HIREDATE LIKE '%DEC'
+  5  OR HIREDATE LIKE '%APR';
 
+ EMP_COUNT
+----------
+         0
+```
+Rule: Never use LIKE on DATE columns. Always use TO_CHAR to convert first, then compare.
+
+Two reasons:
+1. HIREDATE is a DATE type, not a string
+HIREDATE LIKE '%FEB' treats the date as a string. Oracle stores dates internally as a binary format, not as '17-DEC-80' text. So LIKE '%FEB' finds nothing — it returns 0.
+2. TO_CHAR converts properly
+TO_CHAR(HIREDATE, 'MON') correctly extracts the month name from the date and converts it to a string like 'FEB', 'DEC', 'APR' — so the comparison works correctly.
+```
+
+```
+
+```sql
+SQL> SELECT COUNT(*) AS EMP_COUNT
+  2  FROM EMP
+  3  WHERE TO_CHAR(HIREDATE, 'MON') IN ('FEB', 'DEC', 'APR');
+
+ EMP_COUNT
+----------
+         7
 ```
 
 ### 89. Find no of employees who is hired in the year 80, 82, 87.
 ```sql
 
+SQL> SELECT COUNT(*) AS EMP_COUNT
+  2  FROM EMP
+  3  WHERE EXTRACT(YEAR FROM HIREDATE) IN (1980, 1982,1987);
+
+ EMP_COUNT
+----------
+         4
 ```
 
 ### 90. Find the no of employees who is earning salary greater than 1000 and less than 3000.
 ```sql
+SQL> SELECT COUNT(*) FROM EMP
+  2  WHERE SAL > 1000 AND SAL < 3000;
 
+  COUNT(*)
+----------
+         9
 ```
 
 ### 91. Find maximum salary from the hired year 81.
 ```sql
+SQL> SELECT MAX(SAL) FROM EMP
+  2  WHERE HIREDATE LIKE '%81';
 
+  MAX(SAL)
+----------
+      5000
 ```
 
 ### 92. Find the minimum salary from the hired year 81.
 ```sql
+SQL> SELECT MIN(SAL) FROM EMP
+  2  WHERE HIREDATE LIKE '%81';
+
+  MIN(SAL)
+----------
+       950
 
 ```
 
 ### 93. Find maximum and minimum salary where dept no is 20 and employee name starting with consonant character.
 ```sql
+SQL> SELECT MAX(SAL), MIN(SAL)
+  2  FROM EMP
+  3  WHERE DEPTNO = 20
+  4  AND SUBSTR(ENAME,1,1) NOT IN ('A','E','I','O','U');
 
+  MAX(SAL)   MIN(SAL)
+---------- ----------
+      3000        800
 ```
 
 ---
