@@ -646,3 +646,204 @@ class Program6
 //Biscuit
 ```
 ---
+
+# 3. For loop
+
+```java
+class Program1
+{
+	public static void main(String[] args)
+	{
+		for(int i = 1; i <= 5; i++){
+			System.out.println("Java");
+		}
+	}
+}
+//Output:
+//Java
+//Java
+//Java
+//Java
+//Java
+```
+
+```java
+class Program2
+{
+	public static void main(String[] args)
+	{
+		for(int i = 5; i>=1; i--){
+			System.out.println("JSpiders");
+		}
+	}
+}
+//Output:
+//JSpiders
+//JSpiders
+//JSpiders
+//JSpiders
+//JSpiders
+```
+
+```java
+class Program3
+{
+	public static void main(String[] args)
+	{
+		for(int i = 1; i<=10; i = i + 2){
+			System.out.println("Bangalore");
+		}
+	}
+}
+//Output:
+//Bangalore
+//Bangalore
+//Bangalore
+//Bangalore
+//Bangalore
+```
+
+```java
+class Program4
+{
+	public static void main(String[] args)
+	{
+		for(int p = 10; p > 0; p = p - 3){
+			System.out.println("Biryani");
+		}
+	}
+}
+
+//Output:
+//Biryani
+//Biryani
+//Biryani
+//Biryani
+```
+
+```java
+class Program5
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		for(int i = 0; i < n; i++){
+			System.out.println("*");
+		}
+	}
+}
+
+//Output:+
+//*
+//*
+//*
+//*
+//*
+```
+
+```java
+class Program6
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		for(int i = 0; i < n; i++){
+			System.out.print("*" + " ");//Recommended way to add space
+			//System.out.print("* ");//we can do like this also, but follow the recommended way
+		}
+	}
+}
+
+//Output:
+//* * * * *
+```
+
+```java
+class Program7
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		for(int i = 0; i < n; i++){
+			if(i % 2 == 0){
+				System.out.print(1 + " ");
+			}
+			else{
+				System.out.print(0 + " ");
+			}
+		}
+	}
+}
+
+//Output:
+//1 0 1 0 1
+```
+
+```java
+class Program8
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		for(int i = 0; i < n; i++){
+			if(i % 2 == 0){
+				System.out.print('a' + " ");
+			}
+			else{
+				System.out.print('b' + " ");
+			}
+		}
+	}
+}
+
+//Output:
+//a b a b a
+```
+
+```java
+class Program9
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		int val = 1;
+		
+		for(int i = 0; i < n; i++){
+			if(i % 2 == 0){
+				System.out.print(val + " ");
+				val++;
+			}
+			else{
+				System.out.print('*' + " ");
+			}
+		}
+	}
+}
+
+//Output:
+//1 * 2 * 3
+```
+
+```java
+class Program10
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		char val = 'a';
+		
+		for(int i = 0; i < n; i++){
+			if(i % 2 == 0){
+				System.out.print(val + " ");
+				val++;
+			}
+			else{
+				System.out.print('*' + " ");
+			}
+		}
+	}
+}
+
+//Output:
+//a * b * c
+```
