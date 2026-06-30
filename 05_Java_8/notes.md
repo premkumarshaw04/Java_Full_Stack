@@ -955,6 +955,17 @@ What is anonymous Inner class.
 Why it is needed 
 Benefits of using Annonumous Inner class
 Add aexample code and explain
+Difference between anonymous ineer class and lambda expression
 
 # variables and this in lambda expression:
+Explain(what it is, what it does why we use it, how) and add the important terms which i need to get beeter understanding, add code if required
+
+# Predicates
+Explain(what it is, what it does why we use it, how)
+benefits of using predicate
+
+# default and static method inside 'Predicate Interface'
+
+
+
 

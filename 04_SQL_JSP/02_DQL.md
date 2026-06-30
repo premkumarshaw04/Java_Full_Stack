@@ -2654,25 +2654,15 @@ ii. multi row function is not allowed in where class.
 ```sql
 SQL> SELECT COUNT(*) AS EMP_COUNT
   2  FROM EMP
-  3  WHERE HIREDATE LIKE '%FEB'
-  4  OR HIREDATE LIKE '%DEC'
-  5  OR HIREDATE LIKE '%APR';
+  3  WHERE HIREDATE LIKE '%FEB%'
+  4  OR HIREDATE LIKE '%DEC%'
+  5  OR HIREDATE LIKE '%APR%';
 
  EMP_COUNT
 ----------
-         0
+         7
 ```
-Rule: Never use LIKE on DATE columns. Always use TO_CHAR to convert first, then compare.
-
-Two reasons:
-1. HIREDATE is a DATE type, not a string
-HIREDATE LIKE '%FEB' treats the date as a string. Oracle stores dates internally as a binary format, not as '17-DEC-80' text. So LIKE '%FEB' finds nothing — it returns 0.
-2. TO_CHAR converts properly
-TO_CHAR(HIREDATE, 'MON') correctly extracts the month name from the date and converts it to a string like 'FEB', 'DEC', 'APR' — so the comparison works correctly.
-```
-
-```
-
+> Another Approach: 
 ```sql
 SQL> SELECT COUNT(*) AS EMP_COUNT
   2  FROM EMP

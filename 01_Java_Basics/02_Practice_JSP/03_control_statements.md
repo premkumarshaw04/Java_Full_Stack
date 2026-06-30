@@ -847,3 +847,25 @@ class Program10
 //Output:
 //a * b * c
 ```
+
+```java
+class Homework
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		int val = 1;
+		for(int i = 0;i<n;i++){
+			System.out.print(val +" ");
+			if(i < n/2){
+				val++;
+			}
+			else{
+				val--;
+			}
+		}
+	}
+}
+//Output:
+//1 2 3 2 1
+```
