@@ -251,6 +251,34 @@ class Square9
 ```java
 //Homework: 
 
+class Homework1
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		for (int i = 0;i<n;i++){
+			for(int j = 0;j<n;j++){
+				if(i%2 == 0){
+					if(j%2 == 0){
+						System.out.print(1 + " ");
+					}
+					else{
+						System.out.print(0 + " ");
+					}
+				}
+				else{
+					if(j%2 == 0){
+						System.out.print(0 + " ");
+					}
+					else{
+						System.out.print(1 + " ");
+					}
+				}
+			}
+			System.out.println();
+		}
+	}
+}
 //Output:
 //1 0 1 0 1
 //0 1 0 1 0
@@ -260,5 +288,303 @@ class Square9
 ```
 ---
 
-# Day 2 Of Pattern Printing:
 
+# Day 2 of Pattern Printing
+
+```java
+class Pattern1
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		for(int i = 0;i<n;i++){
+			for(int j = 0;j<n;j++){
+				if(i ==0 || j == 0 || i == n-1 || j == n-1){
+					System.out.print('*' + " ");
+				}
+				else{
+					System.out.print(" " + " ");
+				}
+			}
+			System.out.println();
+		}	
+	}
+}
+
+//Output
+//	* * * * *
+//	*       *
+//	*       *
+//	*       *
+//	* * * * *
+
+```
+
+```java
+class Pattern2
+{
+	public static void main(String[] args)
+	{
+		int n = 5; //It will only work perfectly for odd values of n
+		for(int i = 0;i<n;i++){
+			for(int j = 0;j<n;j++){
+				if(i == n/2 || j == n/2){
+					System.out.print('*' + " ");
+				}
+				else{
+					System.out.print(" " + " ");
+				}
+			}
+			System.out.println();
+		}	
+	}
+}
+//Output
+//	    *
+//	    *
+//	* * * * *
+//	    *
+//	    *
+```
+
+```java
+//Printing Principle Diagonal
+
+class Pattern3a
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		for(int i = 0;i<n;i++){
+			for(int j = 0;j<n;j++){
+				if(i == j){
+					System.out.print('*' + " ");
+				}
+				else{
+					System.out.print(" " + " ");
+				}
+			}
+			System.out.println();
+		}	
+	}
+}
+//Output
+//	*
+//	  *
+//	    *
+//	      *
+//	        *
+
+
+```
+
+```java
+//Printing Secondary Diagonal
+
+class Pattern3b
+{
+	public static void main(String[] args)
+	{
+		int n = 5; 
+		for(int i = 0;i<n;i++){
+			for(int j = 0;j<n;j++){
+				if(i+j == n-1){
+					System.out.print('*' + " ");
+				}
+				else{
+					System.out.print(" " + " ");
+				}
+			}
+			System.out.println();
+		}	
+	}
+}
+//Output
+//	        *
+//	      *
+//	    *
+//	  *
+//	*
+```
+
+```java
+//Printing Both Diagonals
+
+class Pattern3c
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		for(int i = 0;i<n;i++){
+			for(int j = 0;j<n;j++){
+				if(i == j || i+j == n-1){
+					System.out.print('*' + " ");
+				}
+				else{
+					System.out.print(" " + " ");
+				}
+			}
+			System.out.println();
+		}	
+	}
+}
+//Output
+//	*       *
+//	  *   *
+//	    *
+//	  *   *
+//	*       *
+
+```
+
+```java
+//Window Pattern
+
+class Pattern4
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		for(int i = 0;i<n;i++){
+			for(int j = 0;j<n;j++){
+				if(i == 0 || i == n/2 || i == n-1 || j == 0 || j == n/2 || j == n-1){
+					System.out.print('*' + " ");
+				}
+				else{
+					System.out.print(" " + " ");
+				}
+			}
+			System.out.println();
+		}	
+	}
+}
+//Output
+//	* * * * *
+//	*   *   *
+//	* * * * *
+//	*   *   *
+//	* * * * *
+
+
+```
+
+```java
+
+
+class Pattern5
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		for(int i = 0;i<n;i++){
+			for(int j = 0;j<n;j++){
+				if(i == j || i+j == n-1 || j == 0 || j == n-1){
+					System.out.print('*' + " ");
+				}
+				else{
+					System.out.print(" " + " ");
+				}
+			}
+			System.out.println();
+		}	
+	}
+}
+//Output
+//	*       *
+//	* *   * *
+//	*   *   *
+//	* *   * *
+//	*       *
+
+```
+
+```java
+
+
+class Pattern6
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		for(int i = 0;i<n;i++){
+			for(int j = 0;j<n;j++){
+				if(i == j || i+j == n-1 || i == 0 || i == n-1){
+					System.out.print('*' + " ");
+				}
+				else{	
+					System.out.print(" " + " ");
+				}
+			}
+			System.out.println();
+		}	
+	}
+}
+//Output
+//	* * * * *
+//	  *   *
+//	    *
+//	  *   *
+//	* * * * *
+
+```
+
+```java
+//Snowflake
+
+class Pattern7
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		for(int i = 0;i<n;i++){
+			for(int j = 0;j<n;j++){
+				if(i == n/2 || j == n/2 || i == j || i+j == n-1){
+					System.out.print('*' + " ");
+				}
+				else{	
+					System.out.print(" " + " ");
+				}
+			}
+			System.out.println();
+		}	
+	}
+}
+//Output
+//	*   *   *
+//	  * * *
+//	* * * * *
+//	  * * *
+//	*   *   *
+
+```
+
+```java
+//Wild Flower: Opposite of printing diagonals (Remove Both Diagonals)
+
+class Pattern8
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		for(int i = 0;i<n;i++){
+			for(int j = 0;j<n;j++){
+				if(i == j || i+j == n-1){
+					System.out.print(' ' + " ");
+				}
+				else{
+					System.out.print("*" + " ");
+				}
+			}
+			System.out.println();
+		}	
+	}
+}
+//Output
+//	  * * *
+//	*   *   *
+//	* *   * *
+//	*   *   *
+//	  * * *
+
+
+```
