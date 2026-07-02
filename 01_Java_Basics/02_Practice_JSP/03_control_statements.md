@@ -869,3 +869,276 @@ class Homework
 //Output:
 //1 2 3 2 1
 ```
+
+---
+
+# 4. While loop
+
+```java
+class Program1
+{
+	public static void main(String[] args)
+	{
+		int a = 1;
+		while(a <= 5){
+			System.out.println("Java");
+			a++;
+		}
+	}
+}
+//Output:
+//Java
+//Java
+//Java
+//Java
+//Java
+
+```
+
+```java
+class Program2
+{
+	public static void main(String[] args)
+	{
+		int x = 5;
+		while(x >= 1){
+			System.out.println("JSpiders");
+			x--;
+		}
+	}
+}
+//Output
+//JSpiders
+//JSpiders
+//JSpiders
+//JSpiders
+//JSpiders
+
+```
+
+```java
+class Program3
+{
+	public static void main(String[] args)
+	{
+		int x = 1;
+		int y = 5;
+		while(x <= y){
+			System.out.println(x);
+			x++;
+		}
+	}
+}
+//Output
+//1
+//2
+//3
+//4
+//5
+
+```
+
+```java
+class Program4
+{
+	public static void main(String[] args)
+	{
+		int x = 5;
+		int y = 1;
+		while(x >= y){
+			System.out.println(x);
+			x--;
+		}
+	}
+}
+//Output
+//5
+//4
+//3
+//2
+//1
+
+```
+
+```java
+//Program to eritr even numbers
+class Program5
+{
+	public static void main(String[] args)
+	{
+		int x = 1;
+		int y = 10;
+		while(x <= y){
+		
+			if(x % 2 == 0){
+				System.out.println(x);
+				//x++;//don't write x++ here, it will go in infite loop.
+			}
+			x++;//Now it will work properly.
+		}
+	}
+}
+//Output
+//2
+//4
+//6
+//8
+//10
+
+```
+
+```java
+//Program to print odd numbers
+class Program6
+{
+	public static void main(String[] args)
+	{
+		int x = 10;
+		int y = 1;
+		while(x >= y){
+		
+			if(x % 2 != 0){
+				System.out.println(x);
+				//x--;//don't write x++ here, it will go in infite loop.
+			}
+			x--;//Now it will work properly.
+		}
+	}
+}
+//Output
+//9
+//7
+//5
+//3
+//1
+
+
+```
+
+```java
+//Find the sum of digits in the given range.
+
+class Program7
+{
+	public static void main(String[] args)
+	{
+		int a = 1;
+		int b = 10;
+		int sum = 0;
+		
+		while(a <= b){
+			sum = sum + a;
+			a++;
+		}
+		System.out.println(sum);
+	}
+}
+
+//Output:
+//15
+```
+
+```java
+//Find the sum of all even digits in the given range.
+
+class Program8
+{
+	public static void main(String[] args)
+	{
+		int a = 1;
+		int b = 10;
+		int sum = 0;
+		
+		while(a <= b){
+			if(a % 2 == 0){
+				sum = sum + a;
+				//a++; //Dont write here
+			}
+			a++;
+		}
+		System.out.println(sum);
+	}
+}
+
+//Output:
+//30
+```
+
+```java
+//Find the sum of all odd digits in the given range.
+
+class Program9
+{
+	public static void main(String[] args)
+	{
+		int a = 1;
+		int b = 10;
+		int sum = 0;
+		
+		while(a <= b){
+			if(a % 2 != 0){
+				sum = sum + a;
+				//a++; //Dont write here
+			}
+			a++;
+		}
+		System.out.println(sum);
+	}
+}
+
+//Output:
+//25
+```
+
+```java
+//Table of 5
+
+class Program10
+{
+	public static void main(String[] args)
+	{
+		int num = 5;
+		int a = 1;
+		int b = 10;
+		
+		while(a <= b){
+			int product = num*a;
+			System.out.println(num + " * " + a + " = " + product);
+			a++;
+		}
+	}
+}
+
+//Output:
+//5 * 1 = 5
+//5 * 2 = 10
+//5 * 3 = 15
+//5 * 4 = 20
+//5 * 5 = 25
+//5 * 6 = 30
+//5 * 7 = 35
+//5 * 8 = 40
+//5 * 9 = 45
+//5 * 10 = 50
+```
+
+```java
+//Java Program to find Factorial Of a number.
+
+class Factorial
+{
+	public static void main(String[] args)
+	{
+		int n = 5;
+		int fact = 1;
+		while( n >= 1){
+			fact = fact * n;
+			n--;
+		}
+		System.out.println("Factorial : " + fact);
+	}
+}
+
+//Output:
+//Factorial : 120
+```

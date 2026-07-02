@@ -258,3 +258,7 @@ class Square9
 //0 1 0 1 0
 //1 0 1 0 1
 ```
+---
+
+# Day 2 Of Pattern Printing:
+
