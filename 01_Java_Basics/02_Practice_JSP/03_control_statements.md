@@ -1142,3 +1142,51 @@ class Factorial
 //Output:
 //Factorial : 120
 ```
+
+--- 
+
+# Do-While Loop
+
+```java
+class Program1
+{
+	public static void main(String[] args)
+	{
+		int x = 5;
+		do{
+			System.out.println("Jspiders");
+			x--;
+		}
+		while(x >= 1);
+	}
+}
+
+//Output:
+//Jspiders
+//Jspiders
+//Jspiders
+//Jspiders
+//Jspiders
+```
+
+```java
+class Program2
+{
+	public static void main(String[] args)
+	{
+		int x = 0;
+		do{ //It will execute once even if the condition is false.
+			System.out.println("Jspiders");
+			x--;
+		}
+		while(x >= 1);
+	}
+}
+
+//Output:
+//Jspiders
+
+```
+
+---
+
