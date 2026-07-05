@@ -1214,7 +1214,7 @@ I Love Your Salary
 ---
 ### In Character Manipulation we have these functions:
 
-> SUBSTR — extract part of a string  | Substring
+> SUBSTR — extract part of a string  | Substring  
 > REPLACE — replace characters in a string  
 > INSTR — find position of a character | Instring  
 > REVERSE — reverse a string  
@@ -1462,6 +1462,113 @@ COUNT_OF_A
 > Logic: total length of 'NAYANA' is 6.   
 > After removing all 'A's, 'NYN' has length 3. So 6 - 3 = 3 occurrences of 'A'.
 
+## There are some more questions:
+
+### Display all the details of employee where ename starts with vowel characters (Solve by using SUBSTR).
+
+```sql
+SQL> SELECT * FROM EMP
+  2  WHERE SUBSTR(ENAME,1,1) IN ('A','E','I','O','U');
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+
+```
+
+### Display all the details of employee where ename starts with consonant characters. (Solve by using SUBSTR).
+
+```sql
+SQL> SELECT * FROM EMP
+  2  WHERE SUBSTR(ENAME,1,1) NOT IN ('A','E','I','O','U');
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+12 rows selected.
+```
+
+### Find First half of the ename. (Ex: [Smith => Sm], [Turner => Tur])
+```sql
+SQL> SELECT ENAME, SUBSTR(ENAME, 1, LENGTH(ENAME) / 2)
+  2  FROM EMP;
+
+ENAME      SUBSTR(ENA
+---------- ----------
+SMITH      SM
+ALLEN      AL
+WARD       WA
+JONES      JO
+MARTIN     MAR
+BLAKE      BL
+CLARK      CL
+SCOTT      SC
+KING       KI
+TURNER     TUR
+ADAMS      AD
+JAMES      JA
+FORD       FO
+MILLER     MIL
+
+14 rows selected.
+```
+
+### Find Second half of the ename. (Ex: [Smith => ith], [Turner => ner], [King => ng])
+```sql
+SQL> SELECT ENAME, SUBSTR(ENAME, LENGTH(ENAME)/2 + 1) AS SECOND_HALF
+  2  FROM EMP;
+
+ENAME      SECOND_HAL
+---------- ----------
+SMITH      ITH
+ALLEN      LEN
+WARD       RD
+JONES      NES
+MARTIN     TIN
+BLAKE      AKE
+CLARK      ARK
+SCOTT      OTT
+KING       NG
+TURNER     NER
+ADAMS      AMS
+JAMES      MES
+FORD       RD
+MILLER     LER
+
+14 rows selected.
+```
+>In SUBSTR we know we have to give three parameters, 1st is string, 2nd is position and 3rd is length, why in this we are only giving two parameters?
+
+```SQL
+--In Oracle SQL, the 3rd parameter (length) in SUBSTR is optional.
+
+--If you provide the length → it extracts that many characters.
+--If you omit the length → it extracts from the given position till the end of the string automatically.
+
+--Example:
+
+SUBSTR('TURNER', 4)       -- returns 'NER' (from position 4 to end)
+SUBSTR('TURNER', 4, 2)    -- returns 'NE'  (from position 4, only 2 chars)
+
+--So in the second half query:
+
+SUBSTR(ENAME, LENGTH(ENAME)/2 + 1)
+--We don't need to specify the length because we simply want everything from the midpoint to the end — omitting the 3rd parameter does exactly that.
+
+```
 
 ---
 
