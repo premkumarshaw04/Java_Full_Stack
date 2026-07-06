@@ -469,11 +469,70 @@ SMITH      FORD
 
 ## Queries:
 
-1. 
+### 1. Display emp name, emp salary, manager name, manager salary where employee earning salary is greater than manager salary.
+```sql
+
+```
+
+### 2. Display emp name, employee job, manager name, manager job where employee's job is Salesman and Clerk.
+```sql
+
+```
+
+### 3. Display employee name, emp salary, emp job, manager name, manager sal, manager job where manager job is manager.
+```sql
+
+```
+
+### 4. Display emp name, emp commission, manager name, manager commission where emp is not earning any commission (include 0 also).
+```sql
+
+```
+
+### 5. Display emp name, emp dept no, manager name, manager dept no, where manager's dept no is 20.
+```sql
+
+```
+
+### 6. Display emp name, emp location, manager name, manager location.
+```sql
+
+```
+
+### 7. Display emp name, emp salary, emp grade, manager name, manager salary, manager's grade.
+```sql
+
+```
+
+### 8. Display emp name, emp location, emp salary, emp grade, manager name, manager location, manager grade.
+```sql
+
+```
+
+### 9. Display emp name, manager name and their manager name.
+```sql
+
+```
+
+### 10. Display emp name, emp location, manager name, manager location and their manager location.
+```sql
+
+```
+
+### 11. Display emp name, salary, grade, manager name, manager salary, manger grade and their manager name, salary grade.
+```sql
+
+```
+
+### 12. Display emp name, salary, grade, location,  manager name, salary, grade, location and their manager name, salary, grade, location.
+```sql
+
+```
+
 
 
 ---
-# Outer Join
+# 5. Outer Join [IMPORTANT]
 
 ```sql
 --Types of Outer Join:
@@ -615,9 +674,21 @@ SQL> SELECT * FROM STUDENT FULL JOIN SUBJECT
 ## Queries based On Outer Join:
 
 ### 1. Display all the student name with subject name, consider the student even if he is not registered to any subject also.
+```sql
+
+```
 
 ### 2. Display student name, Subject name and consider the subject even if no students are registered also.
+```sql
+
+```
 
 ### 3. Find the student name where student is not registered to any subject.
- 
+```sql
+
+```
+
 ### 4. Find the subjects where no students are registered.
+```sql
+
+```
