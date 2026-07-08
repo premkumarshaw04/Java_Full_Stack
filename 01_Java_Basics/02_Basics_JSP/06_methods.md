@@ -311,3 +311,157 @@ class Program13
 //Returned value : true
 
 ```
+
+--- 
+
+# Day 3
+
+```java
+class Program14
+{
+	static double calculateInterest(double principle, int tenure, double rate)
+	{
+		double simpleInterest = (principle * tenure * rate) / 100;
+		return simpleInterest;
+	}
+	public static void main(String[] args)
+	{
+		double result = calculateInterest(100000.0, 3, 11.5);
+		System.out.println("Result : " +result);
+		System.out.println("Result : " + calculateInterest(500000.0, 20, 7.5));
+	}
+}
+//Output:
+//Result : 34500.0
+//Result : 750000.0
+```
+
+```java
+class Program15
+{
+	static double generateElectricityBill(int units)
+	{
+		if(units <= 100){
+			return 0.0;
+		}
+		else{
+			double billAmount = units * 5.8;
+			double gst = billAmount * 0.18;//18% GST
+			double totalBill = billAmount + gst;
+			return totalBill;
+		}
+	}
+	public static void main(String[] args)
+	{
+		System.out.println("Pavan's House : " + generateElectricityBill(100));
+		System.out.println("Girish's House : " + generateElectricityBill(500));
+		
+	}
+}
+//Output:
+//Pavan's House : 0.0
+//Girish's House : 3422.0
+```
+
+```java
+class Program16
+{
+	static double calculateFare(int kilometers, char modeOfTransport)
+	{
+		double fare = 0.0;
+		switch(modeOfTransport)
+		{
+			case 'C' : 
+			fare = kilometers * 18;
+			break;
+			case 'A' :
+			fare = kilometers * 12;
+			break;
+			case 'B' :
+			fare = kilometers * 10;
+			break;
+		}
+		double gst = fare * 0.18;
+		double totalFare = fare + gst;
+		return totalFare;
+	}
+	
+	public static void main(String[] args)
+	{
+		System.out.println("Total Fare : " + calculateFare(10, 'C'));
+		System.out.println("Total Fare : " + calculateFare(13, 'A'));
+		System.out.println("Total Fare : " + calculateFare(20, 'B'));
+	}
+}
+//Output:
+//Total Fare : 212.4
+//Total Fare : 184.07999999999998
+//Total Fare : 236.0
+
+```
+
+```java
+class Program17
+{
+	static int square(int n){
+		int sq = n*n;
+		return sq;
+	}
+	public static void main(String[] args)
+	{
+		for(int a = 1;a <= 5;a++){
+			System.out.println(a+" Square : " + square(a));
+		}
+	}
+}
+//Output:
+//1 Square : 1
+//2 Square : 4
+//3 Square : 9
+//4 Square : 16
+//5 Square : 25
+```
+
+```java
+class Factorial
+{
+	static int findFact(int n){
+		int fact = 1;
+		while(n > 1){
+			fact = fact * n;
+			n--;
+		}
+		return fact;
+	}
+	
+	public static void main(String[] args)
+	{
+		for(int a = 1;a <= 5;a++){
+			System.out.println(a+" Factorial : " + findFact(a));
+		}
+	}
+}
+//Output:
+//1 Factorial : 1
+//2 Factorial : 2
+//3 Factorial : 6
+//4 Factorial : 24
+//5 Factorial : 120
+```
+
+```java
+//1. Write a Java program to find all the prime numbers from 1 to 100 using methods.
+
+
+```
+
+```java
+//2. Calculate Swiggy bill 
+total amount < 250   => add delivery fees 30
+total amount > 250   => delivery free
+
+Add : 
+GSt 18%
+handling fee : 5rs
+platfrom fee : 2rs
+```
