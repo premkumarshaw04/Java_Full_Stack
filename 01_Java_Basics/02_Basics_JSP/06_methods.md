@@ -465,3 +465,85 @@ GSt 18%
 handling fee : 5rs
 platfrom fee : 2rs
 ```
+
+---
+
+# Day 4 | Recursion in Methods
+
+```java
+class RecursionExample1
+{
+	static void display(int num)
+	{
+		System.out.println(num);
+		if(num < 5)
+		{
+			num++;
+			display(num);
+		}
+	}
+	public static void main(String[] args)
+	{
+		display(1);
+	}
+}
+//Output:
+//1
+//2
+//3
+//4
+//5
+```
+
+```java
+class RecursionExample2
+{
+	static void display(int num)
+	{
+		System.out.println(num);
+		if(num > 1)
+			
+		{
+			num--;
+			display(num);
+		}
+	}
+	public static void main(String[] args)
+	{
+		display(5);
+	}
+}
+//Output:
+//5
+//4
+//3
+//2
+//1
+```
+
+```java
+class FindFactorial
+{
+	static void findFact(int n, int fact)
+	{
+		fact = fact * n;
+		if(n>1){
+			n--;
+			findFact(n, fact);
+		}
+		else{
+			System.out.println("Factorial : " + fact);
+		}
+	}
+	public static void main(String[] args)
+	{
+		findFact(5, 1);
+	}
+}
+//Output:
+//Factorial : 120
+```
+
+
+
+
