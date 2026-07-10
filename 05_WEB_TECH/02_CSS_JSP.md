@@ -228,4 +228,152 @@ deg (Degree): A unit used to specify angles, commonly with CSS functions like ro
 
 ---
 
+# Day 5 | Box Model
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            height: 200px;
+            width: 200px;
+            background-color: red;
+            color: white;
+
+            /* PADDING  */
+            /* padding-top: 10px;
+            padding-right: 20px;
+            padding-bottom: 30px;
+            padding-left: 40px; */
+            /* padding: 30px; */
+
+            /* BORDER  */
+            /* border-width: 3px;
+            border-style: groove;
+            border-color: red; */
+            border: 3px solid green;
+
+            /* BORDER RADIUS*/
+            /* border-top-left-radius: 20px;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 15px; */
+            /* border-radius: 10px 20px 30px 40px; */
+
+            /* it will form a circle  */
+            /* border-radius: 50%; */
+
+            /* MARGIN  */
+            /* margin: 100px 200px 250px 20px;  */
+            
+            /* auto will only work for left and right  */
+            margin: auto;
+
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>Box Model</h1>
+    <div>hello</div>
+</body>
+</html>
+```
+
+## Designing a login form.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        body{
+            height: 100vh;
+            width: 100vw;
+            background: linear-gradient(purple,blue);
+        }
+        form{
+            height: 80vh;
+            width: 30vw;
+         background-color: #ffffff;
+         margin: 80px auto;
+         border-radius: 20px;
+         box-shadow: 0px 0px 20px white;
+        }
+     
+        #profile-container,#input-container{
+            margin: auto;
+        }
+           #profile-container{
+            height: 30%;
+            width: 90%;
+        }
+        #input-container{
+            height: 60%;
+            width: 90%;
+            margin-top: 50px;
+        }
+        #profile{
+            height: 50%;
+        }
+        #profile img{
+            height: 100%;
+            margin:20px 150px;
+        }
+        #profile-container section>p{
+            width: 100%;
+            margin: 50px 140px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+         #input-container input, #input-container button{
+            height: 30px;
+            width: 90%;
+            margin:10px 20px;
+            padding: 0px 10px;
+         }
+         #input-container button{
+            background-color: blue;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            border: none;
+         }
+    </style>
+</head>
+<body>
+    <form>
+        <div id="profile-container">
+            <section id="profile">
+                <img src="https://i.pinimg.com/564x/57/00/c0/5700c04197ee9a4372a35ef16eb78f4e.jpg" alt="">
+            </section>
+            <section>
+                <p>Please Login</p>
+            </section>
+        </div>
+        <div id="input-container">
+            <input type="text" placeholder="username">
+            <br>
+            <input type="password" placeholder="password">
+            <br>
+            <button>Login</button>
+        </div>
+    </form>
+</bodzy>
+</html>
+```
+
 

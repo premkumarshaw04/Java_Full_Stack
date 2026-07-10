@@ -502,7 +502,6 @@ class RecursionExample2
 	{
 		System.out.println(num);
 		if(num > 1)
-			
 		{
 			num--;
 			display(num);
