@@ -130,10 +130,13 @@ class Program6
 //Sum: 65
 ```
 
-```java
+```
+//Homework: 
+
 //int[] arr = {12,15,13,16,14,17,18};
 
-/*1. Print only even Number.
+/*
+1. Print only even Number.
 2. Print Only odd numbers. 
 3. Print Only numbers divisible by 2 or 3.
 4. Find Sum Of all even numbers only.
@@ -141,5 +144,141 @@ class Program6
 6. Find Avg value in array.
 */
 ```
+
+```java
+//Print only even Number.
+class Program7
+{
+	public static void main(String[] args)
+	{
+		int[] arr = {12,15,13,16,14,17,18};
+		for(int i = 0;i<arr.length;i++)
+		{
+			if(arr[i] % 2 == 0){
+				System.out.println(arr[i]);
+			}
+		}
+	}
+}
+
+//Output:
+//12
+//16
+//14
+//18
+```
+
+```java
+//Print only Odd Number.
+class Program8
+{
+	public static void main(String[] args)
+	{
+		int[] arr = {12,15,13,16,14,17,18};
+		for(int i = 0;i<arr.length;i++)
+		{
+			if(arr[i] % 2 != 0){
+				System.out.println(arr[i]);
+			}
+		}
+	}
+}
+//Output:
+//15
+//13
+//17
+```
+
+```java
+//Print Only numbers divisible by 2 or 3.
+
+class Program9
+{
+	public static void main(String[] args)
+	{
+		int[] arr = {12,15,13,16,14,17,18};
+		
+		for(int i = 0;i<arr.length;i++)
+		{
+			if(arr[i] % 2 == 0 || arr[i] % 3 == 0){
+				System.out.println(arr[i]);
+			}
+		}
+	}
+}
+//Output:
+//12
+//15
+//16
+//14
+//18
+```
+
+```java
+//Find Sum Of all even numbers only.
+class Program10
+{
+	public static void main(String[] args)
+	{
+		int[] arr = {12,15,13,16,14,17,18};
+		int sum = 0;
+		for(int i = 0;i<arr.length;i++)
+		{
+			if(arr[i] % 2 == 0){
+				sum = sum + arr[i];
+			}
+		}
+		System.out.println("Sum : " + sum);
+	}
+}
+
+//Output:
+//Sum : 60
+```
+
+```java
+//Find Sum Of all odd numbers only.
+class Program11
+{
+	public static void main(String[] args)
+	{
+		int[] arr = {12,15,13,16,14,17,18};
+		int sum = 0;
+		for(int i = 0;i<arr.length;i++)
+		{
+			if(arr[i] % 2 != 0){
+				sum = sum + arr[i];
+			}
+		}
+		System.out.println("Sum : " + sum);
+	}
+}
+
+//Output:
+//Sum : 45
+```
+
+```java
+//Find Avg value in array.
+class Program12
+{
+	public static void main(String[] args)
+	{
+		int[] arr = {12,15,13,16,14,17,18};
+		
+		int sum = 0;
+		for(int i = 0;i<arr.length;i++)
+		{
+			sum = sum + arr[i];
+		}
+		double avg = sum / arr.length;
+		System.out.println("Average: " + avg);
+	}
+}
+
+//Output:
+//Average: 15.0
+```
+
 
 

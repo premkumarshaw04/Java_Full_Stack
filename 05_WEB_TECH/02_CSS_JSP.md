@@ -376,4 +376,96 @@ deg (Degree): A unit used to specify angles, commonly with CSS functions like ro
 </html>
 ```
 
+---
 
+# Day 6: Flex Properties
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            background-color: red;
+            color: white;
+            display: inline;
+        }
+        span{
+            background-color: green;
+            color: white;
+            display: block;
+        }
+        p{
+            background-color: blue;
+            color: white;
+            display: inline-block;
+        }
+        button{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>Hello</div>
+    <span>Hello</span>
+    <p>Hello</p>
+    <button>click</button>
+</body>
+</html>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #parent{
+            height: 85vh;
+            width: 65vw;
+            border: 1px solid;
+            display: flex;
+            flex-direction: row;
+            align-items: start;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        #child{
+            height: 80px;
+            width: 80px;
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div id="child">1</div>
+        <div id="child">2</div>
+        <div id="child">3</div>
+        <div id="child">4</div>
+        <div id="child">5</div>
+        <div id="child">6</div>
+        <div id="child">7</div>
+        <div id="child">8</div>
+        <div id="child">9</div>
+        <div id="child">10</div>
+        <div id="child">11</div>
+        <div id="child">12</div>
+        <div id="child">13</div>
+        <div id="child">14</div>
+        <div id="child">15</div>
+        <div id="child">16</div>
+        <div id="child">17</div>
+        <div id="child">18</div>
+        <div id="child">19</div>
+        <div id="child">20</div>
+    </div>
+</body>
+</html>
+```
