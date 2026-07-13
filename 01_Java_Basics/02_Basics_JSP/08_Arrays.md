@@ -280,5 +280,121 @@ class Program12
 //Average: 15.0
 ```
 
+---
+
+# Day 2 | Some logical Programs on Arrays
+
+```java
+//Find largest element in array.
+class Program1
+{
+	public static void main(String[] args)
+	{
+		int[] arr = {12,15,13,17,19,16};
+		int large = arr[0];
+		for(int i = 1;i<arr.length;i++){
+			if(arr[i] > large){
+				large = arr[i];
+			}
+		}
+		System.out.println("Largest Element: " + large);
+	}
+}
+//Output:
+//Largest Element: 19
+```
+
+```java
+//Find Smallest Element in array.
+class Program2
+{
+	public static void main(String[] args)
+	{
+		int[] arr = {12,15,13,17,19,16};
+		int small = arr[0];
+		for(int i = 1;i<arr.length;i++){
+			if(arr[i] < small){
+				small = arr[i];
+			}
+		}
+		System.out.println("Smallest Element: " + small);
+	}
+}
+//Output:
+//Smallest Element: 12
+```
+
+```java
+//Search Operation with Brute Force
+
+class Program3
+{
+	public static void main(String[] args)
+	{
+		int[] arr = {13,16,11,15,14,11,17};
+		int element = 14;
+		boolean flag = false;
+		for(int i = 0;i<arr.length;i++){
+			if(arr[i] == element){
+				System.out.println(element+" found at index "+i);
+				flag = true;
+			}
+		}
+		if(flag == false){
+			System.out.println(element+" not found in array.");
+		}
+	}
+}
+//Output:
+//14 found at index 4
+```
+
+```java
+//Sorting
+//This example is the Combination of Bubble sort and Selection Sort.
+
+class Program4
+{
+	public static void main(String[] args)
+	{
+		int[] arr = {15,13,17,16,15};
+		//Part-1
+		System.out.println("Before Sorting: ");
+		for(int i = 0;i<arr.length;i++){
+			System.out.println(arr[i]);
+		}
+		//Part-2
+		for(int i = 0;i<arr.length;i++){
+			for(int j = i+1;j<arr.length;j++){
+				if(arr[i] > arr[j]){
+					int temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
+				}
+			}
+		}
+		//Part-3
+		System.out.println("After Sorting: ");
+		for(int i = 0;i<arr.length;i++){
+			System.out.println(arr[i]);
+		}
+	}
+}
+//Output:
+//Before Sorting:
+//15
+//13
+//17
+//16
+//15
+//After Sorting:
+//13
+//15
+//15
+//16
+//17
+```
+---
+
 
 
