@@ -199,15 +199,80 @@ class Program7
 ```
 
 ```java
-
+//toUpperCase(), toLowerCase()
+class Program8{
+	public static void main(String[] args)
+	{
+		String str = "Java_SE26";
+		System.out.println(str.toUpperCase());//JAVA_SE26
+		System.out.println(str.toLowerCase());//java_se26
+		System.out.println(str);//Java_SE26//Original String
+	}
+}
+//Output:
+//JAVA_SE26
+//java_se26
+//Java_SE26
 ```
 
 ```java
-
+//substring
+class Program9{
+	public static void main(String[] args)
+	{
+		String str = "Developer";
+		System.out.println(str.substring(6));//per
+		System.out.println(str.substring(4));//loper
+		
+		//upto 8, means index 8 is not included.
+		System.out.println(str.substring(3,8));//elope
+		
+		//upto 7, means index 7 is not included.
+		System.out.println(str.substring(0,7));//Develop
+	}
+}
+//Output:
+//per
+//loper
+//elope
+//Develop
 ```
 
 ```java
+//trim()
+class program10
+{
+	public static void main(String[] args)
+	{
+		String str = "   Core   Java   ";
+		System.out.println("--->"+str+"<---");
+		System.out.println("--->"+str.trim()+"<---");
+	}
+}
+//Output:
+//--->   Core   Java   <---
+//--->Core   Java<---
+```
 
+```java
+//split()
+class program11
+{
+	public static void main(String[] args)
+	{
+		String str = "Qspiders Jspiders Pyspiders Prospiders";
+		String[] arr = str.split(" ");//It will split according to " "(Space).
+		
+		for(int i = 0;i<arr.length;i++){
+			System.out.println(arr[i]);
+		}
+	}
+}
+//Output:
+//Qspiders
+//Jspiders
+//Pyspiders
+//Prospiders
 ```
 
 
