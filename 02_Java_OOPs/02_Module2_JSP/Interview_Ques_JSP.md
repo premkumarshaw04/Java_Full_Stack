@@ -1,1 +1,0 @@
-1.What is Public static void main (string[] args) in java.
