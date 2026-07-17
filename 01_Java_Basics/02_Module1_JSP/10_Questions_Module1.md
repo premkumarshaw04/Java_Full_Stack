@@ -213,27 +213,36 @@ Pre: In case of Pre operation, first increment or decrement is done then the val
 
 ### After If how many else can be written.
 ```
-
+Only one else can be written for an if statement.
 ```
 ### After If how many else-if can be written
 ```
-
+We can write N number of else if statements.
 ```
 ### can we write else directly.
 ```
-
+No, else can be written only after an If block.
 ```
 ### can both if and else execute at the same type.
 ```
-
+No. In an if-else statement, only one block executes. If the if condition is true, the if block executes; otherwise, the else block executes. Both cannot execute at the same time.
 ```
 ### what is the use of break keyword.
 ```
+The break keyword is used to immediately terminate the current loop or switch statement and transfer control to the statement that follows it.
 
+Important points:
+Used with for, while, do-while, and switch.
+Stops further execution of the loop or switch.
 ```
 ### what is the use of default in Switch.
 ```
+The default case in a switch statement is used to execute a block of code when none of the case values match the given expression.
 
+Important points:
+default acts like the else part of a switch statement.
+It is optional.
+It executes only when no matching case is found.
 ```
 ### Difference between For and While.
 ```
@@ -260,34 +269,109 @@ Pre: In case of Pre operation, first increment or decrement is done then the val
 
 ### What are Methods.
 ```
-
+A method is named block of code that is reusable in nature.
+i. A method should always be declared directly in the class body.
+ii. A method gets executed only when it is called.
+iii. Once a method is created , it can be called n number of times.
+iv. we can declare multiple methods in a class based on our requirements.
+v. Methods are also known as Funstions.
+vi. Methods make the program modular in nature making it easy to read, understand and modify. 
 ```
 ### Explain passing values
 ```
+i. Passing value is the concept of sending values from calling method to called method.
+ii. We can pass values with the help of arguments.
+iii. In arguments we have two types:
+    a. Formal Arguments: These are variables that are created in the method declaration.
+    b. Actual Arguments: These are values that are provided when method is called.
+iv. The programmer can pass multiple values at the same time by declaring multiple arguments.
+v. When declaring multiple arguments the formal and actual arguments are separated by using comma.
+vi. It is programmer's responsibility to pass arguments of the correct type, length and sequence.
 
 ```
 ### Explain Returning values
 ```
+Returning value is the concept of sending value from called method back to calling method.
+-> to return a value, the programmer has to follow three steps:
+i. Declare return type based on value to be returned.
+ii. Return a compatible value using return keyword.
+iii. Capture the returned value inside calling method.
 
-```
-### what is Recursion in Methods
-```
+Note:
+If the calling method fails to capture the returned value, the returned value will be considered as 
+considered as lost.
 
+If the return type of method is void, it indicates that the current method does not return any value
+to the calling method. we can write return but we can not give any value. 
+```
+### what is Recursion in Methods.
+```java
+//Recursion is a process in which a method calls itself repeatedly until a terminating condition (base case) is reached.
+
+//A method or methods are said to be in recursion in the following Scenarios:
+
+//Scenario 1:
+//In scenario 1, the called method makes a call back to its own calling method.
+
+class Demo{
+    static void test(){
+        System.out.println("test()......");
+        disp();
+    }
+    static void disp(){
+        System.out.println("disp()......");
+        test();
+    }
+}
+
+
+//Scenario 2:
+//In scenario 2, the currently executing method call to itself
+
+class Sample{
+    Static void play(){
+        System.out.println("play().....");
+        play();
+    }
+}
+
+If recursion is not controlled it will lead to Stack overflow error.
 ```
 
 ## =>Scanner
 ### What is Scanner? Explain How to use Scanner.
 ```
+It is a inbuilt program of Java liabrary.
 
+The programmer can make use of Scanner to read User input, during program execution.
+
+to make use of Scanner the programmer has to follow three steps:
+i. import Scanner from 'java.util' package.
+ii. Create an object of Scanner.
+iii. Read Values by calling the predefined methods of Scanner.
 ```
 
 ## =>Arrays
 ### What are Arrays.
 ```
+An array is a finite set of homogeneous values, meaning it stores a fixed number of elements, contains a group of values, and all the elements in the array are of the same data type.
+
+In java the programmer can create arrays in two ways:
+i. Using Dimmensions
+ii. Using array initializers
+
+i. Using Dimmensions: In this Approach array is created by providing the datatype and size of the array.
+Syntax: datatype[] variableName = new datatype[int size]
+example: int[] arr1 = new int[6];
+
+ii. Using array initializers: 
+In this approach array is created by providing the datatype and actual values.
+Syntax: datatype[] variableName = {val1, val2, val3......valN};
+ex: double cgpa = {7.5, 8.5, 8.9, 7.9, 8.3, 8.5};
 
 ```
 ### when do we get ArrayIndexOutOfBoundsExeception.
 ```
-
+If we try to access an invalid index in the array, it will lead to a Runtime failure(Exception) known as ArrayIndexOutOfBoundsExeception.
 ```
 
