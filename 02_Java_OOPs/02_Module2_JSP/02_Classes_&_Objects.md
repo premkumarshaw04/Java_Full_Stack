@@ -189,3 +189,100 @@ public class MainClass5{
 //Person is eating. His age is 23 His gender is F
 //Person is talking. His age is 23 His gender is F
 ```
+
+---
+
+```java
+class Actor
+{
+	void acting(){
+		System.out.println("Actor is Acting");
+	}
+}
+public class Program1
+{
+	public static void main(String[] args)
+	{
+		Actor a1 = new Actor();
+		System.out.println(a1);
+		a1.acting();
+		System.out.println("----------------------");
+		Actor a2 = null;
+		System.out.println(a2);
+		a2.acting();//NullPointerException
+	}
+}
+//Output
+//Actor@251a69d7
+//Actor is Acting
+//----------------------
+//null
+//Exception in thread "main" java.lang.NullPointerException: Cannot invoke "Actor.acting()" because "<local2>" is null
+//       at Program1.main(Program1.java:17)
+```
+
+```java
+//Deep Copies
+class Player
+{
+	String name = "Kohli";
+}
+public class Program2
+{
+	public static void main(String[] args)
+	{
+		Player p1 = new Player();
+		Player p2 = new Player();
+		System.out.println(p1.name);//Kohli
+		System.out.println(p2.name);//Kohli
+		p1.name = "Rohit";//Name Updated
+		System.out.println(p1.name);//Rohit
+		System.out.println(p2.name);//Kohli
+		
+	}
+}
+//Output
+//Kohli
+//Kohli
+//Rohit
+//Kohli
+
+//Note:
+//new object will only be created if new keyword is used. 
+//In the above program we used "new" keyword twice.
+//It means two objects p1 and p2 is created.
+```
+
+```java
+//Shallow Copies
+class Laptop
+{
+	String wallpaper = "Alia.jpeg";
+}
+public class Program3
+{
+	public static void main(String[] args)
+	{
+		Laptop l1 = new Laptop();
+		Laptop l2 = l1;
+		System.out.println(l1.wallpaper);//Alia.jpeg
+		System.out.println(l2.wallpaper);//Alia.jpeg
+		l1.wallpaper = "Kiara.jpeg";//wallpaper Updated
+		System.out.println(l1.wallpaper);//Kiara.jpeg
+		System.out.println(l2.wallpaper);//Kiara.jpeg
+		
+	}
+}
+//Output
+//Alia.jpeg
+//Alia.jpeg
+//Kiara.jpeg
+//Kiara.jpeg
+
+
+//Note:
+//New object will only be created if new keyword is used. 
+//In the above program we used "new" keyword only once.
+//It means only one object l1 is created and other one (l2) is reference varaible.
+```
+
