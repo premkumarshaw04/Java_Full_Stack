@@ -1,4 +1,4 @@
-# Interview Questions.
+# Interview Questions:
 
 ### What is class.
 ```
@@ -30,10 +30,12 @@
 ```
 
 ```
+
 ### What is non primitive Variable.
 ```
 
 ```
+
 ### What is NULL? When do we get NullPointerException?
 ```
 
@@ -43,6 +45,7 @@
 ```
 
 ```
+
 ### Difference between static and non static blocks.
 ```
 
