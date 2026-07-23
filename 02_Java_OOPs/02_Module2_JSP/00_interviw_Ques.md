@@ -43,3 +43,8 @@
 ```
 
 ```
+### Difference between static and non static blocks.
+```
+
+```
+
