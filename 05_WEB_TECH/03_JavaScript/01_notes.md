@@ -125,3 +125,97 @@ do{
     res++;
 }while(res > 1)
 ```
+---
+
+# Day 4:  Functions
+
+Named block of code, which executes some tasks when we invoke them.  
+We can invoke the function s n number of times.
+
+Why we use:  
+mainly used for reduce code complexity and make the code reusable.  
+
+## Declare a function in JavaScript :
+
+```js
+// Normal(Named) function--------------------------------
+// The function which is created by function keyword and having its own name, 
+// that function is called named function.
+function jsp(){
+    console.log("We will get Job soon.");
+    
+}
+
+//Parameterized function---------------------------------
+//Parameters: the variables which we take during function declaration
+//Arguments: the values which we pass to the function's parameters, are called as arguments.
+
+function add(a, b){
+    console.log(a+b);   
+}
+
+// add(100, 200) //300
+//add() //NaN
+add(100) //NaN
+
+//Keeping some default values-----------------------------
+function product(a, b=10){
+    console.log(a*b);   
+}
+
+product(100) //1000
+product(100, 20)//2000
+product(100, undefined)//1000
+//undefined is also a default value but b=10 is highest priority than undefined.
+
+product(100, null) //0
+
+
+//return statement-----------------------------
+//if the result we want to reuse then we will go for return statement
+function Sub(a, b){
+    return a-b   
+    //after return statement no code will be execute
+    console.log("Subtraction");//It will not be executed
+    
+}
+
+//handling return values-----------------------
+//first way : Recommended
+let result = Sub(100, 50)
+console.log(result);
+
+//second way
+console.log(Sub(200, 100));
+
+//If the function is not returning anything, the default return type of the function will be undefined.---------------------
+function undef(a){
+    return
+    5
+}
+let res = undef(10)
+console.log(res);
+
+//Anonymous Function ----------------------------------------------
+// Its an unkown function: The function which is declared using function keyword without any function Name.
+//To invoke this function:  Store entire function in a variable.
+let anonym = function(a, b){
+    console.log("Anonymous function");
+    console.log(a-b)
+    return a+b
+    
+}
+
+anonym(10, 20) //-10
+// console.log(anonym(10, 20))//30
+
+// Output:
+// Anonymous function
+// -10
+
+// Anonymous function
+// -10
+// 30
+
+```
+
