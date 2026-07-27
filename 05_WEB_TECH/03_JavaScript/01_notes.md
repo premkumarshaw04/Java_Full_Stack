@@ -221,14 +221,81 @@ anonym(10, 20) //-10
 ---
 
 
-# Day 5 
-
-## Arrow function
+# Day 5 | Arrow function
 
 Simplest Shortest function  
 Invoke it by storing it in a variable.  
 introduced in ES-6 version in 2015  
-Itr will best for call backs
+It will best for call backs
 
-## Characteristics of Arrow functions: 
+## Characteristics of Arrow functions:
+```js
+// 1. In case of no parameters: 
+// ()=>{}
 
+// 2. In case of single parameter, parenthesis are optional
+// a=>{}
+
+// 3. In case of multiple parameters, parenthesis are mandatory
+// let arrow3 = (a,b) => {console.log(a+b)}
+// arrow3(10, 20)
+
+// 4. Implicit return: It will work only when you have one line expression
+// let arrow4 = (a,b) => a+b
+// console.log(arrow4(10, 20))
+
+// 5. Explicit return (When we want to use return keyword manually): it should must be enclosed with in curly braces [Most Important]
+// let arrow5 = (a,b) => {
+//     console.log(a);
+//     console.log(b);
+//     return a+b;
+// }
+// console.log(arrow5(10,20));
+```
+
+
+## Drawbacks/Failure/Limitations of Arrow Functions  
+```js
+//1. Arrow function can not use this keyword
+// Use of this keyword: Point to the current object 
+
+//2.We can not use arrow functions as Constructors
+//3.arrow functions will not support arrow functions.
+
+
+// How to find the length of the function
+// let arrow5 = (a,b) => { //no fo parameters will be the length of the function
+//     //If you have default values thenit will not considered as length 
+//     console.log(a);
+//     console.log(b);
+//     return a+b;
+// }
+// console.log(arrow5(10,20));
+// console.log(arrow5.length); //2// beacuse we have a, b as patrameters
+```
+
+
+# Day 6 | IIFE function
+IIFE : Immedietely invoked Function expression   
+it will execute only once in its lifetime   
+>The function which is wrapped inside paraenthesis and executes immedietly after its declaration, that function is known as IIFE function.  
+>Syntax: ()()
+We have to terminate previous code by using ; (Semi colon) before IIfE function
+
+```js
+
+//? IIFE using Arrow function
+// After wrapping the whole function in brackets then it will become IIFE function 
+(()=>{
+    console.log("IIFE using Arrow function")
+    
+})(); //Before IIFE function Semi colon is mandatory for previous function
+//! Here ; (Semi colon is must, without semicolon compiler will treat both IIFE funstion as one entity)
+
+//? IIFE using Annonymous function
+(function (){
+    console.log("IIFE using Arrow function")
+})();
+
+
+```
