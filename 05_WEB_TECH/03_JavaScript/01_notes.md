@@ -220,3 +220,15 @@ anonym(10, 20) //-10
 ```
 ---
 
+
+# Day 5 
+
+## Arrow function
+
+Simplest Shortest function  
+Invoke it by storing it in a variable.  
+introduced in ES-6 version in 2015  
+Itr will best for call backs
+
+## Characteristics of Arrow functions: 
+
