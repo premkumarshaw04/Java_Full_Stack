@@ -299,3 +299,105 @@ We have to terminate previous code by using ; (Semi colon) before IIfE function
 
 
 ```
+
+
+# Day 7 |  Higher Order function | MOST IMPORTANT
+
+>The function which accepts another function as an arguments.  
+> The function which returns Another Function
+
+```js
+//----------------------Best Example: Use this example in interviews-----------
+function greet(name){
+    return ()=>{
+        console.log("Good Night" + name);
+    }
+}
+let func = greet("JSP Students")
+func();
+```
+
+```js
+function operation(a,b,op){ //third parameter is accepting a function here
+    console.log("We are about to perform some operation.")
+
+    // console.log(op)
+    // Output:
+    // ƒ add(x,y){
+    // console.log(x+y)
+    //}
+
+    // op(100, 200) //300
+
+    op(a,b) //30 // We can pass parameters as arguments also.
+}
+
+function add(x,y){
+    console.log(x+y)
+}
+
+operation(10, 20, add) //we are passing add function as arguments
+
+
+//--------------------------------------------------------------------------
+// Function which returns another function 
+function add(a){
+    return b=>{
+        console.log(a+b);
+    }
+}
+let res = add(10)
+res(20) //Output : 30
+
+```
+
+## CallBack Function :
+> the function which we pass as an argument to another function is called as callBack function  
+> Same example of Higher order function can be used for CallBack function also
+```js
+//----------------------Best Example: Use this example in interviews-----------
+function greet(name){
+    return ()=>{
+        console.log("Good Night" + name);
+    }
+}
+let func = greet("JSP Students")
+func();
+```
+
+# Nested function
+>Function inside another function
+```js
+//Nested Function
+function outer(){
+    console.log("Outer Executed")
+    function inner(){
+        console.log("Inner function Executed");
+        
+    }
+    inner()
+}
+outer()
+
+//Output:
+//Outer Executed
+//Inner function Executed
+```
+
+## GEC : Global Execution Context | Important
+
+>Browser understands only one laguage which is HTML.  
+> chrome: v8 [Js Engine]  [internally chrome has v8 engine]  
+> Edge: Checkra --> v8  
+> firefox: SpiderMonkey  
+> safari: Js Nitro
+
+> JS file executes two times :  
+> i. Declaration phase  
+>ii. Code Execution phase
+
+## FEC : Functions Execution Context
+this are is called as local Area for function Participants.
+
+
+# Day 8 | 
