@@ -400,4 +400,56 @@ outer()
 this are is called as local Area for function Participants.
 
 
-# Day 8 | 
+# Day 8 | Closure | MOST IMPORTANT
+
+```js
+//Closure
+function outer(){
+    let name = "JSP"
+    function inner(){
+        return "Hello "+ name
+    }
+    return inner
+}
+let res = outer()
+console.log(res())
+console.log(res())
+console.log(res())
+```
+
+```js
+//Counter Example using Closure
+function counter(){
+    let count = 0
+    return ()=>{
+        console.log(count)
+        count++
+    }
+}
+let result = counter()
+result()
+result()
+result()
+result()
+```
+
+```js
+let company = "JSpiders"
+function institute(){
+    let trainer = "Srinivas"
+    function concept(){
+        let topic = "Closure"
+        console.log(topic);
+        console.log(trainer);
+        console.log(company);   
+        console.log(`We are disscussing ${topic} in ${company} from ${trainer} sir.`);   
+    }
+    concept()
+}
+institute()
+
+// Closure
+// Srinivas
+// JSpiders
+// We are disscussing Closure in JSpiders from Srinivas sir.
+```
