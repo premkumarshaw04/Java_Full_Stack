@@ -453,3 +453,73 @@ institute()
 // JSpiders
 // We are disscussing Closure in JSpiders from Srinivas sir.
 ```
+---
+
+# Arrays
+
+It is a non premitive data type  
+It stores both homogenous and heterogenous  
+It is dynamic in nature(No fixed length)  
+It is mutable in nature  
+Stores data based on indices  
+Index starts from 0
+
+## Declaration 
+
+```js
+//Declaration
+// 1. By using literals []
+let arr = [10,20.5,true, null, undefined, {}, ()=>{}, [], 34.6, 45n, "Jspiders"]
+console.log(arr)
+console.log(arr.length);
+console.log(arr[0]);
+console.log(arr[10]);
+console.log(arr[100]);
+
+arr[0] = "HTML"
+arr[5] = 1000
+delete arr[0]
+delete arr[10]
+console.log(arr);
+
+
+// 2. By using "new keyword"
+
+// let arr2 = new Array(10) //when we pass one number, it will be treated as length of array
+// let arr2 = new Array("10") //now it will be treated as element of array
+
+let arr2 = new Array(true,10,30,50)
+console.log(arr2);
+console.log(arr2.length);
+
+```
+
+## Methods in Array
+```js
+
+//! Mutating Methods of Array: All these methods will affect my original Array
+
+//?1. push : Adds element at the end of the original array
+// return type of push method : length of the original Array
+
+let arr = [10,20,30,40]
+// arr.push(100,200,300,"js","abcd")
+// console.log(arr.push(1000,2000,3000)) //returns length
+console.log(arr);
+
+//? 2. pop: Always removes from end | removes only one element at a time.
+arr.pop()
+arr.pop()
+// arr.pop(5) //arguments are not allowed in pop method
+console.log(arr);
+
+//? 3. unshift : It always add the elements to the starting
+arr.unshift(10000)
+console.log(arr);
+
+//? 4. shift : It always removes the elements from the starting
+arr.shift()
+console.log(arr);
+
+```
+
