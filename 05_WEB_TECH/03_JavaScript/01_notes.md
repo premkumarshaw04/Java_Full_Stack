@@ -521,5 +521,31 @@ console.log(arr);
 arr.shift()
 console.log(arr);
 
+//? 5. Splice
+let arr = [10,20,30,40,50]
+console.log(arr.splice(2));
+// console.log(arr.splice(2,2));
+// console.log(arr.splice(1,3,100,200,300,400,500));
+// console.log(arr.splice(2,0,1000,2000,3000));
+console.log(arr);
+
+
+//? sort():
+let names = ["Karthik", "Rahul", "Manjay", "Guudu", "Ronak", "Raj","Prem", "Ranjit"]
+console.log(names.sort());
+
+let nums = [1,20,100,3,50,500,7,9,1000,11]
+console.log(nums.sort((a,b)=>a-b))
+//console.log(nums.sort((a,b)=>b-a))
+
+//? reverse():
+console.log(names.sort().reverse())
+console.log(nums.sort().reverse())
+```
+
+# Array Non Mutating Methods
+
+```js
+
 ```
 
