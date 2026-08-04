@@ -547,5 +547,99 @@ console.log(nums.sort().reverse())
 
 ```js
 
+//! Array Non Mutating Methods
+//? 1. indexOf()
+
+//? 2. lastIndexOf()
+
+//? 3. includes()
+
+//? 4. slice()
+
+//? 5. concat() 
+
+//? 6. at() 
+
+//? 7.flat()
+//dont count outer array, only count inner arrays.
+
+//flat the array when u dont know the depth. pass "Infinity" when u dont know the depth.
+
+//? 8. join()
+//converts array into strings
+
+//split(String method) vs join(array method)
+
+
+//Assignment: 
+
+let str = "We will buy biryani to Sreenivas Sir"
+
+
+console.log(str.split(" ").reverse().join(" "));
+//o/p 1. Sir Sreenivas to biryani buy will We
+
+console.log(str.split("").reverse().join(""));
+//o/p 2. riS savineerS ot inayrib yub lliw eW
+
+let res = str.split("").reverse().join("")
+console.log(res.split(" ").reverse().join(" "));
+//o/p 3. eW lliw yub inayrib ot savineerS riS
+
 ```
+
+---
+
+# Array Loops:
+for of : to access elements of array or strings
+for in: to access index values of arrya or strings
+
+# Array Advanced methods:
+
+## Common Points:
+1. Every Advance method except argument as call back function ||  
+Mainly we will prefer Arrow function  
+this call back function will accept minimum three arguments: 
+    element, index and array [index and array are optional]
+
+2. Call back executes on each element
+
+## lets see advanced methods 
+
+## For Each Loop:
+For Each Loop is used to perform only for iterating the elements.  
+for each does not supprot return keyword.
+if you still use return, then it will give undefined.  
+it does not support chaining because we dont have return keyword.
+
+## Find method:
+It returns only firts matching element based on the given condition.
+it does not support chaining because we dont have return type as array.
+
+## Filter methd: [Important]
+if we want multiple elements which are satisfying the given condition, then we will use Filter method  
+it returns all those matching elements as new Array.  
+if you dont provide condition, then it will filter the elements according to the truthy or falsy values. it will return  
+truthy values   
+the return type of filter method is elements.
+
+## Some method
+```
+Some returns bollean values
+at least one element should satisfy the given condition, then only it will return true, else false.
+Some always check for one true value.
+
+```
+
+## Every method 
+```
+here the condition is all elements should satisfied the condition.
+it returns false if atleast one element is not satisfying the condition.
+
+```
+
+## map [Important]
+
+## reduce [Important]
+
 
