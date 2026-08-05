@@ -639,7 +639,70 @@ it returns false if atleast one element is not satisfying the condition.
 ```
 
 ## map [Important]
+It is mailnly used to transform your original array to new array.
+
+```js
+let arr3 = [1,2,3,4,5]
+console.log(arr.map((ele)=>{
+    return ele*ele;
+}));
+
+//? [1,2,3,4,5] if ele is even cube it else square it
+console.log(arr3.map(ele=>{
+    if(ele%2 == 0){
+        return ele**3
+    }
+    else{
+        return ele**2
+    }
+}));
+```
 
 ## reduce [Important]
+```js
+let arr4 = [10,20,30,40,50]
+console.log(arr4.reduce((acc,ele)=>{
+    return ele*ele
+}));
 
+//finding sum of square of elements
+console.log(arr4.map(ele=>{
+    return ele*ele 
+}).reduce((acc,ele)=>{
+    return acc+ele
+}))
+
+//finding sum of square of elements | Another way
+console.log(arr4,reduce((acc,ele)=>{
+    return acc+ (ele*ele)
+},0));
+
+//? Finding product of the square of the elements
+console.log(arr4.reduce((acc,ele)=>{
+    return acc * (ele*ele)
+},1));
+
+```
+## Questions
+
+```js
+//find the occurrrences of each element in array
+let values = [10,'a',20,'a', 10, 'c', 30, 'd', 'c', 20, 'd', 10, 'b']       
+console.log(values.reduce((acc,ele)=>{
+    acc[ele] = (acc[ele] || 0) + 1
+    return acc
+}, {})); //Initial value passed as object
+//Output: {10: 3, 20: 2, 30: 1, a: 2, c: 2, d: 2, b: 1}
+```
+
+```js
+//? Move all zeroes to the end of the array
+let nums = [1,0,3,6,0,9,4,0,5,0,3,0,8]
+
+let nonZeroes = nums.filter(el=>el!=0)
+let zeroes = nums.filter(el=>el==0)
+console.log(nonZeroes.concat(zeroes));
+
+//Output: [1, 3, 6, 9, 4, 5, 3, 8, 0, 0, 0, 0, 0]
+```
 
