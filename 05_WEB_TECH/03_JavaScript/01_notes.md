@@ -706,3 +706,100 @@ console.log(nonZeroes.concat(zeroes));
 //Output: [1, 3, 6, 9, 4, 5, 3, 8, 0, 0, 0, 0, 0]
 ```
 
+---
+
+# Object
+
+```js
+//! Object
+
+let student = {
+    name: "Shraddha",
+    course: "Java",
+    duration: "6 Months",
+    branch: "BTM"
+}
+console.log(student);
+console.log(student.name);
+console.log(student['duration']);
+
+//Output:
+// {name: 'Shraddha', course: 'Java', duration: '6 Months', branch: 'BTM'}
+// one.js:9 Shraddha
+// one.js:10 6 Months
+
+//? Nested Object
+let person = {
+    name: "Nikhil",
+    designation: "Developer",
+    salary: 20000,
+    address: { //Nested object
+        state: "Bihar",
+        city: "Patna",
+        pincode: "745896"
+    }
+}
+
+//! Accessing
+//I want to access propeties of nested object:
+console.log(person.address.city); //Patna
+console.log(person.address.pincode); //745896
+
+//! Modification
+//? Performing basic crud operation on object
+person.name = "jaiSurya"
+person.address.state = "TamilNadu"
+console.log(person);
+
+//! Deleting the properties
+delete person.address.state
+delete person.address.pincode
+console.log(person);
+
+```
+
+## Different ways to created Objects
+
+### 1. By using literals
+
+### 2. By using new keyword
+```js
+
+```
+
+### 3. Constructor Functions : It is the old way to create objects
+```js
+// In case of creating multiple objects, this way is recommended
+// this : It points the current object
+function person1(name, age, phno, email){
+    this.name = name
+    this.age = age
+    this.phno = phno
+    this.email = email
+}
+let p1 = new person1("Prem", 22, 25689798556, 'premKumar@gmail.com')
+console.log(p1);
+// Output: person1 {name: 'Prem', age: 22, phno: 25689798556, email: 'premKumar@gmail.com'}
+
+let p2 = new person1("Shraddha", 21, 25689888556, 'shraddha@gmail.com')
+console.log(p2);
+//Output: person1 {name: 'Shraddha', age: 21, phno: 25689888556, email: 'shraddha@gmail.com'}
+
+```
+
+### 4. By using class Keyword
+```js
+class test{
+    constructor(name, age, phno,email){
+        this.name = name
+        this.age = age
+        this.phno = phno
+        this.email = email
+    }
+}
+let t1 = new test("Raj", 22, 589756464, 'raj@gmail.com')
+console.log(t1);
+//Output: test {name: 'Raj', age: 22, phno: 589756464, email: 'raj@gmail.com'}
+```
+
+
