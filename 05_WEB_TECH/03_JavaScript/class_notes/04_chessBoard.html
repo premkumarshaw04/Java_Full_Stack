@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #board {
+            height: 600px;
+            width: 600px;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+        }
+
+        .blocks {
+            height: 75px;
+            width: 75px;
+            border: 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CHESS BOARD</h1>
+
+    <script>
+        let div = document.createElement('div');
+        div.setAttribute('id', 'board');
+
+        for (let i = 1; i <= 8; i++) {
+            for (let j = 1; j <= 8; j++) {
+                let blocks = document.createElement('div');
+                blocks.classList.add('blocks');
+
+                if ((i + j) % 2 == 0) {
+                    blocks.style.backgroundColor = 'black';
+                }
+
+                div.append(blocks);
+            }
+        }
+
+        document.body.append(div);
+    </script>
+</body>
+</html>
