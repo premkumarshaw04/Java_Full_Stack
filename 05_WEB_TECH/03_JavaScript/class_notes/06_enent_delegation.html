@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let names = ["Prem", "Rahul"]
+
+        let ol = document.createElement('ol')
+        names.forEach(el=>{
+            let li = document.createElement('li')
+            li.textContent = el
+            ol.append(li)
+        })
+
+        ol.addEventListener('click', (e)=>{
+            if(e.target.tagName = "LI"){
+                console.log(`You Clicked on ${e.target.textContent}`);
+            }
+        })
+
+        let li11 = document.createElement('li')
+        li11.textContent = "ahmedam"
+        ol.append(li11)
+
+        let li12 = document.createElement('li')
+        li12.textContent = "Tejasam"
+        ol.append(li12)
+
+        document.body.append(ol)
+    </script>
+</body>
+</html>
