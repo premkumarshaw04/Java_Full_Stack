@@ -20,6 +20,26 @@ public class Question2 {
 		
 		System.out.println("=========================");
 		
+		//ii. Print the elements, here Order is necessary.
+		LinkedHashSet l1 = new LinkedHashSet();
+		l1.add("Virat");
+		l1.add("Rohit");
+		l1.add("Virat");
+		l1.add("MSD");
+		//for each loop:
+		for(Object o2: l1) {
+			System.out.println(o2);
+		}
 		
 	}
 }
+
+//Output:
+//Rohit
+//Virat
+//MSD
+//=========================
+//Virat
+//Rohit
+//MSD
+
