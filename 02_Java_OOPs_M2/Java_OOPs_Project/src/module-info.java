@@ -4,5 +4,5 @@
 /**
  * 
  */
-module Java_OOPs_Project {
+module JDBC {
 }

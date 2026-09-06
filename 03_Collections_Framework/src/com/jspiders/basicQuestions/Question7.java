@@ -1,6 +1,6 @@
 //Question 7: Sort ArrayList in descending order while removing the duplicates.
 
-package com.jspiders.intervieQuestions;
+package com.jspiders.basicQuestions;
 import java.util.*;
 
 public class Question7 {

@@ -2,7 +2,7 @@
 //iterate all the elements in forward and backward direction.
 
 
-package com.jspiders.intervieQuestions;
+package com.jspiders.basicQuestions;
 import java.util.*;
 
 public class Question1 {

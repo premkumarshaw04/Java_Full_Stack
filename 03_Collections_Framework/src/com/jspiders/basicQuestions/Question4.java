@@ -2,7 +2,7 @@
 //descendingSet() method will just give the output in reverse, we are
 //not sorting in descending order, we are just printing.
 
-package com.jspiders.intervieQuestions;
+package com.jspiders.basicQuestions;
 import java.util.*;
 
 public class Question4 {

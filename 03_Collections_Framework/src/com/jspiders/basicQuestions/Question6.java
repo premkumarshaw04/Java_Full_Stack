@@ -1,6 +1,6 @@
 //Question 6: Sort the elements in Descending Order.
 
-package com.jspiders.intervieQuestions;
+package com.jspiders.basicQuestions;
 
 import java.util.*;
 public class Question6 {

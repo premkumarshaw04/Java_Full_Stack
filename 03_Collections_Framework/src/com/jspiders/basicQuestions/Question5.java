@@ -1,6 +1,6 @@
 //Question 5: Sort the elements in Ascending and descending keeping the duplicates.
 
-package com.jspiders.intervieQuestions;
+package com.jspiders.basicQuestions;
 
 import java.util.ArrayList; //or import java.util.*;
 import java.util.Collections;

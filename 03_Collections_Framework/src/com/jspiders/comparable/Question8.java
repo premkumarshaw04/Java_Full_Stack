@@ -1,9 +1,12 @@
+
+
 //Question8 : Create a class employee, define attributes: name, company, salary, initialize using
 //constructor, store them in an arrayList.
 //i. print the attributes using for loop.
 //ii. Also sort in alphabetical Order based on name.
 
-package com.jspiders.intervieQuestions;
+
+package com.jspiders.comparable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,3 +40,4 @@ public class Question8 {
 //Raj TCS 35000.0
 //Ritesh EY 55000.0
 //Suraj Amazon 65000.0
+

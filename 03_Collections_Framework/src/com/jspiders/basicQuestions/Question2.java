@@ -2,7 +2,7 @@
 // i. Print the elements, here Order not necessary.
 // ii. Print the elements, here Order is necessary.
 
-package com.jspiders.intervieQuestions;
+package com.jspiders.basicQuestions;
 import java.util.*;
 
 public class Question2 {

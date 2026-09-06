@@ -1,33 +1,35 @@
+
+
 //Question9: Sort Laptop Object based on Price in Ascending Order.
 //Options: You can use ArrayList and TreeSet.
 
 //Second Approach : Using TreeSet
-package com.jspiders.intervieQuestions;
+package com.jspiders.comparable;
 
 import java.util.TreeSet;
 
 public class Question9a {
 
-    public static void main(String[] args) {
+  public static void main(String[] args) {
 
-        Laptop l1 = new Laptop("Dell", 55000);
-        Laptop l2 = new Laptop("HP", 45000);
-        Laptop l3 = new Laptop("Lenovo", 65000);
-        Laptop l4 = new Laptop("Asus", 40000);
-        Laptop l5 = new Laptop("Acer", 50000);
+      Laptop l1 = new Laptop("Dell", 55000);
+      Laptop l2 = new Laptop("HP", 45000);
+      Laptop l3 = new Laptop("Lenovo", 65000);
+      Laptop l4 = new Laptop("Asus", 40000);
+      Laptop l5 = new Laptop("Acer", 50000);
 
-        TreeSet<Laptop> ts = new TreeSet<Laptop>();
+      TreeSet<Laptop> ts = new TreeSet<Laptop>();
 
-        ts.add(l1);
-        ts.add(l2);
-        ts.add(l3);
-        ts.add(l4);
-        ts.add(l5);
+      ts.add(l1);
+      ts.add(l2);
+      ts.add(l3);
+      ts.add(l4);
+      ts.add(l5);
 
-        for (Laptop l : ts) {
-            System.out.println(l);
-        }
-    }
+      for (Laptop l : ts) {
+          System.out.println(l);
+      }
+  }
 }
 //Output:
 //Asus 40000.0

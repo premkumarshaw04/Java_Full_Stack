@@ -1,6 +1,6 @@
 //Question3: Print the element of set in Forward and backward direction.
 
-package com.jspiders.intervieQuestions;
+package com.jspiders.basicQuestions;
 import java.util.*;
 
 public class Question3 {

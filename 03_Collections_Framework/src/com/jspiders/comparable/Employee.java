@@ -1,10 +1,12 @@
+
+
 //Question8 : Create a class employee, define attributes: name, company, salary, initialize using
 //constructor, store them in an arrayList.
 //i. print the attributes using for loop.
 //ii. Also sort in alphabetical Order based on name.
 
 
-package com.jspiders.intervieQuestions;
+package com.jspiders.comparable;
 
 public class Employee implements Comparable<Employee>{
 	String name;
@@ -25,3 +27,4 @@ public class Employee implements Comparable<Employee>{
 		return this.name.compareTo(o.name);
 	}
 }
+
