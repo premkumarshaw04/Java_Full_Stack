@@ -1,6 +1,8 @@
-package com.jsp.demo;
+//Step 1: Load and Register Driver
 
-public class Test1 {
+package com.jsp.step1;
+
+public class Test {
 	public static void main(String[] args) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
