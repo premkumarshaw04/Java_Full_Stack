@@ -1,0 +1,39 @@
+package com.jsp.multiThreading;
+
+class SampleThread implements Runnable{//Step 1
+	@Override
+	public void run() {//Step 2
+		for(int i = 0;i<5;i++) {
+			System.out.println("Sample Thread.....");
+		}
+	}
+}
+
+public class Program2 {
+	public static void main(String[] args) {
+		System.out.println("Program Starts..........");
+		SampleThread st = new SampleThread();//Step 3
+		Thread th = new Thread(st);//Step 4
+		th.start();//Step 5
+		for(int i = 0;i<5;i++) {
+			System.out.println("Main Thread.......");
+		}
+		System.out.println("Program Ends.........");
+	}
+}
+
+//Output:
+
+//Program Starts..........
+//Main Thread.......
+//Sample Thread.....
+//Sample Thread.....
+//Sample Thread.....
+//Main Thread.......
+//Main Thread.......
+//Main Thread.......
+//Main Thread.......
+//Program Ends.........
+//Sample Thread.....
+//Sample Thread.....
+//
