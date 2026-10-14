@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-//Interview Question: Quick Merge
+//Interview Question: Line By Line Merge
 public class Activity2 {
 	public static void main(String[] args) throws IOException{
 		BufferedReader reader1 = new BufferedReader(new FileReader("C:/FILEIO/ACTIVITY/A.txt"));
